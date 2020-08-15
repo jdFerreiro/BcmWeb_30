@@ -1,0 +1,183 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lista1Elemento1" xml:space="preserve">
+    <value>Conocer los tiempos críticos de recuperación, para volver al estado anterior del desastre y/o Interrupción.</value>
+  </data>
+  <data name="Lista1Elemento2" xml:space="preserve">
+    <value>Disponer de un plan logístico de rápida actuación y respuesta, en caso de sufrir un incidente.</value>
+  </data>
+  <data name="Lista1Elemento3" xml:space="preserve">
+    <value>Reducir gastos y pérdidas económicas considerables en caso de ocurrir un incidente que afecte el negocio.</value>
+  </data>
+  <data name="Lista1Elemento4" xml:space="preserve">
+    <value>Identificar los recursos mínimos requeridos en la continuidad de los procesos del negocio.</value>
+  </data>
+  <data name="Lista1Elemento5" xml:space="preserve">
+    <value>Controlar el impacto financiero y operacional, causado por la interrupción de la operación natural del negocio.</value>
+  </data>
+  <data name="Lista2Elemento1" xml:space="preserve">
+    <value>Procedimiento de Respuesta: incluyen la secuencia para escalar la ocurrencia de un evento que interrumpa las funciones operativas, desde el personal que detecta el evento, hasta el nivel necesario para la toma de decisiones, correspondientes a solucionar el problema así como los recursos necesarios para la comunicación del hecho.</value>
+  </data>
+  <data name="Lista2Elemento2" xml:space="preserve">
+    <value>Procedimiento de Recuperación: Descripción de las actividades o acciones para recuperar el proceso. Estos procedimientos se desarrollan con el nivel de detalle necesario para que un profesional del área, siguiendo las instrucciones del mismo, pueda levantar las operaciones necesarias para que los procesos del negocio estén operativos. Estos procedimientos se acompañan de:</value>
+  </data>
+  <data name="Lista2Elemento2SublistaElemento1" xml:space="preserve">
+    <value>Documentación o información vital para llevar a cabo la Recuperación.</value>
+  </data>
+  <data name="Lista2Elemento2SublistaElemento2" xml:space="preserve">
+    <value>Recursos necesarios para lograr la Recuperación.</value>
+  </data>
+  <data name="Lista2Elemento2SublistaElemento3" xml:space="preserve">
+    <value>Personal y Proveedores claves.</value>
+  </data>
+  <data name="Lista2Elemento3" xml:space="preserve">
+    <value>Procedimiento de Reanudación: describe las actividades que se deben ejecutar para verificar y validar que las tareas del procedimiento de Recuperación fueron alcanzadas. Lista de comprobación o “Checklist”. Estos procedimientos se acompañan de:</value>
+  </data>
+  <data name="Lista2Elemento3SublistaElemento1" xml:space="preserve">
+    <value>Documentación o información vital para llevar a cabo la Reanudación.</value>
+  </data>
+  <data name="Lista2Elemento3SublistaElemento2" xml:space="preserve">
+    <value>Personal y Proveedores claves.</value>
+  </data>
+  <data name="Lista2Elemento4" xml:space="preserve">
+    <value>Procedimiento de Restauración: Contiene una descripción de las condiciones actuales del ambiente de trabajo, en cuanto a Infraestructura física,  mobiliario, equipos, materiales, etc. Es documentado con la finalidad de estimar la realidad en la cual se desenvuelve la unidad operativa en la actualidad, esta información es muy útil cuando los equipos de continuidad, han de estimar las facilidades y la dotación necesaria al momento de recrear las  condiciones iniciales en la vuelta a la normalidad.</value>
+  </data>
+  <data name="PageHeader" xml:space="preserve">
+    <value>BCP / PCN: Procedimientos de Continuidad del Negocio</value>
+  </data>
+  <data name="Parrafo1" xml:space="preserve">
+    <value>Son procedimientos desarrollados para que la empresa pueda recuperar sus funciones críticas parcial o totalmente, después de una interrupción o desastre.</value>
+  </data>
+  <data name="Parrafo2" xml:space="preserve">
+    <value>Consiste en los pasos que el personal de la empresa debe realizar, para hacer frente a situaciones disruptivas, que puedan afectar la continuidad y el normal funcionamiento del negocio. Con estos procedimientos se busca asegurar que los productos o servicios puedan ser generados de la mejor manera posible posterior a una interrupción.</value>
+  </data>
+  <data name="Parrafo3" xml:space="preserve">
+    <value>Tienen como objetivo principal el sostenimiento de los servicios de la empresa y de los procesos críticos, así como la disminución de los impactos ante eventos inesperados o desastres. Están orientados a garantizar la cobertura técnica, organizativa y operacional de las áreas críticas del negocio. También tiene como otros objetivos:</value>
+  </data>
+  <data name="Parrafo4" xml:space="preserve">
+    <value>Dentro de los Beneficios de contar con Procedimientos de Continuidad documentados, se encuentran:</value>
+  </data>
+  <data name="Parrafo5" xml:space="preserve">
+    <value>Los Procedimientos de Continuidad desarrollados abarcan cuatro grandes fases, a saber:</value>
+  </data>
+  <data name="Parrafo6" xml:space="preserve">
+    <value>Es importante que estos procedimientos estén actualizados y disponibles en cualquier momento y desde cualquier parte, por el personal autorizado y los responsables de los mismos. Es por lo anterior que reviste singular importancia portar en ambiente Web “Cloud”, toda la información concerniente a la Continuidad de Negocios de la Organización.</value>
+  </data>
+</root>

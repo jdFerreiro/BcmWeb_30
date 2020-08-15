@@ -1,0 +1,158 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models;
+
+@model ProgramacionModel
+
+<script type="text/javascript">
+    function checkAllDocs(IdTipoDocumento, IdClaseDocumento, IsChecked) {
+        var Docs = "";
+        if (IsChecked)
+            Docs = "All," + IdTipoDocumento + "," + IdClaseDocumento;
+        $("#SelectedDocumentos").val(Docs);
+        $("#CheckedAll").val(IsChecked);
+        alert($("#SelectedDocumentos").val());
+        alert($("#CheckedAll").val());
+        gvProgramacionDocumento.PerformCallBack();
+    }
+
+    function checkDoc(IdDoc, IsChecked) {
+        alert(IdDoc);
+        alert(IsChecked);
+        var Docs = $("#SelectedDocumentos").val();
+        if (IsChecked) {
+            if (Docs.length > 0)
+                Docs += ",";
+            Docs += IdDoc;
+        }
+        else {
+            Docs.replace(IdDoc, "");
+            Docs.replace(",,", ",");
+        }
+        $("#SelectedDocumentos").val(Docs);
+    }
+</script>
+
+@{
+    Html.EnableClientValidation();
+}
+
+@using (Html.BeginForm("EditProgramacion", "PMT", FormMethod.Post, new { id = "frmEditForm" }))
+{
+    @Html.HiddenFor(m => m.IdProgramacion)
+    @Html.HiddenFor(m => m.IdClaseDocumento)
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.SelectedDocumentos)
+    @Html.HiddenFor(m => m.SelectedUsuarios)
+    @Html.HiddenFor(m => m.CheckedAll)
+
+    @Html.DevExpress().FormLayout(fls =>
+{
+    fls.Name = "FormLayoutProgramacions";
+    fls.Width = Unit.Percentage(100);
+    fls.ColCount = 2;
+
+    var giProgramacion = fls.Items.AddGroupItem(itemSettings =>
+    {
+        itemSettings.ColSpan = 2;
+        itemSettings.ColCount = 2;
+        itemSettings.Caption = Resources.DocumentoResource.captionProgramacionData;
+        itemSettings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
+        itemSettings.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "IdModuloProgramacion";
+            i.Caption = Resources.DocumentoResource.captionProgramacionModulo;
+            i.ColSpan = 2;
+            i.NestedExtension().ComboBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Properties.TextField = "Nombre";
+                s.Properties.ValueField = "IdModulo";
+                s.Properties.ValueType = typeof(long);
+                s.Properties.DataSource = Metodos.GetModulosPrincipalesEmpresa();
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "FechaInicio";
+            i.Caption = Resources.DocumentoResource.captionProgramacionFechaInicio;
+
+            i.NestedExtension().DateEdit(s =>
+            {
+                string UserTimeZone = Session["UserTimeZone"].ToString();
+                int Horas = int.Parse(UserTimeZone.Split(':').First());
+                int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                if (Horas < 0) Minutos *= -1;
+
+                s.Properties.MinDate = DateTime.UtcNow.AddMinutes(Minutos);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+                s.Width = Unit.Percentage(100);
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "FechaFinal";
+            i.Caption = Resources.DocumentoResource.captionProgramacionFechaFinal;
+            i.NestedExtension().DateEdit(s =>
+            {
+                string UserTimeZone = Session["UserTimeZone"].ToString();
+                int Horas = int.Parse(UserTimeZone.Split(':').First());
+                int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                if (Horas < 0) Minutos *= -1;
+
+                s.Properties.MinDate = DateTime.UtcNow.AddMinutes(Minutos);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+                s.Width = Unit.Percentage(100);
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "IdTipoActualizacion";
+            i.Caption = Resources.DocumentoResource.captionProgramacionTipoActualizacion;
+            i.ColSpan = 2;
+            i.NestedExtension().ComboBox(s =>
+            {
+                s.Properties.TextField = "Descripcion";
+                s.Properties.ValueField = "Id";
+                s.Properties.ValueType = typeof(short);
+                s.Properties.DataSource = Metodos.GetPMT_Programacion_TipoActualizacion();
+                s.Width = Unit.Percentage(100);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+
+    });
+
+    fls.Items.Add(i =>
+    {
+        i.ColSpan = 2;
+        i.ShowCaption = DefaultBoolean.False;
+    }).SetNestedContent(() =>
+    {
+        ViewContext.Writer.Write("<div style='float:right'>");
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdate";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+            btnSettings.UseSubmitBehavior = true;
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnCancel";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            //btnSettings.ClientSideEvents.Click = "function(s, e){ gvProgramacion.CancelEdit(); }";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+        }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+    fls.Items.AddEmptyItem();
+}).Bind(Model).GetHtml()
+}

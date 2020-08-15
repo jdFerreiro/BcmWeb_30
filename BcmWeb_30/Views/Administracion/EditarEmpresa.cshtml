@@ -1,0 +1,187 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#EmpresaForm").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+
+@model EmpresaModel
+
+@using (Html.BeginForm("EditarEmpresa", "Administracion", FormMethod.Post, htmlAttributes: new { id = "EmpresaForm" }))
+{
+
+    @Html.Hidden("IsValid", ViewData.ModelState.IsValid.ToString().ToLower())
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdEmpresa)
+    @Html.HiddenFor(m => m.IdPais)
+    @Html.HiddenFor(m => m.IdEstado)
+    @Html.HiddenFor(m => m.IdCiudad)
+
+    @Html.DevExpress().FormLayout(fls =>
+{
+    fls.Name = "FormLayoutPrueba";
+    fls.Width = Unit.Percentage(100);
+
+    var gi = fls.Items.AddGroupItem(itemSettings =>
+    {
+        itemSettings.Caption = Resources.AdministracionResource.TitleEditEmpresa;
+        itemSettings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+        itemSettings.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        itemSettings.ColCount = 2;
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "NombreFiscal";
+            i.Caption = Resources.AdministracionResource.captionNombreFiscal;
+            i.ColSpan = 2;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(30);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "NombreComercial";
+            i.Caption = Resources.AdministracionResource.captionNombreComercial;
+            i.ColSpan = 2;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(30);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Direccion";
+            i.Caption = Resources.AdministracionResource.captionDireccion;
+            i.ColSpan = 2;
+            i.NestedExtension().Memo(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(50);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(m => m.IdPais, i =>
+        {
+            i.Caption = Resources.AdministracionResource.captionPais;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("PaisPartialView");
+            });
+        });
+        itemSettings.Items.Add(m => m.IdEstado, i =>
+        {
+            i.Caption = Resources.AdministracionResource.captionEstado;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("EstadoPartialView");
+            });
+        });
+        itemSettings.Items.Add(m => m.IdCiudad, i =>
+        {
+            i.Caption = Resources.AdministracionResource.captionCiudad;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("CiudadPartialView");
+            });
+        });
+        itemSettings.Items.AddEmptyItem();
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "RegistroFiscal";
+            i.Caption = Resources.AdministracionResource.captionRegistroFiscal;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(30);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(m => m.FechaInicio, i =>
+        {
+            i.Caption = Resources.AdministracionResource.captionFechaInicio;
+            i.NestedExtension().DateEdit(s =>
+            {
+                string UserTimeZone = Session["UserTimeZone"].ToString();
+                int Horas = int.Parse(UserTimeZone.Split(':').First());
+                int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                if (Horas < 0) Minutos *= -1;
+
+                s.Name = "FechaInicio";
+                s.Date = DateTime.UtcNow.AddMinutes(Minutos).AddDays(1);
+                s.Properties.UseMaskBehavior = true;
+                s.Properties.EditFormat = EditFormat.Date;
+                s.Properties.EditFormatString = "yyyy/MM/dd";
+                s.Properties.DisplayFormatString = "yyyy/MM/dd";
+                s.Properties.TimeSectionProperties.Visible = false;
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(m => m.LogoUrl, i =>
+        {
+            i.Caption = Resources.AdministracionResource.captionLogo;
+            i.ColSpan = 2;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("UploadLogoPartialView");
+            });
+        });
+
+    });
+
+    fls.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+    }).SetNestedContent(() =>
+    {
+        ViewContext.Writer.Write("<div style='float:right'>");
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdate";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+            btnSettings.ClientSideEvents.Click = "OnClick";
+            btnSettings.UseSubmitBehavior = true;
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnCancel";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnBack";
+            btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Empresa", "Administracion", new { modId = long.Parse(Session["modId"].ToString()) }) + "'; }";
+        }).Render();
+        Html.DevExpress().Button(
+      btnSettings =>
+      {
+          btnSettings.Name = "btnNext";
+          btnSettings.Text = Resources.BCMWebPublic.captionButtonNext;
+          btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+          btnSettings.ClientVisible = (Model.IdEmpresa > 0);
+          btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("ModulosAccesoEmpresa", "Administracion", new { IdEmpresa = Model.IdEmpresa }) + "'; }";
+      }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+    fls.Items.AddEmptyItem();
+}).Bind(Model).GetHtml()
+}

@@ -1,0 +1,46 @@
+﻿@using BcmWeb_30.Models
+@using BcmWeb_30
+
+@model ModulosUserModel
+
+@Html.HiddenFor(m => m.IdEmpresa)
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "cbxEmpresa";
+        settings.Width = Unit.Percentage(50);
+        settings.SelectedIndex = 0;
+        settings.CallbackRouteValues = new { Controller = "Menu", Action = "ComboBoxEmpresaPartial" };
+        settings.Properties.CallbackPageSize = 15;
+        settings.Properties.Caption = Resources.EmpresaResource.captionEmpresa;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        //settings.Properties.ItemImage.Width = 20;
+        //settings.Properties.ItemImage.Height = 20;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.TextFormatString = "{0}";
+        //settings.Properties.ItemImage.Url = "LogoUrl";
+        settings.Properties.TextField = "NombreComercial";
+        settings.Properties.ValueField = "IdEmpresa";
+        settings.SetItemTemplateContent((container) =>
+        {
+            ViewContext.Writer.Write(
+                "<table class='frame'>" +
+                    "<tr>" +
+                        "<td class='logoEmpresa'><div class='imgMarco' ><img class='logo' alt='Logo empresa' src='" +
+                            Url.Content(DataBinder.Eval(container.DataItem, "LogoUrl").ToString()) +
+                            "' /></div></td>" +
+                        "<td class='nombreEmpresa'>" +
+                            DataBinder.Eval(container.DataItem, "NombreComercial") +
+                        "</td>" +
+                    "</tr>" +
+                "</table>"
+            );
+        });
+        settings.Properties.ValueType = typeof(System.Int64);
+        settings.Properties.ItemStyle.SelectedStyle.CssClass = "selectedItem";
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.Never;
+        settings.Properties.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show();}";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "function (s,e) { lp.Show(); $(\"#IdEmpresa\").val(cbxEmpresa.GetValue()); document.forms[\"frmMenu\"].submit(); }";
+    }
+).BindList(Metodos.GetEmpresasUsuario()).Bind(Model.IdEmpresa).GetHtml()

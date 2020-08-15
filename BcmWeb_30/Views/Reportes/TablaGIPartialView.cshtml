@@ -1,0 +1,79 @@
+﻿@using BcmWeb_30
+
+@model List<objCantidadGI>
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvGI";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "TablaGIPartialView" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Unidad";
+        c.Caption = Resources.ReporteResource.captionUnidad;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    for (int Mes = 0; Mes < 12; Mes++)
+    {
+        settings.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "ValoresUnbound"+Mes.ToString();
+            c.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            c.Caption = Metodos.GetNombreMes(Mes);
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+    }
+    settings.CustomUnboundColumnData = (s, e) =>
+    {
+        if (e.Column.FieldName.Contains("ValoresUnbound"))
+        {
+            var valores = e.GetListSourceFieldValue("Valores") as List<Int32>;
+            int res = 0;
+            if (valores != null)
+            {
+                var ColName = e.Column.FieldName;
+                int index = int.Parse(e.Column.FieldName.Replace("ValoresUnbound", ""));
+                res = valores[index];
+            }
+            e.Value = res;
+        }
+    };
+}).Bind(Model).GetHtml()
+

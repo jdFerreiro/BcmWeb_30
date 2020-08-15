@@ -1,0 +1,141 @@
+﻿@using BcmWeb_30.Models
+
+@model ReporteModel
+
+<script>
+function printContent(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings => {
+        settings.Name = "LeftPane";
+        settings.FixedPosition = PanelFixedPosition.WindowLeft;
+        settings.Collapsible = true;
+        settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+        settings.ControlStyle.CssClass = "leftPane";
+        settings.Styles.Panel.CssClass = "panel";
+        settings.SetContent(() => {
+            Html.RenderPartial("ContentLeftPartialView");
+        });
+    }).GetHtml()
+}
+
+@*<div style="margin-bottom: 8px; float:right; position: relative;">
+    @Html.DevExpress().Menu(settings =>
+    {
+        settings.Name = "toolbar";
+        settings.ShowAsToolbar = true;
+
+        settings.Items.Add(new MVCxMenuItem(string.Empty, "mnuPrint", "~/Content/ChartIcons/BtnPrint.png")
+        {
+            ToolTip = Resources.ReporteResource.ToolTipPrintButton
+        });
+        MVCxMenuItem mnuFormat = new MVCxMenuItem();
+        mnuFormat.Name = "mnuFormat";
+
+        DevExpress.Web.MenuItemStyle itemStyle = new DevExpress.Web.MenuItemStyle();
+        itemStyle.Assign(mnuFormat.ItemStyle);
+        itemStyle.Paddings.Padding = new Unit(2, UnitType.Pixel);
+        itemStyle.Paddings.PaddingBottom = new Unit(1, UnitType.Pixel);
+
+        mnuFormat.ItemStyle.Assign(itemStyle);
+
+        settings.Items.Add(mnuFormat);
+        settings.ClientSideEvents.ItemClick = "function(s, e) { chart.GetPrintOptions().SetSizeMode('Zoom'); chart.Print(); }";
+    }).GetHtml()
+</div>*@
+
+@using (Html.BeginForm("Grafico", "Reportes", FormMethod.Post, htmlAttributes: new { id = "graphForm" }))
+{
+    @Html.HiddenFor(m => m.IdModulo)
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdEscalaGrafico)
+
+    <table>
+        <tr>
+            <td>
+                <div style="float: right; margin-right: 10px;">
+                    <input id="printdiv" type="button" value="@Resources.BCMWebPublic.captionButtonImprimir" onclick="printContent('dvPrint')" />
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div id="dvContents" class="Grafico">
+                    @switch (Model.IdModuloActual)
+                    {
+                        case 13010300:
+                            <div style="margin-bottom: 10px;">
+                                @Html.Partial("ComboBoxGrafico")
+                            </div>
+                            @Html.Partial("GraficoPUOPartialView", Model.DataCuadro)
+                            break;
+                        case 13010600:
+                            <div style="margin-bottom: 10px;">
+                                @Html.Partial("ComboBoxGrafico")
+                            </div>
+                            @Html.Partial("GraficoMTDPartialView", Model.DataCuadro)
+                            break;
+                        case 13010900:
+                            <div style="margin-bottom: 10px;">
+                                @Html.Partial("ComboBoxGrafico")
+                            </div>
+                            @Html.Partial("GraficoGIPartialView", Model.DataCuadro)
+                            break;
+                        case 13050300:
+                            @Html.Partial("GraficoRPPartialView", Model.DataCuadro)
+                            break;
+                        case 13050500:
+                            @Html.Partial("GraficoRIPartialView", Model.DataCuadro)
+                            break;
+                        case 13050700:
+                            @Html.Partial("GraficoRSPartialView", Model.DataCuadro)
+                            break;
+                        case 13050900:
+                            @Html.Partial("GraficoRFPartialView", Model.DataCuadro)
+                            break;
+                        case 13051100:
+                            @Html.Partial("GraficoRCPartialView", Model.DataCuadro)
+                            break;
+                    }
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div id="dvPrint" style="display:none;">
+            @switch (Model.IdModuloActual)
+            {
+                case 13010300:
+                    @Html.Partial("GraficoPUOPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13010600:
+                    @Html.Partial("GraficoMTDPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13010900:
+                    @Html.Partial("GraficoGIPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13050300:
+                    @Html.Partial("GraficoRPPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13050500:
+                    @Html.Partial("GraficoRIPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13050700:
+                    @Html.Partial("GraficoRSPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13050900:
+                    @Html.Partial("GraficoRFPartialViewPrint", Model.DataCuadro)
+                    break;
+                case 13051100:
+                    @Html.Partial("GraficoRCPartialViewPrint", Model.DataCuadro)
+                    break;
+            }
+    </div>
+}

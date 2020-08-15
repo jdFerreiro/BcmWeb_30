@@ -1,0 +1,91 @@
+﻿@using BcmWeb_30
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvAprobacion";
+    settings.KeyFieldName = "IdAprobacion";
+    settings.CallbackRouteValues = new { Controller = "Documentos", Action = "AprobacionGridPartialView" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+    settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
+    settings.ClientSideEvents.EndCallback = "OnEndGridCallback";
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "FechaAprobacion";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.DocumentoResource.captionFechaAprobacion;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Persona.Nombre";
+        c.Width = Unit.Percentage(65);
+        c.Caption = Resources.DocumentoResource.captionAprobador;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Aprobado";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Resources.DocumentoResource.captionAprobado;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.False;
+        c.Width = Unit.Percentage(10);
+        c.Caption = string.Empty;
+        c.CellStyle.Wrap = DefaultBoolean.False;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.ColumnType = MVCxGridViewColumnType.ButtonEdit;
+        c.SetDataItemTemplateContent(tc =>
+        {
+            if (!((bool)DataBinder.Eval(tc.DataItem, "Aprobado")) && ((long)DataBinder.Eval(tc.DataItem, "IdPersona") == long.Parse(Session["IdPersona"].ToString()) || (long)DataBinder.Eval(tc.DataItem, "IdPersona") == long.Parse(Session["UserId"].ToString())))
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink(Resources.DocumentoResource.textButtonAprobar, "AprobarDocumento", new { IdDocumento = DataBinder.Eval(tc.DataItem, "IdDocumento"), IdTipoDocumento = DataBinder.Eval(tc.DataItem, "IdTipoDocumento"), IdModulo = Model.IdModulo })
+                );
+            }
+        });
+    });
+}).Bind(Metodos.GetAprobaciones()).GetHtml()
+

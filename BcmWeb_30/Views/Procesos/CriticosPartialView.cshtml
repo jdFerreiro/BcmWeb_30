@@ -1,0 +1,152 @@
+﻿@using BcmWeb_30;
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvCriticos";
+    settings.CallbackRouteValues = new { Controller = "Procesos", Action = "CriticosPartialView" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 265;
+    settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
+    settings.ClientSideEvents.EndCallback = "OnEndGridCallback";
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+
+    settings.CommandColumn.Visible = false;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.Width = Unit.Percentage(10);
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = false;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Selected";
+        c.Width = Unit.Percentage(5);
+        c.Caption = "Marcado";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.CheckBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "NroProceso";
+        c.Width = Unit.Percentage(5);
+        c.Caption = Resources.ProcesosResource.captionNroProceso;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Nombre";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.ProcesosResource.captionNombre;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "ImpactoFinanciero";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.ImpactoFinanciero);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "ImpactoOperacional";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.ImpactoOperacional);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "MTD";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.MTD);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "RTO";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.RTO);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "RPO";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.RPO);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "WRT";
+        c.Width = Unit.Percentage(10);
+        c.Caption = Metodos.GetNombreEscala(eTipoEscala.WRT);
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+}).Bind(Metodos.GetProcesosByImpacto()).GetHtml()
+
+
+
+
+

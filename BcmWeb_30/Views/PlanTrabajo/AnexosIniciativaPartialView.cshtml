@@ -1,0 +1,98 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+@using DevExpress.Data;
+
+@model IList<AnexosIniciativaModel>
+
+@*@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvAnexo" + ViewData["IdIniciativa"];
+            settings.KeyFieldName = "id";
+            settings.CallbackRouteValues = new { Controller = "PlanTrabajo", Action = "AnexosIniciativaPartialView", IdIniciativa = ViewData["IdIniciativa"] };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PlanTrabajo", Action = "EditAnexoIniciativaAddNewPartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PlanTrabajo", Action = "EditAnexoIniciativaDeletePartial" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Pixel(500);
+            settings.Settings.VerticalScrollableHeight = 125;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.IniciativaResource.captionAnexos ;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.ShowNewButtonInHeader = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Pixel(150);
+            settings.CommandColumn.Caption = string.Empty;
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Nombre";
+                c.Caption = Resources.IniciativaResource.Nombre;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 250;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "fechaRegistro";
+                c.Caption = Resources.IniciativaResource.FechaInicioEstimada;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = 100;
+            });
+
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.IniciativaResource.captionHeaderFormAnexos;
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+
+                ViewContext.Writer.Write("<div style=\"padding: 5px;\">");
+                //using (Html.BeginForm("UploadAnexo","PlanTrabajo", FormMethod.Post))
+                //{
+                //    Html.DevExpress().UploadControl(ucs =>
+                //    {
+                //        ucs.Name = "upcAnexo";
+                //        ucs.ShowUploadButton = true;
+                //        ucs.UploadButton.Text = Resources.BCMWebPublic.captionButtonUpload;
+                //        ucs.AddUploadButtonsSpacing = 0;
+                //        ucs.AddUploadButtonsHorizontalPosition = AddUploadButtonsHorizontalPosition.InputRightSide;
+                //        ucs.CallbackRouteValues = new { Controller = "PlanTrabajo", Action = "FileUpload" };
+                //        ucs.ValidationSettings.Assign(PlanTrabajo_UploadControlHelper.ValidationSettings);
+                //        ucs.ClientSideEvents.FileUploadComplete = "function(s, e) { if(e.isValid) { Ruta.SetValue(e.callbackData) } }";
+                //    }).Render();
+                //    Html.Raw("<br />").ToHtmlString();
+                //}
+                using (Html.BeginForm("FileManagerPartial", "PlanTrabajo"))
+                {
+                    Html.Action("FileManagerPartial", "PlanTrabajoController");
+                };
+                ViewContext.Writer.Write("</div>");
+            });
+        });
+}
+@grid.Bind(Model).GetHtml()*@
+<div style="padding: 10px;">
+
+
+</div>

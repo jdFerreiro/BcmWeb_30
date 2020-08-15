@@ -1,0 +1,125 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#UsuarioForm").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+
+@model PerfilModelView
+
+@using (Html.BeginForm("EditarUsuario", "Administracion", FormMethod.Post, htmlAttributes: new { id = "UsuarioForm" }))
+{
+
+    @Html.Hidden("IsValid", ViewData.ModelState.IsValid.ToString().ToLower())
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdUsuario)
+    @Html.HiddenFor(m => m.IdEmpresa)
+
+    @Html.DevExpress().FormLayout(fls =>
+{
+    fls.Name = "FormLayoutPrueba";
+    fls.Width = Unit.Percentage(100);
+
+    var gi = fls.Items.AddGroupItem(itemSettings =>
+    {
+        itemSettings.Caption = Resources.AdministracionResource.TitleEditUsuario;
+        itemSettings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Left;
+        itemSettings.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        itemSettings.Width = Unit.Percentage(50);
+        itemSettings.HorizontalAlign = FormLayoutHorizontalAlign.Center;
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Nombre";
+            i.Caption = Resources.FichaResource.captionNombre;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Email";
+            i.Caption = Resources.FichaResource.captionEmail;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Password";
+            i.Caption = Resources.LoginResource.captionPassword;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Properties.Password = true;
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "PasswordCompare";
+            i.Caption = Resources.LoginResource.captionPasswordConfirm;
+            i.NestedExtension().TextBox(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Properties.Password = true;
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+    });
+
+    fls.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+    }).SetNestedContent(() =>
+    {
+        ViewContext.Writer.Write("<div style='float:right'>");
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdate";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+            btnSettings.ClientSideEvents.Click = "OnClick";
+            btnSettings.UseSubmitBehavior = true;
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnCancel";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnBack";
+            btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Usuarios", "Administracion", new { modId = long.Parse(Session["modId"].ToString()) }) + "'; }";
+        }).Render();
+        Html.DevExpress().Button(
+      btnSettings =>
+      {
+          btnSettings.Name = "btnNext";
+          btnSettings.Text = Resources.BCMWebPublic.captionButtonNext;
+          btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+          btnSettings.ClientVisible = (Model.IdUsuario > 0);
+          btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("ModulosAccesoUsuario", "Administracion", new { IdEmpresa = Model.IdEmpresa, IdUsuario = Model.IdUsuario, IdNivelUsuario = 1 }) + "'; }";
+      }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+    fls.Items.AddEmptyItem();
+}).Bind(Model).GetHtml()
+}

@@ -1,0 +1,150 @@
+﻿@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 10pt;
+        background-color: #eaeaea;
+    }
+
+    .Naranja {
+        background-color: #fca200;
+    }
+
+    .Verde {
+        background-color: #5afeb7;
+    }
+
+    .Rosado {
+        background-color: #fea4ee;
+    }
+
+    .Amarillo {
+        background-color: #e9fe31;
+    }
+
+    .Azul {
+        background-color: #abe0e5;
+    }
+
+    .Diagrama {
+        width: 100%;
+    }
+
+        .Diagrama .leftPane {
+            width: 30%;
+        }
+
+        .Diagrama .MiddlePane {
+            width: 40%;
+        }
+
+        .Diagrama .RightPane {
+            width: 30%;
+        }
+
+        .Diagrama .Contenedor {
+            max-width: 90%;
+            padding: 10px;
+            border-radius: 10px;
+            margin: auto;
+        }
+
+            .Diagrama .Contenedor .Titulo {
+                background-color: #fff;
+                font-weight: bold;
+                font-size: 14pt;
+                text-align: center;
+                width: 100%;
+            }
+
+        .Diagrama .internal {
+            border: 1px solid #000;
+            border-radius: 5px;
+            margin: 3px 0px;
+            padding: 5px;
+        }
+
+            .Diagrama .internal table {
+                width: 100%;
+            }
+
+            .Diagrama .internal td {
+                padding: 0px 5px;
+            }
+
+            .Diagrama .internal .subHeader {
+                font-weight: bold;
+                padding-top: 3px;
+            }
+
+    .Grafico {
+        width: 100%;
+        text-align: center;
+    }
+
+        .Grafico .leftPane {
+            width: 20%;
+            float: left;
+            position: absolute;
+        }
+
+        .Grafico .MiddlePane {
+            width: 75%;
+            float: right;
+        }
+
+        /*.Grafico .MiddlePane {
+        height: 20px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 12pt;
+    }*/
+
+        .Grafico .Titulo {
+            font-size: 12pt;
+            font-weight: bold;
+            text-align: center;
+            margin: 5px;
+        }
+
+        .Grafico .MTD {
+            margin: 5px;
+            width: 45%;
+            position: relative;
+            float: left;
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .Grafico .RTO {
+            margin: 5px;
+            width: 45%;
+            position: relative;
+            float: left;
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .Grafico .RPO {
+            margin: 5px;
+            width: 45%;
+            position: relative;
+            float: right;
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+
+        .Grafico .WRT {
+            margin: 5px;
+            width: 45%;
+            position: relative;
+            float: right;
+            padding: 5px;
+            border: 1px solid #000;
+            border-radius: 5px;
+        }
+}

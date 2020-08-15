@@ -1,0 +1,177 @@
+﻿@using BcmWeb_30
+
+<script type="text/javascript">
+    function OnSelectedPaisChange() {
+        gvDireccion.GetEditor("cbPais").PerformCallback();
+    }
+    function CiudadComboBox_BeginCallback(s, e) {
+        e.customArgs["IdPais"] = GridView.GetEditor("cbPais").GetValue();
+    }
+</script>
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvDireccion";
+    settings.KeyFieldName = "IdPersonaDireccion";
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.CallbackRouteValues = new { Controller = "Documentos", Action = "DireccionesPartialView" };
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.EditForm;
+    settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "Documentos", Action = "BatchEditingDirecciones" };
+    settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+    settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+    settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
+    settings.SettingsBehavior.ConfirmDelete = true;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.ShowNewButtonInHeader = true;
+    settings.CommandColumn.ShowDeleteButton = true;
+    settings.CommandColumn.ShowEditButton = true;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "IdTipoDireccion";
+        c.Caption = Resources.FichaResource.captionTipoDireccion;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+
+        c.EditorProperties().ComboBox(p =>
+        {
+            p.TextField = "Descripcion";
+            p.ValueField = "Id";
+            p.ValueType = typeof(long);
+            p.DataSource = Metodos.GetTiposDireccion();
+            p.DisplayFormatString = "{0}";
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "CalleAvenida";
+        c.Caption = Resources.FichaResource.captionCalleAvenida;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "EdificioCasa";
+        c.Caption = Resources.FichaResource.captionEdificioCasa;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "TorreAla";
+        c.Caption = Resources.FichaResource.captionTorreAla;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "PisoNivel";
+        c.Caption = Resources.FichaResource.captionPisoNivel;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Urbanizacion";
+        c.Caption = Resources.FichaResource.captionUrbanizacion;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Name = "cbPais";
+        c.Caption = Resources.FichaResource.captionPais;
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "IdPais";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.EditorProperties().ComboBox(p =>
+        {
+            p.TextField = "Descripcion";
+            p.ValueField = "Id";
+            p.ValueType = typeof(long);
+            p.DataSource = Metodos.GetPaises();
+            p.ClientSideEvents.SelectedIndexChanged = "OnSelectedPaisChange";
+        });
+
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.Name = "cbEstado";
+        c.FieldName = "Estado";
+        c.Caption = Resources.FichaResource.captionEstado;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.EditorProperties().ComboBox(p =>
+        {
+            p.CallbackRouteValues = new { Controller = "Documentos", Action = "GetCiudades", TextField = "Descripcion" };
+            p.TextField = "Descripcion";
+            p.ValueField = "Id";
+            p.ValueType = typeof(long);
+            p.ClientSideEvents.BeginCallback = "CiudadComboBox_BeginCallback";
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Ciudad";
+        c.Caption = Resources.FichaResource.captionCiudad;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    });
+
+}).Bind(Metodos.GetDirecciones()).GetHtml()
+
+

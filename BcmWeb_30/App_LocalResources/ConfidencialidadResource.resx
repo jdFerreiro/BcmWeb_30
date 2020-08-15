@@ -1,0 +1,327 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lista1Elemento1" xml:space="preserve">
+    <value>Uso de conexiones seguras con SSL para proteger la información que se transmite del navegador Web del cliente a</value>
+  </data>
+  <data name="Lista1Elemento2" xml:space="preserve">
+    <value>Uso de controles de seguridad para restringir el acceso a las bases de datos que albergan la información que permite identificar al usuario</value>
+  </data>
+  <data name="Lista1Elemento3" xml:space="preserve">
+    <value>Acceso restringido de los empleados a las bases de datos que contienen información personal y requisitos de confidencialidad impuestos a los empleados que las crean</value>
+  </data>
+  <data name="Lista1Elemento4" xml:space="preserve">
+    <value>Obligación contractual vinculante de los contratados externos de adoptar medidas técnicas y de organización que salvaguarden la información personal.</value>
+  </data>
+  <data name="Lista2Elemento1Parte1" xml:space="preserve">
+    <value>Entregarle los productos y servicios de</value>
+  </data>
+  <data name="Lista2Elemento1Parte2" xml:space="preserve">
+    <value>, así como comunicarse con el usuario por asuntos relativos a su cuenta o al servicio.</value>
+  </data>
+  <data name="Lista2Elemento2" xml:space="preserve">
+    <value>Verificar los derechos de acceso o a otros servicios o programas de acceso restringido, además de permitir la compatibilidad con software de administración de derechos digitales</value>
+  </data>
+  <data name="Lista2Elemento3" xml:space="preserve">
+    <value>Determinar si cumple los requisitos mínimos del sistema para utilizar nuestros servicios y proporcionar información relativa a la compatibilidad con el usuario</value>
+  </data>
+  <data name="Lista2Elemento4" xml:space="preserve">
+    <value>Invitar al usuario a tomar parte en encuestas sobre los productos, los servicios, las noticias y los evento</value>
+  </data>
+  <data name="Lista2Elemento5" xml:space="preserve">
+    <value>Ofrecer actualizaciones de productos, contenidos y servicios</value>
+  </data>
+  <data name="Lista2Elemento6Parte1" xml:space="preserve">
+    <value>Actualizar de manera automática los productos de</value>
+  </data>
+  <data name="Lista2Elemento6Parte2" xml:space="preserve">
+    <value>descargados</value>
+  </data>
+  <data name="Lista2Elemento7" xml:space="preserve">
+    <value>Determinar cómo se usan los servicios, incluidas las características del tráfico Web y el tipo de contenido más solicitado entre los usuarios de nuestros productos y servicios.</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Políticas de confidencialidad</value>
+  </data>
+  <data name="Parrafo01Parte1" xml:space="preserve">
+    <value>expresa su compromiso de proteger la privacidad de los usuarios. Lea la Declaración de privacidad online de</value>
+  </data>
+  <data name="Parrafo01Parte2" xml:space="preserve">
+    <value>que aparece a continuación. Esta Declaración de privacidad online de</value>
+  </data>
+  <data name="Parrafo01Parte3" xml:space="preserve">
+    <value>se aplica a los datos recopilados a través de la mayoría de sus servicios, así como a través de los servicios de consultoría y soporte técnico. No se aplica a sitios, servicios y productos de</value>
+  </data>
+  <data name="Parrafo01Parte4" xml:space="preserve">
+    <value>que no muestren o que no incluyan un enlace a ella, o que cuenten con sus propias declaraciones de privacidad.</value>
+  </data>
+  <data name="Parrafo02Parte1" xml:space="preserve">
+    <value>En algunos sitios de</value>
+  </data>
+  <data name="Parrafo02Parte2" xml:space="preserve">
+    <value>, se le solicita que proporcione datos personales, como su dirección de correo electrónico, nombre, dirección del trabajo o de casa, o el número de teléfono. También se puede recopilar información demográfica; como su código postal, edad, género, preferencias, intereses y favoritos.</value>
+  </data>
+  <data name="Parrafo03Parte1" xml:space="preserve">
+    <value>Para obtener acceso a</value>
+  </data>
+  <data name="Parrafo03Parte2" xml:space="preserve">
+    <value>, se le solicitará que inicie sesión con una dirección de correo electrónico y una contraseña, a las que hacemos referencia como su ID o USUARIO. Como parte del proceso de creación de sus credenciales, puede que se le solicite también que indique preguntas y respuestas secretas, que usaremos para comprobar su identidad y ayudarle a restablecer su contraseña, así como una dirección de correo electrónico alternativa. Algunos servicios pueden requerir una mayor seguridad, en cuyo caso se le solicitará que cree una clave de seguridad adicional. Finalmente, se asignará a sus credenciales un número de identificación exclusivo que se usará para identificar sus credenciales y la información asociada.</value>
+  </data>
+  <data name="Parrafo04" xml:space="preserve">
+    <value>Podemos recopilar información acerca de su interacción con los sitios. Asimismo, podemos emplear tecnologías, como cookies y balizas web, para recopilar información acerca de las páginas que visita, los vínculos en los que hace clic y otras acciones que realiza en nuestros sitios y servicios. También recopilamos cierta información estándar que su explorador envía a los sitios web que visita, como su dirección IP, el tipo de explorador, las horas de acceso y direcciones de sitios web de referencia.</value>
+  </data>
+  <data name="Parrafo05Parte1" xml:space="preserve">
+    <value>Para la fecha de emisión de esta política de confidencialidad,</value>
+  </data>
+  <data name="Parrafo05Parte2" xml:space="preserve">
+    <value>no recopila de forma consciente información personal que permita identificar a usuarios menores de edad.</value>
+  </data>
+  <data name="Parrafo06" xml:space="preserve">
+    <value>Nos comprometemos a no vender, arrendar ni distribuir información de identificación personal a terceros sin su autorización, excepto lo estipulado más adelante.</value>
+  </data>
+  <data name="Parrafo07" xml:space="preserve">
+    <value>expresa su compromiso de proteger la seguridad de la información personal de los usuarios. Se usa una variedad de tecnologías y procedimientos de seguridad para proteger la información personal contra un acceso, uso o una divulgación no autorizados. Por ejemplo, almacenamos la información personal que nos proporciona en sistemas informáticos con acceso limitado, ubicados en instalaciones controladas. Si se usa una contraseña para ayudar a proteger sus cuentas e información personal, es su responsabilidad que dicha contraseña sea confidencial. No comparta esta información con nadie. Si comparte algún equipo siempre debe cerrar la sesión antes de salir de un sitio o servicio para evitar que otros usuarios puedan obtener acceso a su información</value>
+  </data>
+  <data name="Parrafo08" xml:space="preserve">
+    <value>es consciente de que es un privilegio tenerle como cliente y se compromete a proteger sus datos personales. Utilizamos los siguientes controles para proteger sus datos personales:</value>
+  </data>
+  <data name="Parrafo09Parte1" xml:space="preserve">
+    <value>Los datos de carácter personal sirven a</value>
+  </data>
+  <data name="Parrafo09Parte2" xml:space="preserve">
+    <value>para lo siguiente:</value>
+  </data>
+  <data name="Parrafo10Parte1" xml:space="preserve">
+    <value>no emplea los datos personales del usuario para fines que no sean compatibles con los mencionados anteriormente.</value>
+  </data>
+  <data name="Parrafo10Parte2" xml:space="preserve">
+    <value>se abstiene de vender, alquilar o revelar a asociados o servicios de contenido la información personal del usuario a no ser que éste exprese su conformidad.</value>
+  </data>
+  <data name="Parrafo11Parte1" xml:space="preserve">
+    <value>En algunos casos, el acceso a determinados productos y servicios, como productos de suscripción de contenido o productos distribuidos por terceros, puede requerir la provisión de información personal a un tercero, como un proveedor o distribuidor de contenido. En tales situaciones, esto se determinará durante el proceso de registro, en las condiciones de uso, durante el proceso de distribución o de cualquier modo que se estime oportuno. El uso que haga de esta información el tercero, de un lado, y</value>
+  </data>
+  <data name="Parrafo11Parte2" xml:space="preserve">
+    <value>de otro, estará sujeto a sus respectivas políticas de confidencialidad. Para conocer el tratamiento que recibe por parte del asociado de contenido, es de rigor visitar su política de confidencialidad. Si el usuario está en desacuerdo con la transferencia de datos, no debe registrarse en el producto o servicio de que se trate. Asimismo, algunos proveedores o titulares de contenido pueden exigir a</value>
+  </data>
+  <data name="Parrafo11Parte3" xml:space="preserve">
+    <value>el suministro de información sobre el uso y el acceso como condición para otorgar sus derechos y licencias. En tales casos,</value>
+  </data>
+  <data name="Parrafo11Parte4" xml:space="preserve">
+    <value>aporta al proveedor de contenido, entre otra información, datos sobre el uso del contenido, datos de acceso o información de índole demográfica, en ningún caso información que facilite la identificación personal (nombre o direcciones de correo electrónico).</value>
+  </data>
+  <data name="Parrafo12Parte1" xml:space="preserve">
+    <value>Además,</value>
+  </data>
+  <data name="Parrafo12Parte2" xml:space="preserve">
+    <value>se reserva el derecho de revelar datos de carácter personal del usuario si así lo exige la ley o legislación vigente o si expone sus razones para creer que dicha actuación es necesaria para: (a) cumplir una orden judicial; (b) cumplir la orden de un órgano judicial competente de cualquier jurisdicción; (c) cumplir los trámites en procesos incoados contra</value>
+  </data>
+  <data name="Parrafo12Parte3" xml:space="preserve">
+    <value>; (d) proteger y defender los derechos o bienes de</value>
+  </data>
+  <data name="Parrafo12Parte4" xml:space="preserve">
+    <value>; o bien (e) actuar de urgencia con el fin de proteger la seguridad personal de los usuarios de los productos de</value>
+  </data>
+  <data name="Parrafo12Parte5" xml:space="preserve">
+    <value>o del público en general.</value>
+  </data>
+  <data name="Parrafo13Parte1" xml:space="preserve">
+    <value>Los sitios Web de</value>
+  </data>
+  <data name="Parrafo13Parte2" xml:space="preserve">
+    <value>incluyen enlaces a otros sitios Web, productos y servicios. Debido a que</value>
+  </data>
+  <data name="Parrafo13Parte3" xml:space="preserve">
+    <value>no gestiona los sitios Web, productos y servicios de terceros, éstos no se rigen por esta política de confidencialidad.</value>
+  </data>
+  <data name="Parrafo13Parte4" xml:space="preserve">
+    <value>no se hace responsable de las prácticas de confidencialidad o el contenido de dichos productos o sitios. Consulte las respectivas políticas de confidencialidad para conocer la forma de recopilación de datos y su tratamiento.</value>
+  </data>
+  <data name="Parrafo14Parte1" xml:space="preserve">
+    <value>Algunos de los datos de carácter personal recopilados por</value>
+  </data>
+  <data name="Parrafo14Parte2" xml:space="preserve">
+    <value>son imprescindibles para ofrecerle el producto o servicio de</value>
+  </data>
+  <data name="Parrafo14Parte3" xml:space="preserve">
+    <value>elegido. El software de</value>
+  </data>
+  <data name="Parrafo14Parte4" xml:space="preserve">
+    <value>puede incluir la posibilidad de desactivar algunas funciones de software con objeto de aumentar el grado de confidencialidad.</value>
+  </data>
+  <data name="Parrafo15Parte1" xml:space="preserve">
+    <value>En General, no enviamos mensajes de correo electrónico a los usuarios para presentar productos, novedades en los contenidos y ofertas especiales. Los productos, servicios y líneas de negocio independientes de</value>
+  </data>
+  <data name="Parrafo15Parte2" xml:space="preserve">
+    <value>podrán enviar mensajes de correo electrónico publicitarios y boletines por separado. Los únicos correos electrónicos que envíamos corresponden con datos necesarios para el funcionamiento o acceso a nuestros servicios o bien para informarle de cuestiones vitales del servicio técnico relativas a un producto o servicio de</value>
+  </data>
+  <data name="Parrafo16Parte1" xml:space="preserve">
+    <value>Al igual que otros grandes sitios Web, aprovechamos las cookies para ofrecer al usuario una experiencia que se ajuste a sus intereses cuando visite nuestros sitios Web y use nuestros productos. Estos pequeños archivos nos sirven, asimismo, para analizar las características del tráfico que pasa por los sitios de</value>
+  </data>
+  <data name="Parrafo16Parte2" xml:space="preserve">
+    <value>y para autorizar el acceso a opciones de productos y contenido Premium o de prueba. Los datos personales que se hallen en estas cookies reciben el mismo trato de confidencialidad que el resto de la información que nos suministre el usuario.</value>
+  </data>
+  <data name="Parrafo17Parte1" xml:space="preserve">
+    <value>Revisamos con frecuencia nuestra Política de confidencialidad para mantenerla actualizada con los productos, los servicios y las páginas Web de</value>
+  </data>
+  <data name="Parrafo17Parte2" xml:space="preserve">
+    <value>. Se usa "Actualizado" para advertir a los usuarios sobre cambios recientes en el documento y para indicar la fecha de la última actualización. En ocasiones también incluimos las preguntas más frecuentes sobre productos concretos.</value>
+  </data>
+  <data name="Parrafo18Parte1" xml:space="preserve">
+    <value>La política de confidencialidad no implica garantía alguna de</value>
+  </data>
+  <data name="Parrafo18Parte2" xml:space="preserve">
+    <value>se exime de toda responsabilidad por cualquier daño incidental, colateral o punitivo relacionado con la presente Política de confidencialidad. Esta Política de confidencialidad se rige por la legislación de Venezuela</value>
+  </data>
+  <data name="Parrafo19" xml:space="preserve">
+    <value>Si tiene dudas sobre cualquier asunto relacionado con la confidencialidad de nuestros productos y servicios o si desea elevar una reclamación, póngase en contacto con nosotros.</value>
+  </data>
+  <data name="Subtitulo01" xml:space="preserve">
+    <value>RECOPILACIÓN DE SU INFORMACIÓN PERSONAL</value>
+  </data>
+  <data name="Subtitulo02" xml:space="preserve">
+    <value>SEGURIDAD DE SU INFORMACIÓN PERSONAL</value>
+  </data>
+  <data name="Subtitulo03" xml:space="preserve">
+    <value>MODO DE MANTENER LA INFORMACIÓN PERSONAL RECOPILADA DE FORMA SEGURA</value>
+  </data>
+  <data name="Subtitulo04" xml:space="preserve">
+    <value>USO DE LA INFORMACIÓN PERSONAL RECOPILADA</value>
+  </data>
+  <data name="Subtitulo05" xml:space="preserve">
+    <value>SITUACIONES EN LAS QUE SE COMPARTE LA INFORMACIÓN DEL USUARIO CON TERCEROS Y MODO DE HACERLO</value>
+  </data>
+  <data name="Subtitulo06" xml:space="preserve">
+    <value>NATURALEZA OBLIGATORIA U OPCIONAL DE LA INFORMACIÓN SOLICITADA</value>
+  </data>
+  <data name="Subtitulo07" xml:space="preserve">
+    <value>MENSAJES DE CORREO ELECTRÓNICO DE</value>
+  </data>
+  <data name="Subtitulo08" xml:space="preserve">
+    <value>SEGURIDAD DE LA INFORMACIÓN PERSONAL Y USO DE COOKIES</value>
+  </data>
+  <data name="Subtitulo09" xml:space="preserve">
+    <value>CAMBIOS EN NUESTRA POLÍTICA DE CONFIDENCIALIDAD</value>
+  </data>
+  <data name="Subtitulo10" xml:space="preserve">
+    <value>POSIBILIDAD DE ERROR EN EL FUNCIONAMIENTO</value>
+  </data>
+  <data name="Subtitulo11" xml:space="preserve">
+    <value>CONSULTAS SOBRE LA CONFIDENCIALIDAD</value>
+  </data>
+</root>

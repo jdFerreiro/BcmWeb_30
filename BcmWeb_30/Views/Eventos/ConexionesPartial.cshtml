@@ -1,0 +1,64 @@
+﻿@using BcmWeb_30
+@using DevExpress.Data;
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvConexiones";
+            settings.CallbackRouteValues = new { Controller = "Eventos", Action = "ConexionesPartial" };
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 80;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.DispositivoResource.gvConexionesTitle;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.Settings.ShowFilterRow = true;
+            settings.Settings.ShowFilterRowMenu = true;
+            settings.Settings.ShowFooter = true;
+
+            settings.CommandColumn.Visible = false;
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaConexion";
+                c.Caption = Resources.DispositivoResource.labelFechaConexion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FooterCellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = Unit.Percentage(20);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Empresa";
+                c.Caption = Resources.DispositivoResource.labelEmpresa;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Left;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(60);
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "DireccionIP";
+                c.Caption = Resources.DispositivoResource.labelDireccionIP;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(20);
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+        });
+}
+@grid.Bind(Session["gvConexionesData"]).GetHtml()

@@ -1,0 +1,43 @@
+﻿@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvIO";
+    settings.SettingsDetail.MasterGridName = "gvCuadro";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "CuadroIOPartialView", IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] };
+    settings.Width = Unit.Percentage(100);
+
+    settings.KeyFieldName = "IdProceso";
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso";
+        c.Caption = Resources.ReporteResource.captionProceso;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "DescEscala";
+        c.Caption = Resources.ReporteResource.captionDescripcion;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Escala";
+        c.Caption = Resources.ReporteResource.captionValoracion;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+
+}).Bind(Model).GetHtml()

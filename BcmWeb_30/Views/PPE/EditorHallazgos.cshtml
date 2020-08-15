@@ -1,0 +1,88 @@
+﻿@using BcmWeb_30.Models
+
+@section Scripts {
+<script type="text/javascript">
+    var DocChanged = false;
+    function OnCustomCommandExecuted(s, e) {
+        //debugger;
+        var command = e.commandName;
+        if (command.indexOf("open") > -1) {
+            pcModalMode.Show();
+            var item = RichEdit.GetRibbon().GetItemByName("botSave");
+            item.SetEnabled(false);
+        }
+        if (command.indexOf("Save") > -1) {
+            lp.Show();
+            var item = RichEdit.GetRibbon().GetItemByName("botSave");
+            item.SetEnabled(false);
+            RichEdit.PerformCallback({ Accion: "Save" });
+        }
+    };
+    function docChange(s, e) {
+        btnNextPage.SetVisible(false);
+        btnCancel.SetVisible(true);
+        var item = RichEdit.GetRibbon().GetItemByName("botSave");
+        item.SetEnabled(true);
+    }
+    //function onBeginRichEditCallback(s,e) {
+    //    lp.Show();
+    //}
+    //function onEndRichEditCallback(s, e) {
+    //    lp.Hide();
+    //}
+</script>
+}
+
+@using (Html.BeginForm("EditorHallazgos", "PPE", FormMethod.Post))
+{
+    <div style="text-align:center; font-weight: bold; ">
+        @ViewBag.pageTitle
+    </div>
+    @Html.Partial("EditorPartialView")
+    <div style="float:right;">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+                    {
+                        btnSettings.Name = "btnPervPage";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonPrev;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("RecursosEjecucionEjercicio", "PPE", new { IdPrueba = Session["IdPrueba"].ToString() }) + "' }";
+                    }).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+               {
+                   btnSettings.Name = "btnBack";
+                   btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+                   btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                   btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                   btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Index", "PPE", new { IdClaseDocumento = long.Parse(Session["IdClaseDocumento"].ToString()), modId = long.Parse(Session["modId"].ToString()) }) + "' }";
+               }).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+               {
+                   btnSettings.Name = "btnCancel";
+                   btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                   btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                   btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                   btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("EditorHallazgos", "PPE", new { IdPrueba = Session["IdPrueba"].ToString() }) + "' }";
+                   btnSettings.ClientVisible = false;
+               }).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+                    {
+                        btnSettings.Name = "btnNextPage";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonNext;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("EditorAcciones", "PPE", new { IdPrueba = Session["IdPrueba"].ToString() }) + "' }";
+                    }).GetHtml()
+                </td>
+            </tr>
+        </table>
+    </div>
+}

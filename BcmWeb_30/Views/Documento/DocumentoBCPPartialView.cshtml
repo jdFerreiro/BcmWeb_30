@@ -1,0 +1,347 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentosModel
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvDocumentos";
+    settings.KeyFieldName = "IdDocumento";
+    settings.CallbackRouteValues = new { Controller = "Documento", Action = "DocumentoBCPPartialView" };
+
+    //settings.Width = Unit.Percentage(100);
+    //settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    //settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    //settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    //settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    //settings.ClientSideEvents.SelectionChanged = "function (s, e) { lp.Show(); }";
+    //settings.ClientSideEvents.BeginCallback = "function (s, e) { lp.Show(); }";
+    //settings.ClientSideEvents.EndCallback = "function (s, e) { lp.Hide(); }";
+
+    //settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    //settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    //settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    //settings.Settings.VerticalScrollableHeight = 400;
+
+    //settings.SettingsPager.PageSize = 20;
+    //settings.SettingsPager.Position = PagerPosition.Bottom;
+    //settings.SettingsPager.FirstPageButton.Visible = true;
+    //settings.SettingsPager.LastPageButton.Visible = true;
+    //settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    //settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    //settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    //settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    //settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    //settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    //settings.Columns.Add(column =>
+    //{
+    //    column.Caption = Resources.DocumentoResource.captionAccionColumn;
+    //    column.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    column.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    column.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    column.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    column.CellStyle.Wrap = DefaultBoolean.True;
+    //    column.Settings.AllowDragDrop = DefaultBoolean.False;
+    //    column.Settings.AllowSort = DefaultBoolean.False;
+    //    column.SetDataItemTemplateContent(r =>
+    //    {
+    //        if (int.Parse(DataBinder.Eval(r.DataItem, "IdEstatus").ToString()) == 6)
+    //        {
+    //            if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "HasVersion") == false)
+    //            {
+    //                ViewContext.Writer.Write(
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+    //                    + "&nbsp;" +
+    //                    Html.ActionLink(Resources.DocumentoResource.NuevaVersionText, "NuevaVersionDocumento",
+    //                        new
+    //                        {
+    //                            IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"),
+    //                            IdClaseDocumento = Model.IdClaseDocumento,
+    //                            IdModulo = Model.IdModulo,
+    //                            IdVersionActual = DataBinder.Eval(r.DataItem, "VersionOriginal"),
+    //                            NroVersion = DataBinder.Eval(r.DataItem, "NroVersion")
+    //                        })
+    //                );
+    //            }
+    //            else
+    //            {
+    //                ViewContext.Writer.Write(
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+    //                );
+    //            }
+    //        }
+    //        else
+    //        {
+    //            if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "Eliminable"))
+    //            {
+    //                ViewContext.Writer.Write(
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdModulo = Model.IdModulo },
+    //                        new { onclick = "return confirm('" + string.Format(Resources.BCMWebPublic.ConfirmDeleteMessage, DataBinder.Eval(r.DataItem, "NroDocumento")) + "'); lp.Show();" })
+    //                );
+    //            }
+    //            else if ((bool)DataBinder.Eval(r.DataItem, "Editable"))
+    //            {
+    //                ViewContext.Writer.Write(
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+    //                    Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+    //                );
+    //            }
+    //            else
+    //            {
+    //                ViewContext.Writer.Write(
+    //                  Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+    //              );
+    //            }
+    //        }
+    //    });
+    //    column.Width = Unit.Percentage(10);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "NroDocumento";
+    //    c.Caption = Resources.DocumentoResource.captionNroDocumento;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.PropertiesEdit.DisplayFormatString = "#,##0";
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.Width = Unit.Percentage(7);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "Version";
+    //    c.Caption = Resources.DocumentoResource.captionVersion;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.PropertiesEdit.DisplayFormatString = "{0}";
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.Width = Unit.Percentage(5);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "FechaCreacion";
+    //    c.Caption = Resources.DocumentoResource.captionFechaCreacion;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.CellStyle.Wrap = DefaultBoolean.True;
+    //    c.PropertiesEdit.DisplayFormatString = "d";
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.Width = Unit.Percentage(7);
+    //});
+
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "DatosBCP.Responsable";
+    //    c.Caption = Resources.DocumentoResource.captionResponsable;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.CellStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.Width = Unit.Percentage(13);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "DatosBCP.UnidadOrganizativa";
+    //    c.Caption = Resources.FichaResource.captionUO;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.CellStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.Width = Unit.Percentage(20);
+    //});
+
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "Estatus";
+    //    c.Caption = Resources.DocumentoResource.captionEstatus;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.Width = Unit.Percentage(6);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.True;
+    //    c.FieldName = "FechaEstadoDocumento";
+    //    c.Caption = Resources.DocumentoResource.captionFechaEstatus;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.CellStyle.Wrap = DefaultBoolean.True;
+    //    c.PropertiesEdit.DisplayFormatString = "d";
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.Width = Unit.Percentage(7);
+    //});
+    //settings.Columns.Add(c =>
+    //{
+    //    c.Settings.AllowSort = DefaultBoolean.False;
+    //    c.Caption = Resources.DocumentoResource.captionPDFColumn;
+    //    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    //    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    //    c.HeaderStyle.Wrap = DefaultBoolean.True;
+    //    c.SetDataItemTemplateContent(tc =>
+    //    {
+    //        ViewContext.Writer.Write(
+    //            Html.DevExpress().HyperLink(i =>
+    //            {
+    //                i.ClientVisible = (DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF") != null && !String.IsNullOrEmpty(DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF").ToString()));
+    //                i.Name = String.Format("hlPDF_{0}", DataBinder.Eval(tc.DataItem, "IdDocumento"));
+    //                i.NavigateUrl = (DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF") == null ? string.Empty : DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF").ToString());
+    //                i.Properties.ImageUrl = "~/Content/Images/Internal/icono-pdf-def.jpg";
+    //                i.Properties.ImageHeight = Unit.Pixel(32);
+    //            }).GetHtml()
+    //        );
+    //    });
+    //    c.Width = Unit.Percentage(8);
+    //});
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.ClientSideEvents.SelectionChanged = "function (s, e) { lp.Show(); }";
+    settings.ClientSideEvents.BeginCallback = "function (s, e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s, e) { lp.Hide(); }";
+
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.Settings.ShowColumnHeaders = false;
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+
+    settings.SettingsPager.PageSize = 10;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.SetDataRowTemplateContent(r =>
+    {
+        ViewContext.Writer.Write(
+            "<div class=\"borderContent\" >" +
+            "<table style=\"width: 100%;\">" +
+            "<tr><td style=\"width: 30%;\">" +
+            "<table class=\"tblDocumento\">" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionNroDocumento + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "NroDocumento") + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionResponsable + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Responsable.Nombre") + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.FichaResource.captionUO + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "DatosBCP.UnidadOrganizativa") + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionEstatus + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Estatus") + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionFechaEstatus + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "FechaEstadoDocumento", "{0:dd/MM/yyyy}") + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionVersion + "</td>" +
+            //"<td style=\"width: 60%;\">" + string.Format("{0}.{1}", DataBinder.Eval(r.DataItem, "Version")) + "</td>" +
+            "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Version") + "</td>" +
+            "</tr>" +
+            "</table>" +
+            "</td>" +
+            "<td style=\"width: 60%;\">" +
+            "<table class=\"tblProcesos\">" +
+            "<tr>" +
+            "<td colspan=\"2\" class=\"Titulo\">" + Resources.FichaResource.captionGrupo6 + "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td class=\"Titulo\" style=\"width:10%;\">" + Resources.ProcesosResource.captionNroProceso + "</td>" +
+            "<td class=\"Titulo\" style=\"width:90%;\">" + Resources.ProcesosResource.captionNombre + "</td>" +
+            "</tr>" +
+            BcmWeb_30.Metodos.getStringProcesos(DataBinder.Eval(r.DataItem, "IdDocumento")) +
+            "</table>" +
+            "</td>" +
+            "<td style=\"width: 10%; text-align: center;\">" +
+            BcmWeb_30.Metodos.ConvertirRuta(DataBinder.Eval(r.DataItem, "RutaDocumentoPDF")) +
+            "</td></tr>" +
+            "<tr><td colspan=3>" +
+            "<div class=\"right\">");
+        if (int.Parse(DataBinder.Eval(r.DataItem, "IdEstatus").ToString()) == 6)
+        {
+            if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "HasVersion") == false)
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                    + "&nbsp;" +
+                    Html.ActionLink(Resources.DocumentoResource.NuevaVersionText, "NuevaVersionDocumento",
+                        new
+                        {
+                            IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"),
+                            IdClaseDocumento = Model.IdClaseDocumento,
+                            IdModulo = Model.IdModulo,
+                            IdVersionActual = DataBinder.Eval(r.DataItem, "VersionOriginal"),
+                            NroVersion = DataBinder.Eval(r.DataItem, "NroVersion")
+                        })
+                );
+            }
+            else
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                );
+            }
+        }
+        else
+        {
+            if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "Eliminable"))
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdModulo = Model.IdModulo },
+                        new { onclick = "return confirm('" + string.Format(Resources.BCMWebPublic.ConfirmDeleteMessage, DataBinder.Eval(r.DataItem, "NroDocumento")) + "'); lp.Show();" })
+                );
+            }
+            else if ((bool)DataBinder.Eval(r.DataItem, "Editable"))
+            {
+                ViewContext.Writer.Write(
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                    Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                );
+            }
+            else
+            {
+                ViewContext.Writer.Write(
+                  Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+              );
+            }
+        }
+        ViewContext.Writer.Write(
+            "</div>" +
+            "</td></tr>" +
+        "</table>"
+        );
+    });
+}).Bind(Model.Documentos).GetHtml()

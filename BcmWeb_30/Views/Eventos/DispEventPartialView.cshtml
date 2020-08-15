@@ -1,0 +1,140 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models
+
+@model EventoEmpresaModel
+
+@Html.DevExpress().GridView(settings => {
+    settings.Name = "gvDispositivos";
+    settings.CallbackRouteValues = new { Action = "DispEventPartialView", Controller = "Eventos" };
+
+    settings.Width = Unit.Percentage(100);
+    settings.Settings.ShowFilterRow = true;
+    settings.SettingsBehavior.AllowDragDrop = false;
+
+    settings.KeyFieldName="Id";
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.ShowClearFilterButton = true;
+    settings.CommandColumn.SelectAllCheckboxMode = ViewBag.SelectAllCheckBoxMode;
+    settings.SettingsText.CommandClearFilter = Resources.DispositivoResource.lblClearFilter;
+    settings.CommandColumn.Width = Unit.Percentage(5);
+    settings.CommandColumn.VisibleIndex = 0;
+    settings.CommandColumn.Caption = " ";
+
+    settings.CommandButtonInitialize = (s, e) =>
+    {
+        MVCxGridView Grid = s as MVCxGridView;
+        if (e.ButtonType == ColumnCommandButtonType.SelectCheckbox)
+        {
+            var value = Grid.GetRowValues(e.VisibleIndex, "FechaEnvio");
+            if (value != null) e.Enabled = false;
+        }
+    };
+
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Usuario";
+        c.FixedStyle = GridViewColumnFixedStyle.Left;
+        c.Caption = Resources.DispositivoResource.labelTipo;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(30);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "tipo";
+        c.Caption = Resources.DispositivoResource.labelTipo;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "nombre";
+        c.Caption = Resources.DispositivoResource.labelNombre;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(15);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "modelo";
+        c.Caption = Resources.DispositivoResource.labelModelo;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "plataforma";
+        c.Caption = Resources.DispositivoResource.labelPlataforma;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(15);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "version";
+        c.Caption = Resources.DispositivoResource.labelVersion;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "FechaEnvio";
+        c.Caption = Resources.DispositivoResource.labelFechaEnvio;
+        c.ColumnType = MVCxGridViewColumnType.DateEdit;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(10);
+    });
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "FechaDescarga";
+        c.Caption = Resources.DispositivoResource.labelFechaDescarga;
+        c.ColumnType = MVCxGridViewColumnType.DateEdit;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.Width = Unit.Percentage(10);
+    });
+
+    settings.CustomJSProperties = (s, e) => {
+        var grid = s as MVCxGridView;
+        e.Properties["cpVisibleRowCount"] = grid.VisibleRowCount;
+        e.Properties["cpFilteredRowCountWithoutPage"] = GetFilteredRowCountWithoutPage(grid);
+    };
+
+    settings.ClientSideEvents.Init = "OnGridViewInit";
+    settings.ClientSideEvents.SelectionChanged = "OnGridViewSelectionChanged";
+    settings.ClientSideEvents.EndCallback = "OnGridViewEndCallback";
+    settings.ClientSideEvents.BeginCallback = "OnGridViewBeginCallback";
+
+}).Bind(Metodos.GetDispositivosMovilEvento(Model.IdSubmoduloSelected)).GetHtml()
+
+@functions {
+    int GetFilteredRowCountWithoutPage(MVCxGridView grid)
+    {
+        int selectedRowsOnPage = 0;
+        foreach (var key in grid.GetCurrentPageRowValues("Id"))
+        {
+            if (grid.Selection.IsRowSelectedByKey(key))
+                selectedRowsOnPage++;
+        }
+        return grid.Selection.FilteredCount - selectedRowsOnPage;
+    }
+}

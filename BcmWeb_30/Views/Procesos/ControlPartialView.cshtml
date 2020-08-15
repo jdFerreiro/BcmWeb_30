@@ -1,0 +1,18 @@
+﻿@using BcmWeb_30
+
+@Html.DevExpress().ListBox(
+    settings =>
+    {
+        settings.Name = "lblControl";
+        settings.Width = 200;
+        settings.Height = 150;
+        settings.Properties.Caption = Resources.ProcesosResource.captionControl;
+        settings.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+        settings.Properties.SelectionMode = ListEditSelectionMode.CheckColumn;
+        settings.Properties.ValueField = "IdTipoEscala";
+        settings.Properties.ValueType = typeof(long);
+        settings.Properties.TextField = "TipoEscala";
+        settings.Properties.ItemStyle.Wrap = DefaultBoolean.True;
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "FeaturesSelectionChanged";
+    }
+).BindList(Metodos.GetDataComboControl()).GetHtml()

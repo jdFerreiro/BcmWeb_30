@@ -1,0 +1,22 @@
+@using BcmWeb_30.Models
+
+@model ModulosUserModel
+
+@{
+    Layout = "~/Views/Shared/_rootLayout.cshtml";
+}
+
+@RenderSection("Scripts", false)
+
+@RenderSection("LeftPanel", false)
+
+<div class="contentPane">
+    <div class="PageTitle">
+        @Html.DisplayFor(m => m.PageTitle)
+    </div>
+    @RenderBody()
+</div>
+
+@RenderSection("RightPanel", false)
+
+@RenderSection("FooterPanel", false)

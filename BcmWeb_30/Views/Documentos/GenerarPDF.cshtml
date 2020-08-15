@@ -1,0 +1,111 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentoModel
+
+<script type="text/javascript">
+    var myTimer;
+    function OnButtonClick(s, e, startUrl) {
+        StartActionOnServer(startUrl);
+    }
+    function StartActionOnServer(startUrl) {
+        lp.Show();
+        $.ajax({
+            type: 'POST',
+            url: startUrl,
+            dataType: 'json'
+        }).done(ProgressCallbackComplete)
+          .fail(CallbackError);
+    }
+    function ProgressCallbackComplete(data) {
+        lp.Hide();
+        //window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;"
+        window.open(data._rutaDocumento, '_blank', 'fullscreen=yes');
+    }
+    function CallbackError() {
+        lp.Hide();
+        alert('Callback error');
+    }
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+<div class="generarPDF">
+    <table cellpadding="0" style="border-spacing: 0px;">
+        <tr>
+            <td>
+                @Html.Raw(Resources.PDFResource.ViewParrafo1)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Raw(Resources.PDFResource.ViewParrafo2)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Raw(string.Format(Resources.PDFResource.ViewParrafo3, Resources.PDFResource.BotonGenerarPDFString))
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Raw(Resources.PDFResource.ViewParrafo4)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.Raw(Resources.PDFResource.ViewParrafo5)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align:right;">
+                @Html.DevExpress().Button(settings =>
+                    {
+                        settings.Name = "btnStart";
+                        settings.Text = Resources.PDFResource.BotonGenerarPDFString;
+                        settings.UseSubmitBehavior = false;
+                        settings.ClientSideEvents.Click = string.Format("function(s, e) {{ OnButtonClick(s, e, '{0}'); }}", Url.Action("Start", "Documentos", null));
+                    }).GetHtml()
+            </td>
+        </tr>
+    </table>
+</div>
+

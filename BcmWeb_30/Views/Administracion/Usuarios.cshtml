@@ -1,0 +1,42 @@
+﻿@using BcmWeb_30.Models
+
+@model UsuariosModel
+
+<script type="text/javascript">
+    function onDelete(s, e)
+    {
+        var res = confirm('" + string.Format(Resources.AdministracionResource.ConfirmEliminarMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "');
+        //if (res == true) {
+        //    lp.Show();
+        //    e.processOnServer = true;
+        //} else {
+        //    processOnServer = false;
+        //}
+    }
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+{
+    settings.Name = "LeftPane";
+    settings.FixedPosition = PanelFixedPosition.WindowLeft;
+    settings.Collapsible = true;
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+    settings.ControlStyle.CssClass = "leftPane";
+    settings.Styles.Panel.CssClass = "panel";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("ContentLeftPartialView");
+    });
+}).GetHtml()
+}
+
+@using (Html.BeginForm("Usuarios", "Administracion", FormMethod.Post, htmlAttributes: new { id = "EmpresaForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdEmpresaSelected)
+
+
+    @Html.Partial("ComboBoxEmpresaUsuario")
+    @Html.Partial("UsuarioPartialView", Model)
+}

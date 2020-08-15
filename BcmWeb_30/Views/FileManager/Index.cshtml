@@ -1,0 +1,61 @@
+﻿@model System.Collections.IEnumerable
+
+<script type="text/javascript">
+    function ProcesarEvento(tipoEvento, actual, anterior) {
+        $.ajax({
+            type: 'POST',
+            url: '/FileManager/RegistrarOperacion',
+            dataType: 'json',
+            data: {
+                Tipo: tipoEvento,
+                nombre: actual,
+                viejo: anterior
+            },
+            success: function (data) {
+            },
+            error: function () {
+                alert("error");
+            }
+
+        })
+    }
+</script>
+
+<table>
+    <tr>
+        <td>
+            @if (Session["IdModulo"].ToString().StartsWith("14")) {
+                Html.DevExpress().Button(b =>
+                {
+                    b.Name = "botReturn";
+                    b.Text = Resources.BCMWebPublic.botReturnText;
+                    b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "PlanTrabajo", Action = "Iniciativas" }) + "?modId=" + Session["IdModulo"].ToString() + "' }";
+
+                }).GetHtml();
+            }
+            else
+            {
+                Html.DevExpress().Button(b =>
+                {
+                    b.Name = "botReturn";
+                    b.Text = Resources.BCMWebPublic.botReturnText;
+                    b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "Documento", Action = "Index" }) + "?IdModulo=" + Session["IdModulo"].ToString() + "' }";
+
+                }).GetHtml();
+            }
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div style="margin-top: 10px;">
+                @using (Html.BeginForm())
+                {
+                    @Html.Action("FileManagerPartial", "FileManager")
+                }
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+

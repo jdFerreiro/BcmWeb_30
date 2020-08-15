@@ -1,0 +1,138 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#PruebasForm").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+
+@model PruebaModel
+
+@using (Html.BeginForm("EditarPrueba", "PPE", FormMethod.Post, htmlAttributes: new { id = "PruebasForm" }))
+{
+
+    @Html.Hidden("IsValid", ViewData.ModelState.IsValid.ToString().ToLower())
+    @Html.HiddenFor(m => m.IdClaseDocumento)
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdPrueba)
+
+    @Html.DevExpress().FormLayout(fls =>
+{
+    fls.Name = "FormLayoutPrueba";
+    fls.Width = Unit.Percentage(100);
+
+    var gi = fls.Items.AddGroupItem(itemSettings =>
+    {
+        itemSettings.Caption = Resources.PPEResource.TitlePlanificacion;
+        itemSettings.SettingsItemCaptions.Location = LayoutItemCaptionLocation.Top;
+        itemSettings.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Nombre";
+            i.Caption = Resources.PPEResource.captionNombre;
+            i.NestedExtension().Memo(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(30);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(m => m.FechaInicio, i =>
+        {
+            i.Caption = Resources.PPEResource.captionFechaPlanificacion;
+            i.NestedExtension().DateEdit(s =>
+            {
+                string UserTimeZone = Session["UserTimeZone"].ToString();
+                int Horas = int.Parse(UserTimeZone.Split(':').First());
+                int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                if (Horas < 0) Minutos *= -1;
+
+                s.Name = "FechaInicio";
+                s.Properties.MinDate = DateTime.UtcNow.AddMinutes(Minutos);
+                s.Date = DateTime.UtcNow.AddMinutes(Minutos).AddDays(1);
+                s.Properties.UseMaskBehavior = true;
+                s.Properties.EditFormat = EditFormat.DateTime;
+                s.Properties.EditFormatString = "yyyy/MM/dd HH:mm";
+                s.Properties.DisplayFormatString = "yyyy/MM/dd HH:mm";
+                s.Properties.TimeSectionProperties.Visible = true;
+                s.Properties.TimeSectionProperties.TimeEditProperties.EditFormat = EditFormat.Time;
+                s.Properties.TimeSectionProperties.TimeEditProperties.EditFormatString = "HH:mm";
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+                s.Width = Unit.Percentage(100);
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Ubicacion";
+            i.Caption = Resources.PPEResource.captionUbicacion;
+            i.NestedExtension().Memo(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(30);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+        itemSettings.Items.Add(i =>
+        {
+            i.FieldName = "Proposito";
+            i.Caption = Resources.PPEResource.captionProposito;
+            i.NestedExtension().Memo(s =>
+            {
+                s.Width = Unit.Percentage(100);
+                s.Height = Unit.Pixel(50);
+                s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                s.ShowModelErrors = true;
+            });
+        });
+
+    });
+
+    fls.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+    }).SetNestedContent(() =>
+    {
+        ViewContext.Writer.Write("<div style='float:right'>");
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnUpdate";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+            btnSettings.ClientSideEvents.Click = "OnClick";
+            btnSettings.UseSubmitBehavior = true;
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnCancel";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+        }).Render();
+        Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnBack";
+            btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Index", "PPE", new { IdClaseDocumento = long.Parse(Session["IdClaseDocumento"].ToString()), modId = long.Parse(Session["modId"].ToString()) }) + "' }";
+        }).Render();
+        Html.DevExpress().Button(
+      btnSettings =>
+      {
+          btnSettings.Name = "btnNext";
+          btnSettings.Text = Resources.BCMWebPublic.captionButtonNext;
+          btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+          btnSettings.ClientVisible = (Model.IdPrueba > 0);
+          btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Participantes", "PPE", new { IdPrueba = Model.IdPrueba }) + "' }";
+      }).Render();
+        ViewContext.Writer.Write("</div>");
+    });
+    fls.Items.AddEmptyItem();
+}).Bind(Model).GetHtml()}

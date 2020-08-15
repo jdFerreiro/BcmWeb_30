@@ -1,0 +1,132 @@
+﻿@media (max-width: 650px) {
+    .slContent {
+        display: none;
+    }
+
+    #modulos {
+        margin: auto;
+        width: 50%;
+        }
+
+    #modulos h2 {
+        margin: auto;
+    }
+    #modulos .AppList ul {
+        margin: auto;
+    }
+
+    #Panel {
+        font-size: 0.1em;
+        color: #ff0000;
+    }
+
+}
+@media (max-width: 480px) {
+    #Panel {
+        font-size: .3em;
+    }
+
+    h1 {
+        font-size: 10pt;
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: 8pt;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 8pt;
+    }
+
+    .AppList {
+        font-size: 6pt;
+        text-wrap: none;
+        margin: 0px;
+    }
+
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .panel-width30 {
+        width: 30%;
+        font-family: inherit;
+        font-size: 6pt;
+        padding: 3px;
+    }
+
+}
+
+@media (max-width: 800px) {
+    html, body {
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 8pt;
+        background-color: #eaeaea;
+        width: 100%;
+    }
+
+    #slideshow {
+        margin: 3px auto;
+        position: relative;
+        width: 375px;
+        height: 266px;
+        padding: 5px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+        #slideshow > div {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+        }
+
+            #slideshow > div img {
+                vertical-align: middle;
+                text-align: center;
+                width: 100%;
+            }
+
+    h1 {
+        font-size: 12pt;
+        margin-bottom: 0;
+    }
+
+    h2 {
+        font-size: 10pt;
+    }
+
+    h4 {
+        margin-top: 0;
+        font-size: 10pt;
+    }
+
+    .AppList {
+        font-size: 8pt;
+        text-wrap: none;
+        margin: 0px;
+    }
+
+    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .panel-width30 {
+        width: 30%;
+        font-family: inherit;
+        font-size: 8pt;
+        padding: 3px;
+    }
+
+}

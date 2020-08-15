@@ -1,0 +1,262 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models;
+@using DevExpress.Data;
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView<ProgramacionModel>(
+        settings =>
+        {
+            settings.Name = "gvProgramacion";
+            settings.KeyFieldName = "IdProgramacion";
+            settings.CallbackRouteValues = new { Controller = "PMT", Action = "ProgramacionPartialView" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PMT", Action = "EditProgramacionAddNewPartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PMT", Action = "EditProgramacionUpdatePartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PMT", Action = "EditProgramacionDeletePartial" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowNewButtonInHeader = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Percentage(10);
+            settings.CommandColumn.Caption = " ";
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdModuloProgramacion";
+                c.Caption = Resources.DocumentoResource.captionProgramacionModulo;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(60);
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Nombre";
+                    p.ValueField = "IdModulo";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetModulosPrincipalesEmpresa().Where(x => x.CodigoModulo < 11).ToList();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaInicio";
+                c.Caption = Resources.DocumentoResource.captionProgramacionFechaInicio;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaFinal";
+                c.Caption = Resources.DocumentoResource.captionProgramacionFechaFinal;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdTipoFrecuencia";
+                c.Caption = Resources.DocumentoResource.captionFrecuencia;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetPMTTipoFrecuencia();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "statusMantenimiento";
+                c.Caption = Resources.DocumentoResource.captionStatusMantenimiento;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+                c.SetDataItemTemplateContent(dc =>
+                {
+                    bool _status = bool.Parse(DataBinder.Eval(dc.DataItem, "statusMantenimiento").ToString());
+                    if (_status)
+                        ViewContext.Writer.Write("<img src=\"../../Content/images/boton_Verde.jpg\" width=\"20\" height=\"20\" />");
+                    else
+                        ViewContext.Writer.Write("<img src=\"../../Content/images/Boton_rojo.png\" width=\"20\" height=\"20\" />");
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "statusDocumento";
+                c.Caption = Resources.DocumentoResource.captionStatusDocumento;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+                c.SetDataItemTemplateContent(dc =>
+                {
+                    bool _status = bool.Parse(DataBinder.Eval(dc.DataItem, "statusDocumento").ToString());
+                    if (_status)
+                        ViewContext.Writer.Write("<img src=\"../../Content/images/boton_Verde.jpg\" width=\"20\" height=\"20\" />");
+                    else
+                        ViewContext.Writer.Write("<img src=\"../../Content/images/Boton_rojo.png\" width=\"20\" height=\"20\" />");
+                });
+            });
+
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowCloseButton = false;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.DocumentoResource.captionProgramacion;
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+                Html.DevExpress().FormLayout(fls =>
+                {
+                    fls.Name = "FormLayoutProgramaciones";
+                    fls.Width = Unit.Percentage(100);
+                    fls.ColCount = 2;
+
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdModuloProgramacion";
+                        i.Caption = Resources.DocumentoResource.captionProgramacionModulo;
+                        i.ColSpan = 2;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Width = Unit.Percentage(100);
+                            s.Properties.TextField = "Nombre";
+                            s.Properties.ValueField = "IdModulo";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetModulosPrincipalesEmpresa().Where(x => x.CodigoModulo < 11).ToList();
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaInicio";
+                        i.Caption = Resources.DocumentoResource.captionProgramacionFechaInicio;
+
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            string UserTimeZone = Session["UserTimeZone"].ToString();
+                            int Horas = int.Parse(UserTimeZone.Split(':').First());
+                            int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                            if (Horas < 0) Minutos *= -1;
+
+                            s.Properties.MinDate = DateTime.UtcNow.AddMinutes(Minutos);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.Properties.ClientSideEvents.DateChanged = "InicioChanged";
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaFinal";
+                        i.Caption = Resources.DocumentoResource.captionProgramacionFechaFinal;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            string UserTimeZone = Session["UserTimeZone"].ToString();
+                            int Horas = int.Parse(UserTimeZone.Split(':').First());
+                            int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                            if (Horas < 0) Minutos *= -1;
+
+                            s.Properties.MinDate = DateTime.UtcNow.AddMinutes(Minutos);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdTipoFrecuencia";
+                        i.Caption = Resources.DocumentoResource.captionFrecuencia;
+                        i.ColSpan = 2;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Width = Unit.Percentage(100);
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetPMTTipoFrecuencia();
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                        });
+                    });
+
+                    fls.Items.Add(i =>
+                    {
+                        i.ColSpan = 2;
+                        i.ShowCaption = DefaultBoolean.False;
+                    }).SetNestedContent(() =>
+                    {
+                        ViewContext.Writer.Write("<div style='float:right'>");
+                        Html.DevExpress().Button(
+                            btnSettings =>
+                            {
+                                btnSettings.Name = "btnUpdate";
+                                btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+                                btnSettings.ClientSideEvents.Click = "function(s, e){ gvProgramacion.UpdateEdit(); }";
+                            }).Render();
+                        Html.DevExpress().Button(
+                            btnSettings =>
+                            {
+                                btnSettings.Name = "btnCancel";
+                                btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                                btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                                btnSettings.ClientSideEvents.Click = "function(s, e){ gvProgramacion.CancelEdit(); }";
+                            }).Render();
+                        ViewContext.Writer.Write("</div>");
+                    });
+                    fls.Items.AddEmptyItem();
+                })
+                    .Bind(ViewData["EditableProgramacion"] ?? c.DataItem)
+                    .Render();
+            });
+
+            settings.InitNewRow = (s, e) =>
+            {
+                string UserTimeZone = Session["UserTimeZone"].ToString();
+                int Horas = int.Parse(UserTimeZone.Split(':').First());
+                int Minutos = (Math.Abs(Horas) * 60) + int.Parse(UserTimeZone.Split(':').Last());
+                if (Horas < 0) Minutos *= -1;
+
+                DateTime _startDate = DateTime.UtcNow.AddMinutes(Minutos);
+
+                e.NewValues["FechaInicio"] = _startDate.AddDays(1);
+                e.NewValues["FechaFinal"] = _startDate.AddDays(30);
+                e.NewValues["IdModuloProgramacion"] = null;
+                e.NewValues["IdTipoActualizacion"] = 1;
+                e.NewValues["IdTipoFrecuencia"] = null;
+
+            };
+        });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Metodos.GetProgramaciones()).GetHtml()

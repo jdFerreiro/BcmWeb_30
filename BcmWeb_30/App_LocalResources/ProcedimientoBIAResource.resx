@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lista1Elemento1" xml:space="preserve">
+    <value>¿Está mi Empresa preparada para soportar las consecuencias económicas de una interrupción en los procesos críticos del Negocio?</value>
+  </data>
+  <data name="Lista1Elemento2" xml:space="preserve">
+    <value>¿Qué tan eficiente es el comportamiento y anticipación de mi Empresa frente a un desastre?</value>
+  </data>
+  <data name="Lista1Elemento3" xml:space="preserve">
+    <value>¿Puedo reducir el impacto económico de una interrupción del Negocio y garantizar las operaciones necesarias, para cumplir con el funcionamiento normal de la Empresa?</value>
+  </data>
+  <data name="Lista2Elemento1" xml:space="preserve">
+    <value>Entradas y Salidas, Proveedores, Interdependencias, Clientes y Productos.</value>
+  </data>
+  <data name="Lista2Elemento10" xml:space="preserve">
+    <value>Períodos de Grandes Impactos para el Proceso.</value>
+  </data>
+  <data name="Lista2Elemento2" xml:space="preserve">
+    <value>Aplicaciones y/o Plataformas que soportan al Proceso.</value>
+  </data>
+  <data name="Lista2Elemento3" xml:space="preserve">
+    <value>Documentación y/o Información.</value>
+  </data>
+  <data name="Lista2Elemento4" xml:space="preserve">
+    <value>Personal Clave que interviene en la ejecución del Proceso.</value>
+  </data>
+  <data name="Lista2Elemento5" xml:space="preserve">
+    <value>Impactos Financiero y Operacional.</value>
+  </data>
+  <data name="Lista2Elemento6" xml:space="preserve">
+    <value>Amenazas y/o  Riesgos con sus causas, controles, probabilidades, severidad, fuente y estado relacionados con el Proceso.</value>
+  </data>
+  <data name="Lista2Elemento7" xml:space="preserve">
+    <value>Variables: MTD, RTO, RPO y WRT asociadas al Proceso.</value>
+  </data>
+  <data name="Lista2Elemento8" xml:space="preserve">
+    <value>Procesos Alternos.</value>
+  </data>
+  <data name="Lista2Elemento9" xml:space="preserve">
+    <value>Respaldo de la Información y Sitios de Respaldo Externos.</value>
+  </data>
+  <data name="PageHeader" xml:space="preserve">
+    <value>BIA / AIN: Análisis de Impacto al Negocio</value>
+  </data>
+  <data name="Parrafo1" xml:space="preserve">
+    <value>Las empresas están rodeadas de amenazas y cuando se ven afectadas por un imprevisto para el que no están preparadas, pueden verse forzadas a interrumpir sus actividades parcial o totalmente.</value>
+  </data>
+  <data name="Parrafo2" xml:space="preserve">
+    <value>En éste caso es necesario disponer de las herramientas que le permitan retornar a la situación normal, disminuyendo el impacto del hecho y reduciendo las pérdidas en la medida de lo posible.</value>
+  </data>
+  <data name="Parrafo3" xml:space="preserve">
+    <value>Ante todo esto, debemos responder a las siguientes interrogantes:</value>
+  </data>
+  <data name="Parrafo4" xml:space="preserve">
+    <value>La Continuidad de la Empresa es vital para el éxito duradero del Negocio, en el mundo de hoy, todos los aspectos de funcionamiento de una Empresa son vulnerables a interrupciones y riesgos.</value>
+  </data>
+  <data name="Parrafo5" xml:space="preserve">
+    <value>Por todo lo antes expuesto, es importante y necesario que las Empresas, realicen un Análisis de Impacto, cuyo alcance contemple recabar información, documentación, así como la elaboración de matrices de impacto e información, que deben ser tomadas en cuenta para realizar eficazmente el Plan de Continuidad del Negocio.</value>
+  </data>
+  <data name="Parrafo6" xml:space="preserve">
+    <value>En orden de levantar y organizar toda la documentación relacionada con los procesos críticos, conjuntamente con la elaboración de matrices de impacto e información, tanto a nivel corporativo como para las unidades de negocios seleccionadas.</value>
+  </data>
+  <data name="Parrafo7" xml:space="preserve">
+    <value>La técnica más eficaz para recopilar e intercambiar la información para este Análisis, es a través de la utilización de los métodos de cuestionarios y de la realización de entrevistas al personal de las distintas áreas fundamentales y críticas del negocio. Técnicas de validación y revisión de información, serán utilizadas posteriormente en el proceso de recopilación de información crítica y vital. Los datos obtenidos conjuntamente con la data histórica de continuidad que la Organización posee actualmente, servirán como base para la validación del Plan de Continuidad del Negocio y de las estrategias de continuidad actuales en la Organización y de ser necesario producir las recomendaciones necesarias para su actualización.</value>
+  </data>
+  <data name="Parrafo8" xml:space="preserve">
+    <value>La información por cada Proceso se refiere a:</value>
+  </data>
+  <data name="Parrafo9" xml:space="preserve">
+    <value>Una vez recopilada toda la información de los procesos fundamentales del Negocio, se analizan y se determinan cuales son los Procesos Críticos del Negocio, a los cuales se les desarrollarán los Procedimientos de Continuidad a utilizar en un caso de desastre para así poder garantizar la continuidad de las operaciones críticas del Negocio.</value>
+  </data>
+</root>

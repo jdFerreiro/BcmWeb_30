@@ -1,0 +1,18 @@
+﻿@using BcmWeb_30
+
+@model System.Data.DataTable
+
+@Html.DevExpress().TreeView(
+    set =>
+    {
+        set.Name = "tvUO";
+        set.ClientSideEvents.NodeClick = "nodeClick";
+        set.Styles.Node.BackColor = System.Drawing.ColorTranslator.FromHtml("#eaeaea");
+        //settings.CallbackRouteValues = new { Controller = "Reportes", Action = "PartialUnidadesOrganizativas" };
+        set.PreRender = (se, e) =>
+        {
+            (se as MVCxTreeView).SelectedNode = (se as MVCxTreeView).Nodes.FindByText("Search Codes");
+        };
+        BcmWeb_30.Controllers.ReportesController.CreateTreeViewNodesRecursive(Model, set.Nodes, 0);
+    }).GetHtml()
+

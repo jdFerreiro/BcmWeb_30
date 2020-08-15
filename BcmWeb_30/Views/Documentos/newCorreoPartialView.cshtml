@@ -1,0 +1,169 @@
+﻿@using BcmWeb_30.Models
+
+@model PersonaModel
+
+@using (Html.BeginForm("newCorreoPartialView", "Documentos", FormMethod.Post, htmlAttributes: new { id = "frmPersonaCorreo" }))
+{
+    @Html.HiddenFor(m => m.CorreosElectronicos[0].IdPersonaEmail)
+
+@Html.DevExpress().FormLayout(s =>
+{
+    s.Name = "personaCorreoLayout";
+    s.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    s.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 400;
+    s.ControlStyle.CssClass = "fromLayout";
+
+    s.Items.AddGroupItem(gi =>
+    {
+        gi.Caption = Resources.FichaResource.personaGrupoDatos;
+        gi.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        gi.Items.Add(m => m.Nombre, i =>
+        {
+            i.NestedExtension().TextBox(tb =>
+            {
+                tb.Width = Unit.Percentage(100);
+                tb.ShowModelErrors = true;
+                tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                tb.Properties.HelpTextSettings.Position = HelpTextPosition.Bottom;
+                //tb.Properties.HelpText = Resources.LoginResource.helpTextEmail;
+            });
+        });
+        gi.Items.Add(m => m.Identificacion, i =>
+        {
+            i.NestedExtension().TextBox(tb =>
+            {
+                tb.Width = Unit.Percentage(100);
+                tb.ShowModelErrors = true;
+                tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                tb.Properties.HelpTextSettings.Position = HelpTextPosition.Bottom;
+                tb.Properties.HelpText = Resources.DocumentoResource.helpTextIdentificacion;
+            });
+        });
+        gi.Items.Add(m => m.IdUnidadOrganizativaPersona, i =>
+        {
+            i.NestedExtension().ComboBox(cb =>
+            {
+                cb.Width = Unit.Percentage(100);
+                cb.ShowModelErrors = true;
+
+                cb.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                cb.Properties.ValueType = typeof(long);
+                cb.Properties.DataSource = BcmWeb_30.Metodos.GetUnidades();
+                cb.Properties.TextField = "NombreUnidadOrganizativa";
+                cb.Properties.ValueField = "IdUnidad";
+                cb.Properties.ValidationSettings.Display = Display.Dynamic;
+                cb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                cb.Properties.ClientSideEvents.ButtonClick = "botUO_Click";
+                cb.Properties.HelpTextSettings.Position = HelpTextPosition.Bottom;
+                cb.PreRender = (sender, e) =>
+                {
+                    ASPxComboBox cmb = (ASPxComboBox)sender;
+                    cmb.DropDownButton.Visible = true;
+                    cmb.Buttons.Add(new EditButton(Resources.BCMWebPublic.captionButtonNew));
+                };
+
+            });
+        });
+        gi.Items.Add(m => m.IdCargoPersona, i =>
+        {
+            i.NestedExtension().ComboBox(cb =>
+            {
+                cb.Width = Unit.Percentage(100);
+                //cb.ShowModelErrors = true;
+
+                cb.Properties.ValueType = typeof(long);
+                cb.Properties.DataSource = BcmWeb_30.Metodos.GetCargos();
+                cb.Properties.TextField = "NombreCargo";
+                cb.Properties.ValueField = "IdCargo";
+                cb.Properties.ValidationSettings.Display = Display.Dynamic;
+                cb.Properties.DropDownStyle = DropDownStyle.DropDownList;
+                cb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                cb.Properties.ClientSideEvents.ButtonClick = "botCargo_Click";
+                cb.Properties.HelpTextSettings.Position = HelpTextPosition.Bottom;
+                cb.PreRender = (sender, e) =>
+                {
+                    ASPxComboBox cmb = (ASPxComboBox)sender;
+                    cmb.DropDownButton.Visible = true;
+                    cmb.Buttons.Add(new EditButton(Resources.BCMWebPublic.captionButtonNew));
+                };
+
+            });
+        });
+    });
+    s.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+        i.ClientVisible = (Model.CorreosElectronicos.Count == 0);
+        i.NestedExtension().Label(lb =>
+        {
+            lb.Text = Resources.ErrorResource.RemoteEmail;
+            lb.ControlStyle.ForeColor = System.Drawing.Color.Red;
+        });
+    });
+    s.Items.AddGroupItem(gi =>
+    {
+        gi.Caption = Resources.FichaResource.personaGrupoCorreos;
+        gi.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        gi.Items.Add(m => m.CorreosElectronicos, i =>
+        {
+            i.Caption = string.Empty;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("CorreosPartialView", Model.CorreosElectronicos);
+            });
+        });
+    });
+    s.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+        i.ClientVisible = (Model.Telefonos.Count == 0);
+        i.NestedExtension().Label(lb =>
+        {
+            lb.Text = Resources.ErrorResource.RemoteTelefono;
+            lb.ControlStyle.ForeColor = System.Drawing.Color.Red;
+        });
+    });
+    s.Items.AddGroupItem(gi =>
+    {
+        gi.Caption = Resources.FichaResource.personaGrupoTelefono;
+        gi.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        gi.Items.Add(m => m.Telefonos, i =>
+        {
+            i.Caption = string.Empty;
+            i.SetNestedContent(() =>
+            {
+                Html.RenderPartial("TelefonosPartialView", Model.Telefonos);
+            });
+        });
+    });
+    s.Items.AddGroupItem(gi =>
+    {
+        gi.ShowCaption = DefaultBoolean.False;
+        gi.SettingsItemHelpTexts.Position = HelpTextPosition.Bottom;
+        gi.Width = Unit.Percentage(25);
+        gi.ColCount = 2;
+        gi.Items.Add(i =>
+        {
+            i.ShowCaption = DefaultBoolean.False;
+            i.NestedExtension().Button(bt =>
+            {
+                bt.Name = "botSavePersona";
+                bt.Text = Resources.BCMWebPublic.captionButtonSave;
+                bt.UseSubmitBehavior = true;
+            });
+        });
+        gi.Items.Add(i =>
+        {
+            i.ShowCaption = DefaultBoolean.False;
+            i.NestedExtension().Button(bt =>
+            {
+                bt.Name = "botCancelPersona";
+                bt.Text = Resources.BCMWebPublic.captionButtonCancel;
+                bt.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+            });
+        });
+    });
+}).GetHtml()
+}

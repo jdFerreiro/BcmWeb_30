@@ -1,0 +1,140 @@
+﻿@using BcmWeb_30.Models
+
+@model EventoEmpresaModel
+
+<script type="text/javascript">
+    var selectedIDs;
+
+    function onSelectAllClick() {
+        alert('entra');
+        gvDispositivos.SelectRows();
+    }
+    function onClearSelectionClick() {
+        gvDispositivos.UnselectRows();
+    }
+
+    function OnGridViewInit() {
+        UpdateTitlePanel();
+    }
+    function OnGridViewSelectionChanged(s, e) {
+        UpdateTitlePanel();
+        s.GetSelectedFieldValues("Id", GetSelectedFieldValuesCallback);
+    }
+    function GetSelectedFieldValuesCallback(values) {
+        //Capture all selected keys
+        selectedIDs = values.join(',');
+    }
+    function OnGridViewBeginCallback(s, e) {
+        // e.customArgs["selectAllMode"] = selectAllMode.GetText();
+        lp.Show();
+        e.customArgs["selectedIDs"] = selectedIDs;
+        e.customArgs["idModuloSelected"] = $("#IdSubmoduloSelected").val();
+    }
+    function OnGridViewEndCallback() {
+        UpdateTitlePanel();
+        lp.Hide();
+    }
+    function getSelectedRowCount() {
+        $("#countSelected").val(gvDispositivos.GetSelectedRowCount());
+    }
+    function UpdateTitlePanel() {
+        var selectedFilteredRowCount = GetSelectedFilteredRowCount();
+
+        var text = "Total rows selected: <b>" + gvDispositivos.GetSelectedRowCount() + "</b>. ";
+        var hiddenSelectedRowCount = gvDispositivos.GetSelectedRowCount() - GetSelectedFilteredRowCount();
+        if (hiddenSelectedRowCount > 0)
+            text += "Selected rows hidden by the applied filter: <b>" + hiddenSelectedRowCount + "</b>.";
+        text += "<br />";
+        lblInfo.SetText(text);
+        $("#countSelected").val(gvDispositivos.GetSelectedRowCount());
+
+        var isAllPages = "AllPages";
+        SetElementVisibility(btnSave, $("#countSelected").val() > 0);
+        SetElementVisibility(lnkSelectAllRows, !isAllPages && gvDispositivos.cpVisibleRowCount > selectedFilteredRowCount);
+        SetElementVisibility(lnkClearSelection, !isAllPages && gvDispositivos.GetSelectedRowCount() > 0);
+    }
+    function GetSelectedFilteredRowCount() {
+        return gvDispositivos.cpFilteredRowCountWithoutPage + gvDispositivos.GetSelectedKeysOnPage().length;
+    }
+    function SetElementVisibility(id, visible) {
+        visible ? id.SetVisible(true) : id.SetVisible(false)
+    }
+    function OnSubmitClick(s, e) {
+        //Write all selected keys to hidden input. Pass them on post action.
+        lp.Show()
+        var selectedIds = selectedIDs;
+        document.location = "@Url.Action("SaveEvento", "Eventos")?IDs=" + selectedIDs + "&idSubmodulo="  + $("#IdSubmoduloSelected").val();
+    }
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+{
+    settings.Name = "LeftPane";
+    settings.FixedPosition = PanelFixedPosition.WindowLeft;
+    settings.Collapsible = true;
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+    settings.ControlStyle.CssClass = "leftPane";
+    settings.Styles.Panel.CssClass = "panel";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("ContentLeftPartialView");
+    });
+}).GetHtml()
+}
+
+@using (Html.BeginForm("Activar", "Eventos", FormMethod.Post, htmlAttributes: new { id = "EventoForm" }))
+{
+    @Html.HiddenFor(m => m.IdSubmoduloSelected)
+    @Html.HiddenFor(m => m.countSelected)
+    @Html.HiddenFor(m => m.selectedIds);
+    @Html.HiddenFor(m => m.isSaving);
+
+    @Html.Partial("ComboBoxEvento")
+
+<div class="titleContainer BottomLargeMargin" style="margin-top: 20px; margin-bottom: 25px; float:right;">
+    @Html.DevExpress().Label(settingslbl => {
+        settingslbl.Name = "lblInfo";
+        settingslbl.Properties.EnableClientSideAPI = true;
+    }).GetHtml()
+    @Html.DevExpress().HyperLink(settings => {
+   settings.Name = "lnkSelectAllRows";
+   settings.Properties.Text = Resources.DispositivoResource.labelLnkSelectAllRows;
+   settings.ControlStyle.Cursor = "Pointer";
+   settings.Properties.EnableClientSideAPI = true;
+   settings.ClientVisible = false;
+   settings.Properties.ClientSideEvents.Click = "onSelectAllClick";
+}).GetHtml()
+    @Html.DevExpress().HyperLink(settings => {
+   settings.Name = "lnkClearSelection";
+   settings.Properties.Text = Resources.DispositivoResource.labelLnkClearSelection;
+   settings.ControlStyle.Cursor = "Pointer";
+   settings.Properties.EnableClientSideAPI = true;
+   settings.ClientVisible = false;
+   settings.Properties.ClientSideEvents.Click = "onClearSelectionClick";
+}).GetHtml()
+</div>
+
+    @Html.Partial("DispEventPartialView", Model)
+
+    <div class="titleContainer BottomLargeMargin" style="margin-top: 20px; margin-bottom: 25px; float:right;">
+        @Html.DevExpress().Button(
+        btnSettings =>
+        {
+        btnSettings.Name = "btnCancel";
+        btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+        btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+        }).GetHtml()
+        @Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnSave";
+            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientVisible = (Model.countSelected > 0);
+            btnSettings.UseSubmitBehavior = false;
+            btnSettings.ClientSideEvents.Click = "OnSubmitClick";
+        }).GetHtml()
+    </div>
+}

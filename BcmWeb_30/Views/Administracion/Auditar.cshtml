@@ -1,0 +1,96 @@
+﻿@using BcmWeb_30.Models
+
+@model AuditoriaAdminModel
+
+<script type="text/javascript">
+    function OnBeginGridCallback(s, e) {
+        lp.Show();
+    }
+    function OnEndGridCallback(s, e) {
+        lp.Hide();
+    }
+    function OnImageClick(sender) {
+        var idAtt = $(sender).attr("data-id");
+        var idObj = $(sender).data();
+        alert("att: " + idAtt + ":  obj.id: " + idObj.id);
+    }
+</script>
+
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+{
+    settings.Name = "LeftPane";
+    settings.FixedPosition = PanelFixedPosition.WindowLeft;
+    settings.Collapsible = true;
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+    settings.ControlStyle.CssClass = "leftPane";
+    settings.Styles.Panel.CssClass = "panel";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("ContentLeftPartialView");
+    });
+}).GetHtml()
+}
+
+@using (Html.BeginForm("Auditar", "Administracion", FormMethod.Post, htmlAttributes: new { id= "AdminForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdUsuario)
+    @Html.HiddenFor(m => m.IdModuloActual)
+
+    <table cellspacing="5" cellpadding="5">
+        <tr>
+            <td width="25%">
+                @Html.DevExpress().DateEdit(
+                settings =>
+                {
+                    settings.Name = "FechaDesde";
+                    settings.Properties.Caption = Resources.AdministracionResource.captionFechaDesde;
+                    settings.Properties.UseMaskBehavior = true;
+                    settings.Properties.EditFormat = EditFormat.Custom;
+                    settings.Properties.EditFormatString = "MM/dd/yyyy HH:mm";
+                    settings.Properties.TimeSectionProperties.Visible = true;
+                    settings.Properties.TimeSectionProperties.TimeEditProperties.EditFormat = EditFormat.Custom;
+                    settings.Properties.TimeSectionProperties.TimeEditProperties.EditFormatString = "HH:mm";
+                    settings.Date = DateTime.Now;
+                    settings.Width = Unit.Percentage(100);
+                }).Bind(Model.FechaDesde).GetHtml()
+            </td>
+            <td width="25%" style="padding-left: 5px;">
+                @Html.DevExpress().DateEdit(
+                settings =>
+                {
+                    settings.Name = "FechaHasta";
+                    settings.Properties.Caption = Resources.AdministracionResource.captionFechaHasta;
+                    settings.Properties.UseMaskBehavior = true;
+                    settings.Properties.EditFormat = EditFormat.Custom;
+                    settings.Properties.EditFormatString = "MM/dd/yyyy HH:mm";
+                    settings.Properties.TimeSectionProperties.Visible = true;
+                    settings.Properties.TimeSectionProperties.TimeEditProperties.EditFormat = EditFormat.Custom;
+                    settings.Properties.TimeSectionProperties.TimeEditProperties.EditFormatString = "HH:mm";
+                    settings.Date = DateTime.Now;
+                    settings.Width = Unit.Percentage(100);
+                }).Bind(Model.FechaHasta).GetHtml()
+            </td>
+            <td width="40%" style="padding-left: 5px;">
+                @Html.Partial("ComboBoxUsuariosPartialView", Model)
+            </td>
+            <td width="10%" style="text-align: right;">
+                @Html.DevExpress().Button(b =>
+                   {
+                       b.Name = "botLogin";
+                       b.Text = Resources.BCMWebPublic.captionButtonEnviar;
+                       b.CausesValidation = false;
+                       b.UseSubmitBehavior = true;
+                   }).GetHtml()
+            </td>
+            @*document.forms[\"AdminForm\"].submit();*@ 
+        </tr>
+        <tr>
+            <td colspan="4">
+                @Html.Partial("AuditoriaPartialView")
+            </td>
+        </tr>
+    </table>
+}

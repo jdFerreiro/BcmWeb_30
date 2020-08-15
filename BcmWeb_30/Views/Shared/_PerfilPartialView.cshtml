@@ -1,0 +1,25 @@
+﻿@using BcmWeb_30.Models
+
+@model ModulosUserModel
+
+@Html.DevExpress().PopupControl(
+settings =>
+{
+    settings.Name = "perfilModalMode";
+    settings.Width = Unit.Pixel(400);
+    settings.AllowDragging = true;
+    settings.CloseAction = CloseAction.CloseButton;
+    settings.CloseOnEscape = true;
+    settings.PopupAnimationType = AnimationType.None;
+    settings.HeaderText = string.Format(Resources.PerfilResource.titlePanel, User.Identity.Name);
+    settings.Styles.Header.HorizontalAlign = HorizontalAlign.Left;
+    settings.Modal = true;
+    settings.PopupHorizontalAlign = PopupHorizontalAlign.WindowCenter;
+    settings.PopupVerticalAlign = PopupVerticalAlign.WindowCenter;
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("PerfilPartial", Model);
+    });
+
+    settings.ClientSideEvents.CloseUp = "function(s, e){ ASPxClientEdit.ClearEditorsInContainer(null, '', true); }";
+}).GetHtml()

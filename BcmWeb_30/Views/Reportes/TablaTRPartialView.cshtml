@@ -1,0 +1,92 @@
+﻿@using BcmWeb_30.Models
+
+@model ReporteModel
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvTR";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "TablaTRPartialView" };
+
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Unidad";
+        c.Caption = Resources.ReporteResource.captionUnidad;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = Unit.Percentage(40);
+    });
+    settings.Columns.AddBand(sb =>
+    {
+        sb.Caption = Resources.ReporteResource.captionValorEscala;
+        sb.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        int Index = 0;
+        List<string> _strEscala = Model.Escalas;
+        int pWidth = 60 / _strEscala.Count();
+
+        foreach (string Valor in _strEscala)
+        {
+            sb.Columns.Add(c =>
+            {
+                c.Settings.AllowSort = DefaultBoolean.True;
+                c.FieldName = "CantidadEscalaUnbound" + Index.ToString();
+                c.UnboundType = DevExpress.Data.UnboundColumnType.String;
+                c.Caption = Valor.ToString();
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(pWidth);
+            });
+            Index++;
+        }
+    });
+    settings.CustomUnboundColumnData = (s, e) =>
+    {
+        if (e.Column.FieldName.Contains("CantidadEscalaUnbound"))
+        {
+            var valores = e.GetListSourceFieldValue("CantidadEscala") as List<Int32>;
+            int res = 0;
+            if (valores != null)
+            {
+                var ColName = e.Column.FieldName;
+                int index = int.Parse(e.Column.FieldName.Replace("CantidadEscalaUnbound", ""));
+                res = valores[index];
+            }
+            e.Value = res;
+        }
+    };
+}).Bind(Model.DataCuadro).GetHtml()
+
+

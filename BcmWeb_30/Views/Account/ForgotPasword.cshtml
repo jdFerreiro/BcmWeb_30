@@ -1,0 +1,56 @@
+﻿@using BcmWeb_30.Models
+
+@model ForgotPasswordModel
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#editForm").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+@using (Html.BeginForm("ForgotPasword", "Account", FormMethod.Post, htmlAttributes: new { id = "editForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("IsValid", ViewData.ModelState.IsValid.ToString().ToLower())
+    <div class="login">
+        <table>
+            <tr>
+                <td>
+                    <h2>@Html.Raw(Resources.ForgotPasswordResource.HeaderString)</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h3>@Html.Raw(Resources.ForgotPasswordResource.SubHeaderString)</h3>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-top: 30px;">
+                    @Html.DevExpress().TextBoxFor(m => m.Email, tb =>
+                {
+                    tb.Width = Unit.Percentage(100);
+                    tb.ShowModelErrors = true;
+                    tb.Properties.Caption = Resources.ForgotPasswordResource.EmailLabelString;
+                    tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                    tb.Properties.ValidationSettings.Display = Display.Dynamic;
+                    tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                }).GetHtml()
+
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align:right; padding-top: 10px;">
+                    @Html.DevExpress().Button(b =>
+                   {
+                       b.Name = "botSend";
+                       b.Text = Resources.ForgotPasswordResource.ButtonSubmitString;
+                       b.ClientSideEvents.Click = "OnClick";
+                       b.UseSubmitBehavior = true;
+                   }).GetHtml()
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+

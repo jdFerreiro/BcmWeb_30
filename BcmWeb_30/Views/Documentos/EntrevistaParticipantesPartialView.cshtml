@@ -1,0 +1,114 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentoEntrevistaModel
+
+<table>
+    <tr>
+        <td style="width:50%">
+            @Html.DevExpress().GridView(
+            settings =>
+            {
+                settings.Name = "gvEntrevistador";
+                settings.KeyFieldName = "IdPersona";
+                settings.CallbackRouteValues = new { Controller = "Documento", Action = "EntrevistaParticipantesPartial" };
+
+                settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+                settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+                settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+                settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+                settings.ClientSideEvents.BeginCallback = "function (s, e) { lp.Show(); }";
+                settings.ClientSideEvents.EndCallback = "function (s, e) { lp.Hide(); }";
+
+                settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+                settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+
+                settings.SettingsPager.PageSize = 20;
+                settings.SettingsPager.Position = PagerPosition.TopAndBottom;
+                settings.SettingsPager.FirstPageButton.Visible = true;
+                settings.SettingsPager.LastPageButton.Visible = true;
+                settings.SettingsPager.PageSizeItemSettings.Visible = true;
+                settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+                settings.Columns.Add(c =>
+                {
+                    c.Settings.AllowSort = DefaultBoolean.True;
+                    c.FieldName = "Nombre";
+                    c.Width = Unit.Percentage(60);
+                    c.Caption = Resources.DocumentoResource.captionNombreParticipante;
+                    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.PropertiesEdit.DisplayFormatString = "{0}";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.Settings.AllowSort = DefaultBoolean.True;
+                    c.FieldName = "Empresa";
+                    c.Width = Unit.Percentage(40);
+                    c.Caption = Resources.DocumentoResource.captionEmpresaParticipante;
+                    c.PropertiesEdit.DisplayFormatString = "{0}";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                });
+
+            }).Bind(Model.Personas.Where(x => x.Entrevistador == true)).GetHtml()
+        </td>
+        <td style="width:50%">
+            @Html.DevExpress().GridView(
+            settings =>
+            {
+                settings.Name = "gvEntrevistado";
+                settings.KeyFieldName = "IdPersona";
+                settings.CallbackRouteValues = new { Controller = "Documento", Action = "EntrevistaParticipantesPartial" };
+
+                settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+                settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+                settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+                settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+                settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+                settings.ClientSideEvents.BeginCallback = "function (s, e) { lp.Show(); }";
+                settings.ClientSideEvents.EndCallback = "function (s, e) { lp.Hide(); }";
+
+                settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+                settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+
+                settings.SettingsPager.PageSize = 20;
+                settings.SettingsPager.Position = PagerPosition.TopAndBottom;
+                settings.SettingsPager.FirstPageButton.Visible = true;
+                settings.SettingsPager.LastPageButton.Visible = true;
+                settings.SettingsPager.PageSizeItemSettings.Visible = true;
+                settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+                settings.Columns.Add(c =>
+                {
+                    c.Settings.AllowSort = DefaultBoolean.True;
+                    c.FieldName = "Nombre";
+                    c.Width = Unit.Percentage(60);
+                    c.Caption = Resources.DocumentoResource.captionNombreParticipante;
+                    c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.PropertiesEdit.DisplayFormatString = "{0}";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                });
+                settings.Columns.Add(c =>
+                {
+                    c.Settings.AllowSort = DefaultBoolean.True;
+                    c.FieldName = "Empresa";
+                    c.Width = Unit.Percentage(40);
+                    c.Caption = Resources.DocumentoResource.captionEmpresaParticipante;
+                    c.PropertiesEdit.DisplayFormatString = "{0}";
+                    c.HeaderStyle.Wrap = DefaultBoolean.True;
+                    c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                    c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                });
+
+            }).Bind(Model.Personas.Where(x => x.Entrevistador == false)).GetHtml()
+        </td>
+    </tr>
+</table>
+
+

@@ -1,0 +1,53 @@
+﻿<script type="text/javascript">
+    var myTimer;
+    function OnButtonClick(s, e, startUrl, Id) {
+        StartActionOnServer(startUrl, Id);
+    }
+    function StartActionOnServer(startUrl, Id) {
+        lp.Show();
+        $.ajax({
+            type: 'POST',
+            url: startUrl,
+            dataType: 'json',
+            data: {
+                IdIncidente: Id
+            },
+        }).done(ProgressCallbackComplete)
+          .fail(CallbackError);
+    }
+    function ProgressCallbackComplete(data) {
+        lp.Hide();
+        //window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;"
+        window.open(data._rutaDocumento, '_blank', 'fullscreen=NO');
+    }
+    function CallbackError() {
+        lp.Hide();
+        alert('Error haciendo callback en Incidentes');
+    }
+</script>
+
+@using (Html.BeginForm("ExportIncidentes", "PMI", FormMethod.Post, htmlAttributes: new { id = "PMIForm" }))
+{
+
+    <div style="margin-top: -15px; margin-bottom: 3px;">
+        <div>
+            @Html.DevExpress().Button(b =>
+                          {
+                              b.Name = "botReturn";
+                              b.Text = Resources.BCMWebPublic.botReturnText;
+                              b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Index", "Documento", new { IdModulo = Session["modId"].ToString() }) + "' }";
+                          }).GetHtml()
+        </div>
+        @*<div style="float: right; margin-top: -20px; margin-bottom: 5px;">
+                @Html.DevExpress().Button(settings =>
+            {
+                settings.Name = "btExport";
+                settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                settings.UseSubmitBehavior = true;
+            }).GetHtml()
+            </div>*@
+    </div>
+
+    @Html.Partial("PMIPartialView")
+
+}

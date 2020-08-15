@@ -1,0 +1,138 @@
+﻿@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvVI";
+    settings.SettingsDetail.MasterGridName = "gvCuadro";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "CuadroVIPartialView", CustomerID = ViewData["IdUnidadOrganizativa"] };
+    settings.Width = Unit.Percentage(100);
+
+    settings.KeyFieldName = "IdProceso";
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso";
+        c.Caption = Resources.ReporteResource.captionProceso;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    });
+    settings.Columns.AddBand(sb =>
+    {
+        sb.Caption = Resources.ReporteResource.captionMDTHeader;
+        sb.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "EscalaMTD";
+            c.Caption = Resources.ReporteResource.captionVIHeader;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "DescEscalaMTD";
+            c.Caption = Resources.ReporteResource.captionValorEscala;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+    });
+    settings.Columns.AddBand(sb =>
+    {
+        sb.Caption = Resources.ReporteResource.captionRPOHeader;
+        sb.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "EscalaRPO";
+            c.Caption = Resources.ReporteResource.captionVIHeader;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "DescEscalaRPO";
+            c.Caption = Resources.ReporteResource.captionValorEscala;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+    });
+    settings.Columns.AddBand(sb =>
+    {
+        sb.Caption = Resources.ReporteResource.captionRTOHeader;
+        sb.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "EscalaRTO";
+            c.Caption = Resources.ReporteResource.captionVIHeader;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "DescEscalaRTO";
+            c.Caption = Resources.ReporteResource.captionValorEscala;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+    });
+    settings.Columns.AddBand(sb =>
+    {
+        sb.Caption = Resources.ReporteResource.captionWRTHeader;
+        sb.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "EscalaWRT";
+            c.Caption = Resources.ReporteResource.captionVIHeader;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+        sb.Columns.Add(c =>
+        {
+            c.Settings.AllowSort = DefaultBoolean.True;
+            c.FieldName = "DescEscalaWRT";
+            c.Caption = Resources.ReporteResource.captionValorEscala;
+            c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.CellStyle.Wrap = DefaultBoolean.True;
+            c.PropertiesEdit.DisplayFormatString = "{0}";
+            c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+            c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+            c.HeaderStyle.Wrap = DefaultBoolean.True;
+        });
+    });
+}).Bind(Model).GetHtml()
+

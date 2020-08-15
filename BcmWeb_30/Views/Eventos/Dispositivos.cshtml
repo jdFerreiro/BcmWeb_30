@@ -1,0 +1,65 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model DispositivosEmpresaModel
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+<script type="text/javascript">
+    //function OnButtonClick(s, e, startUrl, Id) {
+    //    StartActionOnServer(startUrl, Id);
+    //}
+    //function StartActionOnServer(startUrl, Id) {
+    //    lp.Show();
+    //    $.ajax({
+    //        type: 'POST',
+    //        url: startUrl,
+    //        dataType: 'json',
+    //        data: {
+    //            IdIniciativa: Id
+    //        },
+    //    }).done(ProgressCallbackComplete)
+    //      .fail(CallbackError);
+    //}
+    //function ProgressCallbackComplete(data) {
+    //    lp.Hide();
+    //    //window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;"
+    //    window.open(data._rutaDocumento, '_blank', 'fullscreen=NO');
+    //}
+    function CallbackError() {
+        lp.Hide();
+        alert('Error haciendo callback en Dispositivos');
+    }
+</script>
+
+@using (Html.BeginForm("ExportDispositivos", "Eventos", FormMethod.Post, htmlAttributes: new { id = "DispositivosForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdModuloActual)
+
+    <div style="float: right; margin-top: -25px;">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "btExport";
+            settings.Text = Resources.BCMWebPublic.stringExportExcel;
+            settings.UseSubmitBehavior = true;
+        }).GetHtml()
+    </div>
+
+    @Html.Partial("DispositivosPartialView", Session["GridViewData"])
+
+}

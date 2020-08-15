@@ -1,0 +1,397 @@
+﻿@using BcmWeb_30
+@using DevExpress.Data;
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvIncidentes";
+            settings.KeyFieldName = "IdIncidente";
+            settings.CallbackRouteValues = new { Controller = "PMI", Action = "PMIPartialView" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PMI", Action = "EditIncidenteAddNewPartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PMI", Action = "EditIncidenteUpdatePartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PMI", Action = "EditIncidenteDeletePartial" };
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.PMIResource.GridTitle;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowCloseButton = false;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.PMIResource.captionHeaderFormIncidentes;
+
+            settings.Settings.ShowFilterRow = true;
+            settings.Settings.ShowFilterRowMenu = true;
+            settings.Settings.ShowFooter = true;
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowNewButtonInHeader = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Pixel(150);
+            settings.CommandColumn.Caption = " ";
+
+            //settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+            //settings.SettingsDetail.ShowDetailRow = true;
+            //settings.SettingsDetail.ShowDetailButtons = true;
+
+            settings.Columns.Add(c =>
+            {
+                c.UnboundType = DevExpress.Data.UnboundColumnType.String;
+                c.Settings.AllowSort = DefaultBoolean.False;
+                c.Caption = Resources.DocumentoResource.captionPDFColumn;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Settings.AllowAutoFilter = DefaultBoolean.False;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.SetDataItemTemplateContent(tc =>
+                {
+                    ViewContext.Writer.Write(
+                        Html.DevExpress().Button(i =>
+                        {
+                            i.Name = "btn" + tc.KeyValue;
+                            // i.Text = Resources.BCMWebPublic.captionButtonImprimir;
+                            i.EnableTheming = false;
+                            i.Text = "";
+                            i.AllowFocus = false;
+                            i.RenderMode = ButtonRenderMode.Link;
+                            i.Images.Image.SpriteProperties.CssClass = "blueBall";
+                            i.Images.Image.SpriteProperties.HottrackedCssClass = "blueBallHottracked";
+                            i.Images.Image.SpriteProperties.PressedCssClass = "blueBallPressed";
+
+                            i.UseSubmitBehavior = false;
+                            i.ClientSideEvents.Click = string.Format("function(s, e) {{ OnButtonClick(s, e, '{0}', '{1}'); }}", Url.Action("Start", "PMI", null), DataBinder.Eval(tc.DataItem, "IdIncidente"));
+                        }).GetHtml()
+                    );
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaIncidente";
+                c.Caption = Resources.PMIResource.captionFechaIncidente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = 150;
+                c.EditorProperties().DateEdit(f =>
+                {
+                    f.MaxDate = DateTime.Now;
+                });
+
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdTipoIncidente";
+                c.Caption = Resources.PMIResource.captionTipoIncidente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = 100;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(int);
+                    p.DataSource = Metodos.GetTiposIncidente();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdNaturalezaIncidente";
+                c.Caption = Resources.PMIResource.captionNaturalezaIncidente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = 100;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(int);
+                    p.DataSource = Metodos.GetNaturalezaIncidente();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdFuenteIncidente";
+                c.Caption = Resources.PMIResource.captionFuenteIncidente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = 100;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(int);
+                    p.DataSource = Metodos.GetFuentesIncidente();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Descripcion";
+                c.Caption = Resources.PMIResource.captionDescripcion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 450;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "LugarIncidente";
+                c.Caption = Resources.PMIResource.captionLugarIncidente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 250;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Duracion";
+                c.Caption = Resources.PMIResource.captionDuracion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 100;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.ColumnType = MVCxGridViewColumnType.SpinEdit;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "NombreReportero";
+                c.Caption = Resources.PMIResource.captionNombreReportero;
+                c.ColumnType = MVCxGridViewColumnType.TextBox;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = 250;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "NombreSolucionador";
+                c.Caption = Resources.PMIResource.captionNombreSolucionador;
+                c.ColumnType = MVCxGridViewColumnType.TextBox;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = 250;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Observacion";
+                c.Caption = Resources.PMIResource.captionObservacion;
+                c.ColumnType = MVCxGridViewColumnType.Memo;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = 250;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+            });
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+                Html.DevExpress().FormLayout(fls =>
+                {
+                    fls.Name = "FormLayoutIncidentes";
+                    fls.Width = Unit.Percentage(25);
+                    fls.ColCount = 2;
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaIncidente";
+                        i.Caption = Resources.PMIResource.captionFechaIncidente;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            s.Properties.MaxDate = DateTime.Now;
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdTipoIncidente";
+                        i.Caption = Resources.PMIResource.captionTipoIncidente;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(int);
+                            s.Properties.DataSource = Metodos.GetTiposIncidente();
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdNaturalezaIncidente";
+                        i.Caption = Resources.PMIResource.captionNaturalezaIncidente;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(int);
+                            s.Properties.DataSource = Metodos.GetNaturalezaIncidente();
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdFuenteIncidente";
+                        i.Caption = Resources.PMIResource.captionFuenteIncidente;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(int);
+                            s.Properties.DataSource = Metodos.GetFuentesIncidente();
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Descripcion";
+                        i.Caption = Resources.PMIResource.captionDescripcion;
+                        i.ColSpan = 2;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "LugarIncidente";
+                        i.Caption = Resources.PMIResource.captionLugarIncidente;
+                        i.ColSpan = 2;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Duracion";
+                        i.Caption = Resources.PMIResource.captionDuracion;
+                        i.NestedExtension().SpinEdit(s =>
+                        {
+                            s.Properties.MinValue = 1;
+                            s.Properties.MaxValue = 2000;
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "NombreReportero";
+                        i.Caption = Resources.PMIResource.captionNombreReportero;
+                        i.NestedExtension().TextBox(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "NombreSolucionador";
+                        i.Caption = Resources.PMIResource.captionNombreSolucionador;
+                        i.ColSpan = 2;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Observacion";
+                        i.Caption = Resources.PMIResource.captionObservacion;
+                        i.ColSpan = 2;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+
+                    fls.Items.Add(i =>
+                    {
+                        i.ColSpan = 2;
+                        i.ShowCaption = DefaultBoolean.False;
+                    }).SetNestedContent(() =>
+                    {
+                        ViewContext.Writer.Write("<div style='float:right'>");
+                        Html.DevExpress().Button(btnSettings =>
+                        {
+                            btnSettings.Name = "btnUpdate";
+                            btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+                            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                            btnSettings.ClientSideEvents.Click = "function(s, e){ gvIncidentes.UpdateEdit(); }";
+                        }).Render();
+                        Html.DevExpress().Button(btnSettings =>
+                        {
+                            btnSettings.Name = "btnCancel";
+                            btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                            btnSettings.ClientSideEvents.Click = "function(s, e){ gvIncidentes.CancelEdit(); }";
+                        }).Render();
+                        ViewContext.Writer.Write("</div>");
+                    });
+                    fls.Items.AddEmptyItem();
+                })
+                .Bind(ViewData["EditableIncidente"] ?? c.DataItem)
+                .Render();
+            });
+        });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Session["GridViewData"]).GetHtml()
+
+

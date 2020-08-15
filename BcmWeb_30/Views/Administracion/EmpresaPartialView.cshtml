@@ -1,0 +1,135 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models;
+@using DevExpress.Data;
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView<EmpresaModel>(
+        settings =>
+        {
+            settings.Name = "gvEmpresas";
+            settings.KeyFieldName = "IdEmpresa";
+            settings.CallbackRouteValues = new { Controller = "Administracion", Action = "EmpresaPartialView" };
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 425;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = string.Empty;
+                c.SetDataItemTemplateContent(tc =>
+                {
+                    if (short.Parse(DataBinder.Eval(tc.DataItem, "IdEstatus").ToString()) == 1)
+                    {
+                        if ((bool)DataBinder.Eval(tc.DataItem, "CanDelete"))
+                        {
+                            ViewContext.Writer.Write(
+                                Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") }, new { onclick = "lp.Show();" }) + "<br />" +
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonBloquear, "BloquearEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "return confirm('" + string.Format(Resources.AdministracionResource.ConfirmBloquearMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "')" }) + "<br />" +
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonEliminar, "EliminarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "return confirm('" + string.Format(Resources.AdministracionResource.ConfirmEliminarMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "');" })
+                            );
+                        }
+                        else
+                        {
+                            ViewContext.Writer.Write(
+                                Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") }, new { onclick = "lp.Show();" }) + "<br />" +
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonBloquear, "BloquearEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "return confirm('" + string.Format(Resources.AdministracionResource.ConfirmBloquearMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "')" }) + "<br />"
+                            );
+                        }
+                    }
+                    else
+                    {
+                        if ((bool)DataBinder.Eval(tc.DataItem, "CanDelete"))
+                        {
+                            ViewContext.Writer.Write(
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonActivar, "ActivarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "return confirm('" + string.Format(Resources.AdministracionResource.ConfirmActivarMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "')" }) + "<br />" +
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonEliminar, "EliminarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "return confirm('" + string.Format(Resources.AdministracionResource.ConfirmEliminarMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "');" })
+                            );
+                        }
+                        else
+                        {
+                            ViewContext.Writer.Write(
+                                Html.ActionLink(Resources.AdministracionResource.captionBotonActivar, "ActivarEmpresa", new { IdEmpresa = DataBinder.Eval(tc.DataItem, "IdEmpresa") },
+                                    new { onclick = "confirm('" + string.Format(Resources.AdministracionResource.ConfirmActivarMessage, DataBinder.Eval(tc.DataItem, "NombreComercial")) + "')" })
+                            );
+                        }
+                    }
+                });
+                c.SetHeaderTemplateContent(tc =>
+                {
+                    ViewContext.Writer.Write(
+                        Html.ActionLink(Resources.BCMWebPublic.captionButtonNew, "EditarEmpresa", new { IdEmpresa = -1 }, new { onclick = "lp.Show();" }).ToHtmlString()
+                    );
+                });
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Settings.AllowDragDrop = DefaultBoolean.False;
+                c.Settings.AllowSort = DefaultBoolean.False;
+                c.Width = Unit.Percentage(15);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "NombreComercial";
+                c.Caption = Resources.AdministracionResource.captionNombreComercial;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(30);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "RegistroFiscal";
+                c.Caption = Resources.AdministracionResource.captionRegistroFiscal;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(20);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaInicio";
+                c.Caption = Resources.AdministracionResource.captionFechaRegistro;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Estatus";
+                c.Caption = Resources.AdministracionResource.captionEstatus;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(15);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaUltimoEstado";
+                c.Caption = Resources.AdministracionResource.captionFechaUltimoEstado;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy";
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+        });
+}
+@grid.Bind(Metodos.GetEmpresasUsuario()).GetHtml()
+

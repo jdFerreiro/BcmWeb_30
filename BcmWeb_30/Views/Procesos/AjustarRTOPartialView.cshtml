@@ -1,0 +1,97 @@
+﻿@using BcmWeb_30
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvProcesosIF";
+    settings.KeyFieldName = "IdEmpresa;IdProceso;IdDocumentoBIA;IdImpacto";
+    settings.CallbackRouteValues = new { Controller = "Procesos", Action = "AjustarRTOPartialView" };
+    settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Procesos", Action = "EditRTOUpdatePartial" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+    settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
+    settings.ClientSideEvents.EndCallback = "OnEndGridCallback";
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.Width = Unit.Percentage(10);
+    settings.CommandColumn.ShowNewButtonInHeader = false;
+    settings.CommandColumn.ShowDeleteButton = false;
+    settings.CommandColumn.ShowEditButton = true;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "NroProceso";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.ProcesosResource.captionNroProceso;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+        c.ReadOnly = true;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "NombreProceso";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.ProcesosResource.captionNombre;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+        c.ReadOnly = true;
+    });
+    settings.Columns.Add(column =>
+    {
+        column.FieldName = "IdTipoEscala";
+        column.Caption = Resources.ProcesosResource.captionEscala;
+        column.EditorProperties().ComboBox(p =>
+        {
+            p.TextField = "TipoEscala";
+            p.ValueField = "IdTipoEscala";
+            p.ValueType = typeof(int);
+            p.DataSource = Metodos.GetTipoEscalaGrafico(eTipoEscala.RTO);
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Impacto";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.ProcesosResource.captionObservacion;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.Memo;
+        c.ReadOnly = true;
+    });
+}).Bind(Metodos.GetProcesosAjustarValores(eTipoEscala.RTO)).GetHtml()
+
+
+
+
+
+

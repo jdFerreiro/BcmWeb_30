@@ -1,0 +1,33 @@
+﻿@model string
+
+@Html.DevExpress().FileManager(settings =>
+{
+    settings.Name = "FileManager";
+    settings.CallbackRouteValues = new { Controller = "PlanTrabajo", Action = "FileManagerPartial" };
+    settings.DownloadRouteValues = new { Controller = "PlanTrabajo", Action = "FileManagerPartialDownload" };
+    settings.Height = Unit.Pixel(200);
+
+    settings.Settings.ThumbnailFolder = Url.Content("~/Content/FileManager/Thumbnails");
+
+    settings.SettingsEditing.AllowCreate = true;
+    settings.SettingsEditing.AllowRename = true;
+    settings.SettingsEditing.AllowMove = true;
+    settings.SettingsEditing.AllowDelete = true;
+    settings.SettingsEditing.AllowDownload = true;
+
+    settings.ClientSideEvents.FolderCreated = "function (s,e) { ProcesarEvento('FolderCreated', e.name); }";
+    settings.ClientSideEvents.CurrentFolderChanged = "function (s,e) { ProcesarEvento('CurrentFolderChanged', e.name); }";
+    settings.ClientSideEvents.FileDownloading = "function (s,e) { ProcesarEvento('FileDownloading', e.file.name); }";
+    settings.ClientSideEvents.FileUploaded = "function (s,e) {ProcesarEvento('FileUploaded', e.fileName); }";
+    settings.ClientSideEvents.ItemCopied = "function (s,e) { ProcesarEvento('ItemCopied', e.name); }";
+    settings.ClientSideEvents.ItemDeleted = "function (s,e) { ProcesarEvento('ItemDeleted', e.name); }";
+    settings.ClientSideEvents.ItemMoved = "function (s,e) { ProcesarEvento('ItemMoved', e.oldFolderFullName + '//' + e.name, e.fullName); }";
+    settings.ClientSideEvents.ItemRenamed = "function (s,e) { ProcesarEvento('ItemRenamed', e.name, e.oldName); }";
+
+    settings.SettingsUpload.Enabled = true;
+    settings.SettingsUpload.UseAdvancedUploadMode = true;
+    settings.SettingsUpload.AdvancedModeSettings.EnableMultiSelect = true;
+
+    settings.SettingsFileList.View = DevExpress.Web.FileListView.Thumbnails;
+}).BindToFolder(Model).GetHtml()
+

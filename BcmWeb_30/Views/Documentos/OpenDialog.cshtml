@@ -1,0 +1,32 @@
+﻿<script type="text/javascript">
+    function OnClick(s, e) {
+        uc.Upload();
+    }
+    function OnFileUploadComplete(s, e) {
+        if (e.callbackData !== "") {
+            pcModalMode.Hide();
+            lp.Show();
+            RichEdit.PerformCallback({Accion: "Open"});
+        }
+        else {
+            alert("The selected file was not uploaded.");
+        }
+    }
+</script>
+
+@using (Html.BeginForm("DocsUploadControlCallbackAction", "Upload", FormMethod.Post))
+{
+    @Html.DevExpress().UploadControl(settings =>
+    {
+        settings.Name = "uc";
+        settings.CallbackRouteValues = new { Controller = "Upload", Action = "DocsUploadControlCallbackAction" };
+        settings.ClientSideEvents.FileUploadComplete = "OnFileUploadComplete";
+        settings.ValidationSettings.Assign(BcmWeb_30.Controllers.UploadControlHelper.DocsValidationSettings);
+    }).GetHtml()
+    @Html.DevExpress().Button(button =>
+    {
+        button.Name = "btnUploadFile";
+        button.Text = Resources.EditorResources.UploadControlText;
+        button.ClientSideEvents.Click = "OnClick";
+    }).GetHtml()
+}

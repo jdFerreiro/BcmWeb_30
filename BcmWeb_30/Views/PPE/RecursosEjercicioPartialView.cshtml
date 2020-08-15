@@ -1,0 +1,178 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+@using DevExpress.Data;
+
+@model PruebaEjercicioModel
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvRecursosEjercicio";
+            settings.KeyFieldName = "IdRecurso;IdEjercicio";
+            settings.CallbackRouteValues = new { Controller = "PPE", Action = "RecursosEjercicioPartialView" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PPE", Action = "RecursosEjercicioAddNewPartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PPE", Action = "RecursosEjercicioUpdatePartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PPE", Action = "RecursosEjercicioDeletePartial" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.PPEResource.TitleGridRecursos;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowNewButtonInHeader = (Model.IdEjercicio > 0);
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Percentage(10);
+            settings.CommandColumn.Caption = " ";
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Nombre";
+                c.Caption = Resources.PPEResource.captionNombreRecurso;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = Unit.Percentage(30);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Descripcion";
+                c.Caption = Resources.PPEResource.captionDescripcionRecurso;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = Unit.Percentage(30);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Cantidad";
+                c.Caption = Resources.PPEResource.captionCantidadRecurso;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Responsable";
+                c.Caption = Resources.PPEResource.captionResponsable;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Justify;
+                c.Width = Unit.Percentage(25);
+            });
+
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowCloseButton = false;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.PPEResource.TitleRecurso;
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+                Html.DevExpress().FormLayout(fls =>
+                {
+                    fls.Name = "FormLayoutRecurso";
+                    fls.Width = Unit.Percentage(100);
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Nombre";
+                        i.Caption = Resources.PPEResource.captionNombreRecurso;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(25);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Descripcion";
+                        i.Caption = Resources.PPEResource.captionDescripcionRecurso;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(30);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Cantidad";
+                        i.Caption = Resources.PPEResource.captionCantidadRecurso;
+                        i.NestedExtension().SpinEdit(s =>
+                        {
+                            s.Properties.MinValue = 1;
+                            s.Properties.MaxValue = int.MaxValue;
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Responsable";
+                        i.Caption = Resources.PPEResource.captionResponsableRecurso;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(30);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.ShowCaption = DefaultBoolean.False;
+                    }).SetNestedContent(() =>
+                    {
+                        ViewContext.Writer.Write("<div style='float:right'>");
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnUpdate";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvRecursosEjercicio.UpdateEdit(); }";
+                    }).Render();
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnCancel";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvRecursosEjercicio.CancelEdit(); }";
+                    }).Render();
+                        ViewContext.Writer.Write("</div>");
+                    });
+                    fls.Items.AddEmptyItem();
+                })
+                .Bind(ViewData["EditableReg"] ?? c.DataItem)
+                .Render();
+            });
+        });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Metodos.GetPruebaRecursosEjercicio(Model.IdPrueba, Model.IdEjercicio)).GetHtml()
+

@@ -1,0 +1,33 @@
+﻿@using BcmWeb_30
+@using DevExpress.Data;
+
+@Html.DevExpress().GridView(settings =>
+{
+    settings.Name = "gvProgramacionUsuario";
+    settings.KeyFieldName = "IdProgramacion;IdUsuario";
+    settings.CallbackRouteValues = new { Controller = "PMT", Action = "ProgramacionUsuariosPartialView", Model };
+    settings.Width = Unit.Percentage(100);
+    settings.Settings.VerticalScrollableHeight = 225;
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.ShowSelectCheckbox = true;
+    settings.CommandColumn.SelectAllCheckboxMode = GridViewSelectAllCheckBoxMode.AllPages;
+    settings.CommandColumn.Width = Unit.Percentage(10);
+    settings.CommandColumn.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+    settings.CommandColumn.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+
+    settings.Columns.Add(c =>
+    {
+        c.FieldName = "Nombre";
+        c.Caption = Resources.DocumentoResource.captionResponsable;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Width = Unit.Percentage(55);
+    });
+
+}).Bind(Model.Usuarios).GetHtml()

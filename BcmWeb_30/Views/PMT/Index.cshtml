@@ -1,0 +1,47 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model ProgramacionModel
+
+<script type="text/javascript">
+    function Modulo_Changed(s, e) {
+        var IdModuloSelected = s.GetValue();
+        gvProgramacionDocumento.PerformCallback();
+        gvProgramacionUsuario.PerformCallback();
+    }
+
+    function InicioChanged(s, e) {
+        FechaFinal.SetMinDate(s.GetDate());
+    }
+</script>
+
+@using (Html.BeginForm("ExportProgramacion", "PMT", FormMethod.Post, htmlAttributes: new { id = "ProgramacionesForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdEmpresa)
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdClaseDocumento)
+    @Html.HiddenFor(m => m.IdProgramacion)
+
+    <div style="margin-top: -25px; margin-bottom: 5px;">
+        <div>
+            @Html.DevExpress().Button(b =>
+                {
+                    b.Name = "botReturn";
+                    b.Text = Resources.BCMWebPublic.botReturnText;
+                    b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+                }).GetHtml()
+        </div>
+        <div style="float: right; margin-top: -25px;">
+            @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "btExport";
+            settings.Text = Resources.BCMWebPublic.stringExportExcel;
+            settings.UseSubmitBehavior = true;
+        }).GetHtml()
+        </div>
+    </div>
+
+    @Html.Partial("ProgramacionPartialView")
+
+}

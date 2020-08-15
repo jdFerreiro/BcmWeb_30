@@ -1,0 +1,83 @@
+﻿@using BcmWeb_30.Models
+
+@model ReporteModel
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+    {
+        settings.Name = "LeftPane";
+        settings.FixedPosition = PanelFixedPosition.WindowLeft;
+        settings.Collapsible = true;
+        settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+        settings.ControlStyle.CssClass = "leftPane";
+        settings.Styles.Panel.CssClass = "panel";
+        settings.SetContent(() =>
+        {
+            Html.RenderPartial("ContentLeftPartialView");
+        });
+    }).GetHtml()
+}
+
+<div class="Grafico">
+    @switch (Model.IdModuloActual)
+    {
+        case 13010200:
+            <div style="float: right;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btExport";
+                   settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                   settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaPUO" };
+               }).GetHtml()
+            </div>
+            @Html.Partial("TablaPUOPartialView", Model.DataCuadro)
+            break;
+        case 13010500:
+            <div style="float: right;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btExport";
+                   settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                   settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaVI" };
+               }).GetHtml()
+            </div>
+            @Html.Partial("TablaVIPartialView", Model.DataCuadro)
+            break;
+        case 13010800:
+            <div style="float: right;">
+               @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btExport";
+                   settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                   settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaGI" };
+               }).GetHtml()
+            </div>
+            @Html.Partial("TablaGIPartialView", Model.DataCuadro)
+            break;
+        case 13050200:
+        case 13050400:
+        case 13050600:
+        case 13051000:
+            <div style="float: right;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btExport";
+                   settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                   settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaRiesgo2" };
+               }).GetHtml()
+            </div>
+            @Html.Partial("TablaTRPartialView", Model)
+            break;
+        case 13050800:
+            <div style="float: right;">
+                @Html.DevExpress().Button(settings =>
+               {
+                   settings.Name = "btExport";
+                   settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                   settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaRiesgo2" };
+               }).GetHtml()
+            </div>
+            @Html.Partial("TablaTRFPartialView", Model.DataCuadro)
+            break;
+    }
+</div>

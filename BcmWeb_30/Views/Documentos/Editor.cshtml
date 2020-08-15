@@ -1,0 +1,80 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentoModel
+
+@section Scripts {
+<script type="text/javascript">
+    var DocChanged = false;
+    function OnCustomCommandExecuted(s, e) {
+        //debugger;
+        var command = e.commandName;
+        if (command.indexOf("open") > -1) {
+            pcModalMode.Show();
+            var item = RichEdit.GetRibbon().GetItemByName("botSave");
+            item.SetEnabled(false);
+        }
+        if (command.indexOf("Save") > -1) {
+            lp.Show();
+            var item = RichEdit.GetRibbon().GetItemByName("botSave");
+            item.SetEnabled(false);
+            RichEdit.PerformCallback({ Accion: "Save" });
+        }
+    };
+    function docChange(s, e) {
+        var item = RichEdit.GetRibbon().GetItemByName("botSave");
+        item.SetEnabled(true);
+    }
+    //function onBeginRichEditCallback(s,e) {
+    //    lp.Show();
+    //}
+    //function onEndRichEditCallback(s, e) {
+    //    lp.Hide();
+    //}
+</script>
+}
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.ScrollBars = ScrollBars.Vertical;
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+@using (Html.BeginForm("Editor", "Documentos", FormMethod.Post))
+{
+
+    @Html.HiddenFor(m => m.returnPage)
+    @Html.HiddenFor(m => m.ModuloActual)
+    @Html.HiddenFor(m => m.NroDocumento)
+    @Html.HiddenFor(m => m.Estatus)
+    @Html.HiddenFor(m => m.FechaEstadoDocumento)
+    @Html.HiddenFor(m => m.FechaUltimaModificacion)
+    @Html.HiddenFor(m => m.Version)
+
+
+    <div class="right">
+        @if ((bool)Session["Editable"])
+        {
+            @Html.Display(Resources.EditorResources.EditableText);
+        }
+        else
+        {
+            @Html.Display(Resources.EditorResources.NoEditableText);
+        }
+    </div>
+
+    @Html.Partial("EditorPartialView")
+}
+
+
+    @Html.Partial("ModalMode")

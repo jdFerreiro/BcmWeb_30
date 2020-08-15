@@ -1,0 +1,412 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="57d5ab0896b24fd5870efa0aa7e61e53" Name="Diagram1">
+        <EntityTypeShape EntityType="BCMWebEntities.Table" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblAuditoria" Width="1.5" PointX="12.75" PointY="155.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblAuditoriaProcesoCritico" Width="1.5" PointX="15.75" PointY="155.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPDocumento" Width="1.5" PointX="15.75" PointY="149.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPReanudacionPersonaClave" Width="1.5" PointX="20.25" PointY="178.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPReanudacionTarea" Width="1.5" PointX="18" PointY="145" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPReanudacionTareaActividad" Width="1.5" PointX="20.25" PointY="145" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRecuperacionPersonaClave" Width="1.5" PointX="23.25" PointY="178.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRecuperacionRecurso" Width="1.5" PointX="18" PointY="141.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRespuestaAccion" Width="1.5" PointX="18" PointY="166.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRespuestaRecurso" Width="1.5" PointX="18" PointY="169.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRestauracionEquipo" Width="1.5" PointX="18" PointY="172.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRestauracionInfraestructura" Width="1.5" PointX="18" PointY="175.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRestauracionMobiliario" Width="1.5" PointX="18" PointY="178.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBCPRestauracionOtro" Width="1.5" PointX="18" PointY="181.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAAmenaza" Width="1.5" PointX="21" PointY="211.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAAmenazaEvento" Width="1.5" PointX="5.75" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAAplicacion" Width="1.5" PointX="19.5" PointY="233.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIACadenaServicio" Width="1.5" PointX="12.75" PointY="167.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAClienteProceso" Width="1.5" PointX="19.5" PointY="237" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAComentario" Width="1.5" PointX="17.25" PointY="216.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIADocumentacion" Width="1.5" PointX="19.5" PointY="240.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIADocumento" Width="1.5" PointX="15" PointY="210.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAEntrada" Width="1.5" PointX="19.5" PointY="243.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAEventoControl" Width="1.5" PointX="8" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAEventoRiesgo" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAGranImpacto" Width="1.5" PointX="22.5" PointY="241.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAImpactoFinanciero" Width="1.5" PointX="21" PointY="201.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAImpactoOperacional" Width="1.5" PointX="24" PointY="201.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAInterdependencia" Width="1.5" PointX="19.5" PointY="258.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAMTD" Width="1.5" PointX="23" PointY="197.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAPersonaClave" Width="1.5" PointX="28.25" PointY="198.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAPersonaRespaldoProceso" Width="1.5" PointX="20.25" PointY="225.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAProceso" Width="1.5" PointX="17.25" PointY="237.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAProcesoAlterno" Width="1.5" PointX="19.5" PointY="272.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAProveedor" Width="1.5" PointX="19.5" PointY="275.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIARespaldoPrimario" Width="1.5" PointX="19.5" PointY="278.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIARespaldoSecundario" Width="1.5" PointX="19.5" PointY="281.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIARPO" Width="1.5" PointX="26" PointY="197.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIARTO" Width="1.5" PointX="26" PointY="205.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAUnidadTrabajo" Width="1.5" PointX="18" PointY="213.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAUnidadTrabajoPersonas" Width="1.5" PointX="21.75" PointY="237" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAUnidadTrabajoProceso" Width="1.5" PointX="20.25" PointY="228.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblBIAWRT" Width="1.5" PointX="27" PointY="201.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCargo" Width="1.5" PointX="12.75" PointY="176.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCiudad" Width="1.5" PointX="5.25" PointY="154.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblControlRiesgo" Width="1.5" PointX="18.75" PointY="222.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCriticidad" Width="1.5" PointX="12.75" PointY="151.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_Ciudad" Width="1.5" PointX="7.5" PointY="154.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_Estado" Width="1.5" PointX="5.25" PointY="158.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_EstadoDocumento" Width="1.5" PointX="18.75" PointY="128.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_EstadoEmpresa" Width="1.5" PointX="10.5" PointY="169.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_EstadoProceso" Width="1.5" PointX="17.25" PointY="229.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_EstadoUsuario" Width="1.5" PointX="16.5" PointY="121.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_Mes" Width="1.5" PointX="22.5" PointY="247.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_NivelImpacto" Width="1.5" PointX="3" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_NivelUsuario" Width="1.5" PointX="18.75" PointY="138" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_Pais" Width="1.5" PointX="3" PointY="155.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_PBEPruebaEstatus" Width="1.5" PointX="20.25" PointY="142.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_PlanTrabajoEstatus" Width="1.5" PointX="15.75" PointY="181.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_PMTProgramacionTipoActualizacion" Width="1.5" PointX="18" PointY="225.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_PMTProgramacionTipoNotificacion" Width="1.5" PointX="20.25" PointY="170.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoCorreo" Width="1.5" PointX="20.25" PointY="219.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoDireccion" Width="1.5" PointX="26.25" PointY="171.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoFrecuencia" Width="1.5" PointX="24" PointY="165.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoImpacto" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoInterdependencia" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoRespaldo" Width="1.5" PointX="8" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoResultadoPrueba" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoTablaContenido" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoTelefono" Width="1.5" PointX="23.25" PointY="211.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_TipoUbicacionInformacion" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCulture_FuenteIncidente" Width="1.5" PointX="12.75" PointY="135.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCulture_NaturalezaIncidente" Width="1.5" PointX="12.75" PointY="139.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCulture_TipoIncidente" Width="1.5" PointX="12.75" PointY="142.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivo" Width="1.5" PointX="10.5" PointY="164.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivo_old" Width="1.5" PointX="13.5" PointY="170.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivoConexion" Width="1.5" PointX="12.75" PointY="159.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivoConexion_old" Width="1.5" PointX="15.75" PointY="159.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivoEnvio" Width="1.5" PointX="20.25" PointY="187.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDispositivoEnvio_old" Width="1.5" PointX="15.75" PointY="170.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumento" Width="1.5" PointX="18.75" PointY="153.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoAnexo" Width="1.5" PointX="21" PointY="150.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoAprobacion" Width="1.5" PointX="21" PointY="183.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoCertificacion" Width="1.5" PointX="24" PointY="183.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoContenido" Width="1.5" PointX="21" PointY="192.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoEntrevista" Width="1.5" PointX="21" PointY="160.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoEntrevistaPersona" Width="1.5" PointX="23.25" PointY="160.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblDocumentoPersonaClave" Width="1.5" PointX="26" PointY="174.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEmpresa" Width="1.5" PointX="10.5" PointY="150.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEmpresaModulo" Width="1.5" PointX="15" PointY="191.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEmpresaUsuario" Width="1.5" PointX="18.75" PointY="149.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEscala" Width="1.5" PointX="18.75" PointY="161" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstado" Width="1.5" PointX="3" PointY="158.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstadoDocumento" Width="1.5" PointX="16.5" PointY="128.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstadoEmpresa" Width="1.5" PointX="8.25" PointY="158.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstadoProceso" Width="1.5" PointX="15" PointY="239.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstadoRiesgo" Width="1.5" PointX="18.75" PointY="254" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblEstadoUsuario" Width="1.5" PointX="14.25" PointY="132.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblFormatosEmail" Width="1.5" PointX="12.75" PointY="207.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblFuenteIncidente" Width="1.5" PointX="10.5" PointY="145.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblFuenteRiesgo" Width="1.5" PointX="18.75" PointY="262.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblImpactoRiesgo" Width="1.5" PointX="18.75" PointY="265.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblIncidentes" Width="1.5" PointX="12.75" PointY="147" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblIniciativaPrioridad" Width="1.5" PointX="13.5" PointY="179.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblIniciativas" Width="1.5" PointX="15.75" PointY="163.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblIniciativas_Anexo" Width="1.5" PointX="12.75" PointY="215.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblLocalidad" Width="1.5" PointX="12.75" PointY="163.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblMes" Width="1.5" PointX="20.25" PointY="247.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblModulo" Width="1.5" PointX="12.75" PointY="228.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblModulo_NivelUsuario" Width="1.5" PointX="15" PointY="187.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblModulo_Usuario" Width="1.5" PointX="15" PointY="230.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblModuloAnexo" Width="1.5" PointX="12.75" PointY="238.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblNaturalezaIncidente" Width="1.5" PointX="10.5" PointY="148.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblNivelImpacto" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblNivelUsuario" Width="1.5" PointX="16.5" PointY="137.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPais" Width="1.5" PointX="0.75" PointY="153.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucion" Width="1.5" PointX="15" PointY="200.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucionEjercicio" Width="1.5" PointX="20.25" PointY="173.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucionEjercicioParticipante" Width="1.5" PointX="25.5" PointY="188.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucionEjercicioRecurso" Width="1.5" PointX="22.5" PointY="175" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucionParticipante" Width="1.5" PointX="17.25" PointY="203" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEjecucionResultado" Width="1.5" PointX="17.25" PointY="199.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaEstatus" Width="1.5" PointX="18" PointY="184.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaPlanificacion" Width="1.5" PointX="12.75" PointY="250.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaPlanificacionEjercicio" Width="1.5" PointX="15" PointY="248.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaPlanificacionEjercicioParticipante" Width="1.5" PointX="17.25" PointY="250.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaPlanificacionEjercicioRecurso" Width="1.5" PointX="17.25" PointY="246.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPBEPruebaPlanificacionParticipante" Width="1.5" PointX="15" PointY="252.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPersona" Width="1.5" PointX="18" PointY="207" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPersonaCorreo" Width="1.5" PointX="20.25" PointY="208.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPersonaDireccion" Width="1.5" PointX="26.25" PointY="179.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPersonaTelefono" Width="1.5" PointX="23.25" PointY="208.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPlanTrabajo" Width="1.5" PointX="15" PointY="204.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPlanTrabajoAccion" Width="1.5" PointX="12.75" PointY="260.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPlanTrabajoAuditoria" Width="1.5" PointX="17.25" PointY="232" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPlanTrabajoEstatus" Width="1.5" PointX="13.5" PointY="182.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTMensajeActualizacion" Width="1.5" PointX="15" PointY="194.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTProgramacion" Width="1.5" PointX="18" PointY="191.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTProgramacionDocumentos" Width="1.5" PointX="24" PointY="192.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTProgramacionTipoActualizacion" Width="1.5" PointX="15.75" PointY="184.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTProgramacionTipoNotificacion" Width="1.5" PointX="18" PointY="196.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTProgramacionUsuario" Width="1.5" PointX="20.25" PointY="196.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTResponsableUpdate" Width="1.5" PointX="18" PointY="188.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPMTResponsableUpdate_Correo" Width="1.5" PointX="23.25" PointY="188.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblPPEFrecuencia" Width="1.5" PointX="24" PointY="155.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblProbabilidadRiesgo" Width="1.5" PointX="12.75" PointY="263.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblProducto" Width="1.5" PointX="12.75" PointY="266" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblProveedor" Width="1.5" PointX="12.75" PointY="268.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblSeveridadRiesgo" Width="1.5" PointX="18.75" PointY="267.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoCorreo" Width="1.5" PointX="18" PointY="219.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoDireccion" Width="1.5" PointX="24" PointY="171.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoEscala" Width="1.5" PointX="16.5" PointY="125.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoFrecuencia" Width="1.5" PointX="21.75" PointY="164.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoImpacto" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoIncidente" Width="1.5" PointX="10.5" PointY="142.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoInterdependencia" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoRespaldo" Width="1.5" PointX="5.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoResultadoPrueba" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoTablaContenido" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoTelefono" Width="1.5" PointX="21" PointY="205.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblTipoUbicacionInformacion" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblUnidadOrganizativa" Width="1.5" PointX="12.75" PointY="271.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblUsuario" Width="1.5" PointX="16.5" PointY="130.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblUsuarioUnidadOrganizativa" Width="1.5" PointX="15" PointY="215.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblVicepresidencia" Width="1.5" PointX="21.75" PointY="155.25" IsExpanded="true" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblAuditoria_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblAuditoria_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuario_tblAuditoria_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblAuditoriaProcesoCritico_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblAuditoriaProcesoCritico_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPReanudacionPersonaClave_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPReanudacionTarea_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRecuperacionPersonaClave_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRecuperacionRecurso_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRespuestaRecurso_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRestauracionEquipo_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRestauracionInfraestructura_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRestauracionMobiliario_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBCPRestauracionOtro_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPDocumento_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPRespuestaAccion_tblBCPDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblBCPDocumento_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblReanudacionPersonaClave_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBCPReanudacionTarea_tblBCPReanudacionTareaActividad_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblBCPRecuperacionPersonaClave_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblControlRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblEstadoRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblFuenteRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblImpactoRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblProbabilidadRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAmenaza_tblSeveridadRiesgo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAEventoControl_tblBIAAmenazaEvento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAAplicacion_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIACadenaServicio_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAClienteProducto_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajoPersonas_tblBIAClienteProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAComentario_tblBIADocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIADocumentacion_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIADocumento_tblUnidadOrganizativa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProceso_tblBIADocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumento_tblBIADocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblBIADocumento_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAEntrada_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAGranImpacto_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAGranImpacto_tblMes" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoFinanciero_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoFinanciero_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoFinanciero_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoOperacional_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoOperacional_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAImpactoOperacional_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAInterdependencia_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAMTD_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAMTD_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAMTD_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAPersonaClave_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAPersonaClave_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAPersonaClave_tblDocumentoPersonaClave" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAPersonaRespaldoProceso_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAPersonaRespaldoProceso_tblPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProceso_tblEstadoProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProceso_tblUnidadOrganizativa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProcesoAlterno_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProveedor_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARespaldoPrimario_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARespaldoSecundario_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARPO_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARTO_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajoProceso_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAWRT_tblBIAProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARPO_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARPO_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARTO_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIARTO_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajo_tblUnidadOrganizativa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajoProceso_tblBIAUnidadTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAUnidadTrabajoPersonas_tblBIAUnidadTrabajoProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAWRT_tblEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAWRT_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCargo_tblPersona_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblCargo_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCiudad_tblEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCiudad_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_Ciudad_tblCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblLocalidad_tblCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaDireccion_tblCiudad" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCriticidad_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCriticidad_tblTipoEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_Estado_tblEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_EstadoDocumento_tblEstadoDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_EstadoEmpresa_tblEstadoEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_EstadoProceso_tblEstadoProceso" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_EstadoUsuario_tblEstadoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_Mes_tblMes" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_NivelImpacto_tblNivelImpacto" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_NivelUsuario_tblNivelUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_Pais_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_PBEPruebaEjecucionEstatus_tblPBEPruebaEjecucionEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_PlanTrabajoEstatus_tblPlanTrabajoEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_PMTProgramacionTipoActualizacion_tblPMTProgramacionTipoActualizacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_PMTProgramacionTipoNotificacion_tblPMTProgramacionTipoNotificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoCorreo_tblTipoCorreo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoDireccion_tblTipoDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoFrecuencia_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoImpacto_tblTipoImpacto" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoInterdependencia_tblTipoInterdependencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoRespaldo_tblTipoRespaldo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoResultadoPrueba_tblTipoResultadoPrueba" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoTablaContenido_tblTipoTablaContenido" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoTelefono_tblTipoTelefono" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCultura_TipoUbicacionInformacion_tblTipoUbicacionInformacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_FuenteIncidente_tblFuenteIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_NaturalezaIncidente_tblNaturalezaIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCulture_TipoIncidente_tblTipoIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivo_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoConexion_tblDispositivo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoEnvio_tblDispositivo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoConexion_old_tblDispositivo_old" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoEnvio_old_tblDispositivo_old" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoConexion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoConexion_old_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoConexion_old_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoEnvio_tblEmpresaModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoEnvio_tblUsuarioEnvia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDispositivoEnvio_tblUsuarioRecibe" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblAprobacion_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCertificacion_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumento_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumento_tblEstadoDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoAnexo_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoContenido_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoEntrevista_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoPersonaClave_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionDocumentos_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPPEFrecuencia_tblDocumento" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoAprobacion_tblPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblCertificacion_tblPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoContenido_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoEntrevistaPersona_tblDocumentoEntrevista" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblDocumentoPersonaClave_tblPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaClave_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblBIAProbabilidadRiesgo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblEscala_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblEstadoEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblLocalidad_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblPersona_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblProveedor_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblUnidadOrganizativa_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresa_tblVicepresidencia_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresaModulo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresaUsuario_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblFormatosEmail_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIncidentes_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIniciativas_Anexo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIniciativas_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_NivelUsuario_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModuloAnexo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicio_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajo_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajoAccion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTMensajeActualizacion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacion_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTResponsableUpdate_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblProducto_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblEmpresa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresaModulo_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresaUsuario_tblNivelUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEmpresaUsuario_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblEscala_tblTipoEscala" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblLocalidad_tblEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPais_tblEstado_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaDireccion_tblEstado" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuario_tblEstadoUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIncidentes_tblFuenteIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIncidentes_tblNaturalezaIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIncidentes_tblTipoIncidente" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIniciativas_tblIniciativaPrioridad" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblIniciativas_tblPlanTrabajoEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblLocalidad_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_NivelUsuario_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_Usuario_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTMensajeActualizacion_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacion_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionDocumentos_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTResponsableUpdate_tblModulo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_NivelUsuario_tblNivelUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblModulo_Usuario_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblNivelUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaDireccion_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblVicepresidencia_tblPais" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucion_tblPBEPruebaPlanificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicio_tblPBEPruebaEjecucion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionParticipante_tblPBEPruebaEjecucion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionResultado_tblPBEPruebaEjecucion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicio_tblPBEPruebaEjecucionEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicioParticipante_tblPBEPruebaEjecucionEjercicio" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicioRecurso_tblPBEPruebaEjecucionEjercicio" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaEjecucionEjercicioParticipante_tblPBEPruebaEjecucionParticipante" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionEjercicio_tblPBEPruebaPlanificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionParticipante_tblPBEPruebaPlanificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionRecurso_tblPBEPruebaPlanificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionEjercicioParticipante_tblPBEPruebaPlanificacionEjercicio" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionEjercicioRecurso_tblPBEPruebaPlanificacionEjercicio" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPBEPruebaPlanificacionEjercicioParticipante_tblPBEPruebaPlanificacionParticipante" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblPersonaDireccion_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblPersonaTelefono_FK1" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblUnidadOrganizativa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersona_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaCorreo_tblPersona" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaCorreo_tblTipoCorreo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaDireccion_tblTipoDireccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPersonaTelefono_tblTipoTelefono" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajo_tblPlanTrabajoAccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajo_tblPlanTrabajoEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajoAuditoria_tblPlanTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajoAuditoria_tblPlanTrabajoAccion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajoAuditoria_tblPlanTrabajoEstatus" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPlanTrabajoAuditoria_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacion_tblPMTProgramacionTipoActualizacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacion_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionDocumentos_tblPMTProgramacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionUsuario_tblPMTProgramacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionUsuario_tblPMTProgramacionTipoNotificacion" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTProgramacionUsuario_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTResponsableUpdate_Correo_tblPMTResponsableUpdate" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPMTResponsableUpdate_Correo_tblUsuario" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblPPEFrecuencia_tblTipoFrecuencia" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblUnidadOrganizativa" ManuallyRouted="false" />
+        <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblUsuario" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblIniciativaResponsable" Width="1.5" PointX="10.375" PointY="7.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

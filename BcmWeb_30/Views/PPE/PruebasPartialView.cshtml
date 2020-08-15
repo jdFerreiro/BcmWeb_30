@@ -1,0 +1,140 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models;
+@using DevExpress.Data;
+
+@{
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView<PruebaModel>(
+        settings =>
+        {
+            settings.Name = "gvPruebas";
+            settings.KeyFieldName = "IdPrueba";
+            settings.CallbackRouteValues = new { Controller = "PPE", Action = "PruebasPartialView" };
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+
+            settings.Columns.Add(c =>
+            {
+                c.Caption = string.Empty;
+                c.SetDataItemTemplateContent(tc =>
+                {
+                    if (short.Parse(DataBinder.Eval(tc.DataItem, "IdEstatus").ToString()) > 0)
+                    {
+                        var linkInfo = string.Format("function(s, e) {{ OnButtonClick(s, e, ''{0}''); }}", Url.Action("Start", "PPE", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") }));
+
+                        ViewContext.Writer.Write(
+                            Html.ActionLink(Resources.PPEResource.captionButtonExecUpdate, "EditarEjecucion", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") }, new { onclick = "lp.Show();" }) + "<br />" +
+                            //Html.ActionLink(Resources.BCMWebPublic.captionButtonInforme, "Index", new { IdClaseDocumento = long.Parse(Session["IdClaseDocumento"].ToString()), modId = long.Parse(Session["modId"].ToString()) }, new { onclick = "OnButtonClick('"+ Url.Action("Start", "PPE", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") }) + "')" }) + "<br />" +
+                            Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarPrueba", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") },
+                                new { onclick = "return confirm('" + string.Format(Resources.PPEResource.ConfirmDeleteMessage, DataBinder.Eval(tc.DataItem, "Nombre")) + "')" })
+                        );
+                    }
+                    else if (short.Parse(DataBinder.Eval(tc.DataItem, "IdEstatus").ToString()) == 0)
+                    {
+                        ViewContext.Writer.Write(
+                            Html.ActionLink(Resources.PPEResource.captionButtonExec, "EditarEjecucion", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") }, new { onclick = "lp.Show();" }) + "<br />" +
+                            Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarPrueba", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") },
+                                new { onclick = "return confirm('" + string.Format(Resources.PPEResource.ConfirmDeleteMessage, DataBinder.Eval(tc.DataItem, "Nombre")) + "')" })
+                            //Html.ActionLink(Resources.PPEResource.captionButtonSuspender, "SuspenderPrueba", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") },
+                            //    new { onclick = "return confirm('" + string.Format(Resources.PPEResource.confirmSuspenderMessage, DataBinder.Eval(tc.DataItem, "Nombre")) + "')" })
+                        );
+                    }
+                    else
+                    {
+                        ViewContext.Writer.Write(
+                            Html.ActionLink(Resources.BCMWebPublic.captionButtonInforme, "GenerarInforme", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") }, new { onclick = "lp.Show();" }) + "<br />" +
+                            Html.ActionLink(Resources.PPEResource.captionButtonPlan, "EditarPrueba", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba"), Ejecucion = false }, new { onclick = "lp.Show();" }) + "<br />" +
+                            Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarPrueba", new { IdPrueba = DataBinder.Eval(tc.DataItem, "IdPrueba") },
+                                new { onclick = "return confirm('" + string.Format(Resources.PPEResource.ConfirmDeleteMessage, DataBinder.Eval(tc.DataItem, "Nombre")) + "')" })
+                        );
+                    }
+                });
+                c.SetHeaderTemplateContent(tc =>
+                {
+                    ViewContext.Writer.Write(
+                        Html.ActionLink(Resources.BCMWebPublic.captionButtonNew, "EditarPrueba", new { IdPrueba = -1, Ejecucion = false }, new { onclick = "lp.Show();" }).ToHtmlString()
+                    );
+                });
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Settings.AllowDragDrop = DefaultBoolean.False;
+                c.Settings.AllowSort = DefaultBoolean.False;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Nombre";
+                c.Caption = Resources.PPEResource.captionNombre;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(25);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Proposito";
+                c.Caption = Resources.PPEResource.captionProposito;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(25);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaInicio";
+                c.Caption = Resources.PPEResource.captionFechaPlanificacion;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.PropertiesEdit.DisplayFormatString = "dd/MM/yyyy hh:mm tt";
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Ubicacion";
+                c.Caption = Resources.PPEResource.captionUbicacion;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(20);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.Settings.AllowSort = DefaultBoolean.False;
+                c.Caption = Resources.PPEResource.captionInformePDF;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(10);
+                c.SetDataItemTemplateContent(tc =>
+                {
+                    ViewContext.Writer.Write(
+                        Html.DevExpress().HyperLink(i =>
+                        {
+                            i.ClientVisible = (DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF") != null && !String.IsNullOrEmpty(DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF").ToString()));
+                            i.Name = String.Format("hlPDF_{0}", DataBinder.Eval(tc.DataItem, "IdPrueba"));
+                            i.NavigateUrl = (DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF") == null ? string.Empty : DataBinder.Eval(tc.DataItem, "RutaDocumentoPDF").ToString());
+                            i.Properties.ImageUrl = (short.Parse(DataBinder.Eval(tc.DataItem, "IdEstatus").ToString()) > 0 ? "~/Content/Images/Internal/icono-pdf-def.jpg" : "~/Content/Images/Internal/icono-pdf.jpg");
+                            i.Properties.ImageHeight = Unit.Pixel(60);
+                            i.Properties.Target = "blank";
+                            i.Width = Unit.Pixel(50);
+                        }).GetHtml()
+                    );
+                });
+            });
+        });
+}
+@grid.Bind(Metodos.GetPruebas()).GetHtml()
+

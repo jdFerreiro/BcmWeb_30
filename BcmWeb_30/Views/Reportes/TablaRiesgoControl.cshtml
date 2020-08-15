@@ -1,0 +1,47 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model RiesgoControlModel
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+{
+    settings.Name = "LeftPane";
+    settings.FixedPosition = PanelFixedPosition.WindowLeft;
+    settings.Collapsible = true;
+    settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+    settings.ControlStyle.CssClass = "leftPane";
+    settings.Styles.Panel.CssClass = "panel";
+    settings.SetContent(() =>
+    {
+        Html.RenderPartial("ContentLeftPartialView");
+    });
+}).GetHtml()
+}
+
+@using (Html.BeginForm("TablaRiesgoControl", "Reportes", FormMethod.Post, htmlAttributes: new { id = "TablaForm" }))
+{
+    @Html.HiddenFor(m => m.IdModulo)
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdUnidadOrganizativa)
+
+    <div style="text-decoration: underline; font-weight: bold; padding: 10px; text-align:center;">
+        @Html.Raw(Resources.ReporteResource.TituloTablaRiesgoControl)
+    </div>
+    <div style="float: right;">
+        @Html.DevExpress().Button(settings =>
+   {
+       settings.Name = "btExport";
+       settings.Text = Resources.BCMWebPublic.stringExportExcel;
+       settings.RouteValues = new { Controller = "Reportes", Action = "ExportTablaRiesgo" };
+       //settings.UseSubmitBehavior = true;
+   }).GetHtml()
+    </div>
+
+    <div style="margin-bottom: 10px;">
+        @Html.Partial("ComboBoxUnidadOrganizativa")
+    </div>
+    <div>
+        @Html.Partial("TablaRiesgoPartialView", Metodos.GetRiesgoControles(Model.IdUnidadOrganizativa))
+    </div>
+}

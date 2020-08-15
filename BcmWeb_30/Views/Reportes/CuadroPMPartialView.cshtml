@@ -1,0 +1,180 @@
+﻿@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvVI";
+    settings.SettingsDetail.MasterGridName = "gvCuadro";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "CuadroPMPartialView", CustomerID = ViewData["IdUnidadOrganizativa"] };
+
+    settings.KeyFieldName = "IdProceso";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+    settings.Width = 800;
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M01";
+        c.Caption = Resources.ReporteResource.captionM01;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M02";
+        c.Caption = Resources.ReporteResource.captionM02;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M03";
+        c.Caption = Resources.ReporteResource.captionM03;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M04";
+        c.Caption = Resources.ReporteResource.captionM04;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M05";
+        c.Caption = Resources.ReporteResource.captionM05;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M06";
+        c.Caption = Resources.ReporteResource.captionM06;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M07";
+        c.Caption = Resources.ReporteResource.captionM07;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M08";
+        c.Caption = Resources.ReporteResource.captionM08;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M09";
+        c.Caption = Resources.ReporteResource.captionM09;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M10";
+        c.Caption = Resources.ReporteResource.captionM10;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M11";
+        c.Caption = Resources.ReporteResource.captionM11;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso_M12";
+        c.Caption = Resources.ReporteResource.captionM12;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+    });
+}).Bind(Model.DataCuadro).GetHtml()
+

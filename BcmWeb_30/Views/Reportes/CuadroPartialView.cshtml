@@ -1,0 +1,69 @@
+﻿@using BcmWeb_30.Models
+
+@model ReporteModel
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvCuadro";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "CuadroPartialView", IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] };
+
+    settings.KeyFieldName = "IdProceso";
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 400;
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso";
+        c.Caption = Resources.ReporteResource.captionProceso;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+    });
+
+    settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+    settings.SettingsDetail.ShowDetailRow = true;
+
+    settings.SetDetailRowTemplateContent(c =>
+    {
+        switch (Model.IdModuloActual)
+        {
+            case 13010100:
+                Html.RenderAction("CuadroIOPartialView", "Reportes", new { IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] });
+                break;
+            case 13010400:
+                Html.RenderAction("CuadroVIPartialView", "Reportes", new { IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] });
+                break;
+            case 13010700:
+                Html.RenderAction("CuadroPMPartialView", "Reportes", new { IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] });
+                break;
+        }
+    });
+}).Bind(Model.DataCuadro).GetHtml()
+
+

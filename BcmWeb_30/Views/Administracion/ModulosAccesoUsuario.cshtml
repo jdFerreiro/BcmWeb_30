@@ -1,0 +1,101 @@
+﻿@using BcmWeb_30.Models
+
+@model ModulosUsuario
+
+<script type="text/javascript">
+    function onSelectedChanged(idE, key, idU, checked) {
+        lp.Show();
+
+        var _chk = checked ? "true" : "false";
+
+        $.ajax({
+            type: 'POST',
+            url: '/Administracion/SeleccionarModuloUsuario',
+            dataType: 'json',
+            data: {
+                idEmpresa: idE,
+                idModulo: key,
+                idUsuario: idU,
+                Checked: _chk
+            },
+            success: function (data) {
+                tlModulos.PerformCallback();
+            },
+            error: function () {
+                lp.Hide();
+            }
+        });
+    }
+    function onUpdateChanged(idE, key, idU, checked) {
+        lp.Show();
+
+        var _chk = checked ? "true" : "false";
+        $.ajax({
+            type: 'POST',
+            url: '/Administracion/ActualizarModuloUsuario',
+            dataType: 'json',
+            data: {
+                idEmpresa: idE,
+                idModulo: key,
+                idUsuario: idU,
+                Checked: _chk
+            },
+            success: function (data) {
+                $("#IdEmpresaSelected").val(idE);
+                $("#IdUsuario").val(idU);
+                tlModulos.PerformCallback();
+            },
+            error: function () {
+                lp.Hide();
+            }
+        });
+
+        tlModulos.PerformCallback();
+    }
+    function onDeleteChanged(idE, key, idU, checked) {
+        lp.Show();
+
+        var _chk = checked ? "true" : "false";
+        $.ajax({
+            type: 'POST',
+            url: '/Administracion/EliminarModuloUsuario',
+            dataType: 'json',
+            data: {
+                idEmpresa: idE,
+                idModulo: key,
+                idUsuario: idU,
+                Checked: _chk
+            },
+            success: function (data) {
+                $("#IdEmpresaSelected").val(idE);
+                $("#IdUsuario").val(idU);
+                tlModulos.PerformCallback();
+            },
+            error: function () {
+                lp.Hide();
+            }
+        });
+
+        tlModulos.PerformCallback();
+    }
+    function onNodeSelectChanged(s, e) {
+        alert(n);
+    }
+</script>
+
+@Html.HiddenFor(m => m.IdEmpresaSelected)
+@Html.HiddenFor(m => m.IdUsuario)
+@Html.HiddenFor(m => m.IdNivelUsuario)
+
+@Html.Partial("ModulosAccesoPartialView", Model)
+
+<div style="float:right;">
+    @Html.DevExpress().Button(
+        btnSettings =>
+        {
+            btnSettings.Name = "btnBack";
+            btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+            btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+            btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Usuarios", "Administracion", new { modId = long.Parse(Session["modId"].ToString()) }) + "'; }";
+        }).GetHtml()
+</div>

@@ -1,0 +1,86 @@
+@using BcmWeb_30.Models
+
+@model  ModulosUserModel
+
+<script type="text/javascript">
+    function itemMenuClick(s, e) {
+        if (e.item.items.length == 0) {
+            lp.Show();
+        }
+    }
+</script>
+
+<div class="leftPanel">
+    <table>
+        <tr>
+            <td>
+                @Html.DevExpress().Button(b =>
+                    {
+                        b.Name = "botReturn";
+                        b.Text = Resources.BCMWebPublic.botReturnText;
+                        b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "Menu", Action = "Index" }) + "' }";
+
+                    }).GetHtml()
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="ModuloHeader">
+                            <div>
+                                @Html.DisplayFor(m => m.ModuloActual)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        @*<tr>
+            <td>
+                @Html.DevExpress().Menu(s =>
+                {
+                    s.Name = "menuOpciones";
+                    s.Width = Unit.Percentage(100);
+                    s.ItemAutoWidth = false;
+                    s.EnableSubMenuScrolling = true;
+                    s.Styles.Item.Font.Size = FontUnit.Small;
+                    s.Styles.Item.Wrap = DefaultBoolean.True;
+                    s.Styles.SubMenuItem.Font.Size = FontUnit.Small;
+                    s.Styles.SubMenuItem.Wrap = DefaultBoolean.True;
+                    s.Styles.SubMenuItem.Width = Unit.Pixel(350);
+                    s.Orientation = Orientation.Vertical;
+                    s.ShowPopOutImages = DefaultBoolean.False;
+                    s.ControlStyle.HorizontalAlign = HorizontalAlign.Center;
+                    s.EnableAdaptivity = true;
+                    s.ClientSideEvents.ItemClick = "itemMenuClick";
+                }).Bind(Model.SubModulos).GetHtml()
+            </td>
+        </tr>*@
+        <tr>
+            <td>
+                <div style="margin-top: 40px; text-align:center; ">
+                    @Html.DevExpress().Button(b =>
+                    {
+                        b.Name = "botAnexo";
+                        b.Text = Resources.BCMWebPublic.botAnexosText;
+                        b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "FileManager", Action = "Index" }) + "?IdClaseDocumento=" + Model.IdClaseDocumento.ToString() + "&modId=" + Model.IdModuloActual.ToString() + "' }";
+                    }).GetHtml()
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>

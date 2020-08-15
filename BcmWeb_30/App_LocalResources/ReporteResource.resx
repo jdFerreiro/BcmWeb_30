@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="captionDescEscala" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="captionImpactoOperacional" xml:space="preserve">
+    <value>Impacto Operacional</value>
+  </data>
+  <data name="captionM01" xml:space="preserve">
+    <value>Enero</value>
+  </data>
+  <data name="captionM02" xml:space="preserve">
+    <value>Febrero</value>
+  </data>
+  <data name="captionM03" xml:space="preserve">
+    <value>Marzo</value>
+  </data>
+  <data name="captionM04" xml:space="preserve">
+    <value>Abril</value>
+  </data>
+  <data name="captionM05" xml:space="preserve">
+    <value>Mayo</value>
+  </data>
+  <data name="captionM06" xml:space="preserve">
+    <value>Junio</value>
+  </data>
+  <data name="captionM07" xml:space="preserve">
+    <value>Julio</value>
+  </data>
+  <data name="captionM08" xml:space="preserve">
+    <value>Agosto</value>
+  </data>
+  <data name="captionM09" xml:space="preserve">
+    <value>Septiembre</value>
+  </data>
+  <data name="captionM10" xml:space="preserve">
+    <value>Octubre</value>
+  </data>
+  <data name="captionM11" xml:space="preserve">
+    <value>Noviembre</value>
+  </data>
+  <data name="captionM12" xml:space="preserve">
+    <value>Diciembre</value>
+  </data>
+  <data name="captionMDTHeader" xml:space="preserve">
+    <value>TMC</value>
+  </data>
+  <data name="captionProceso" xml:space="preserve">
+    <value>Proceso</value>
+  </data>
+  <data name="captionRPOHeader" xml:space="preserve">
+    <value>POR</value>
+  </data>
+  <data name="captionRTOHeader" xml:space="preserve">
+    <value>TOR</value>
+  </data>
+  <data name="captionValorEscala" xml:space="preserve">
+    <value>Valor de Escala</value>
+  </data>
+  <data name="captionVIHeader" xml:space="preserve">
+    <value>Valor de Impacto</value>
+  </data>
+  <data name="captionWRTHeader" xml:space="preserve">
+    <value>TRT</value>
+  </data>
+  <data name="captionUnidad" xml:space="preserve">
+    <value>Unidad Organizativa</value>
+  </data>
+  <data name="ToolTipPrintButton" xml:space="preserve">
+    <value>Imprimir el gráfico</value>
+  </data>
+  <data name="ToolTipSaveToDiskButton" xml:space="preserve">
+    <value>Exportar el gráfico y guardar en su PC</value>
+  </data>
+  <data name="ToolTipSaveToWindowButton" xml:space="preserve">
+    <value>Exportar el gráfico a una nueva ventana</value>
+  </data>
+  <data name="captionCantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="captionAccion1" xml:space="preserve">
+    <value>No se tiene planificada alguna acción y/o la acción planificada no mitigará el riesgo</value>
+  </data>
+  <data name="captionAccion2" xml:space="preserve">
+    <value>Se consideran acciones a largo plazo</value>
+  </data>
+  <data name="captionAccion3" xml:space="preserve">
+    <value>Acciones de mitigación se estarán aplicando a corto plazo</value>
+  </data>
+  <data name="captionAccionTomar" xml:space="preserve">
+    <value>Acciones a tomar</value>
+  </data>
+  <data name="captionDescripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="captionDescripcionFuente" xml:space="preserve">
+    <value>Fuente de la Amenaza</value>
+  </data>
+  <data name="captionDeterminacionEstado" xml:space="preserve">
+    <value>Suma: Valoración de “P” + Valoración de “I”  + Valoración de “C” =</value>
+  </data>
+  <data name="CaptionDeterminacionLinea1" xml:space="preserve">
+    <value>Si la Suma es igual o mayor que “6”</value>
+  </data>
+  <data name="CaptionDeterminacionLinea2" xml:space="preserve">
+    <value>Si la Suma es “4” o “5”</value>
+  </data>
+  <data name="CaptionDeterminacionLinea3" xml:space="preserve">
+    <value>Si la Suma es “3”</value>
+  </data>
+  <data name="captionEstado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="captionEstadoRiesgo" xml:space="preserve">
+    <value>Determinación del Estado</value>
+  </data>
+  <data name="captionNivelImpacto1" xml:space="preserve">
+    <value>Bajo (1)</value>
+  </data>
+  <data name="captionNivelImpacto2" xml:space="preserve">
+    <value>Medio (2)</value>
+  </data>
+  <data name="captionNivelImpacto3" xml:space="preserve">
+    <value>Alto (3)</value>
+  </data>
+  <data name="captionProbabilidad1" xml:space="preserve">
+    <value>Baja (1)</value>
+  </data>
+  <data name="captionProbabilidad2" xml:space="preserve">
+    <value>Media (2)</value>
+  </data>
+  <data name="captionProbabilidad3" xml:space="preserve">
+    <value>Alta (3)</value>
+  </data>
+  <data name="captionSeveridad" xml:space="preserve">
+    <value>Severidad</value>
+  </data>
+  <data name="captionValoracion" xml:space="preserve">
+    <value>Valoración</value>
+  </data>
+  <data name="captionValoracionFuente" xml:space="preserve">
+    <value>Código</value>
+  </data>
+  <data name="SubtituloNivelImpacto" xml:space="preserve">
+    <value>Nivel del Impacto (I)</value>
+  </data>
+  <data name="TituloAcciones" xml:space="preserve">
+    <value>Tabla: Acciones a tomar dependiendo de la Valoración del Riesgo</value>
+  </data>
+  <data name="TituloControl" xml:space="preserve">
+    <value>Control (C) sobre el Riesgo</value>
+  </data>
+  <data name="TituloFuentes" xml:space="preserve">
+    <value>Tabla: Fuentes de la Amenaza</value>
+  </data>
+  <data name="TituloImpacto" xml:space="preserve">
+    <value>Características del Impacto (I)</value>
+  </data>
+  <data name="TituloProbabilidad" xml:space="preserve">
+    <value>Probabilidad (P) de Ocurrencia</value>
+  </data>
+  <data name="TituloSeveridad" xml:space="preserve">
+    <value>Tabla: Severidad del Riesgo</value>
+  </data>
+  <data name="TituloTablasValoracionRiesgo" xml:space="preserve">
+    <value>Tablas: Valoración del Riesgo</value>
+  </data>
+  <data name="TituloValoracionRiesgo" xml:space="preserve">
+    <value>Tabla: Valoración del Estado de Riesto</value>
+  </data>
+  <data name="captionAmenaza" xml:space="preserve">
+    <value>Amenaza</value>
+  </data>
+  <data name="captionEvento" xml:space="preserve">
+    <value>Evento Disparador</value>
+  </data>
+  <data name="captionImplantado" xml:space="preserve">
+    <value>Control Implantado</value>
+  </data>
+  <data name="captionImplantar" xml:space="preserve">
+    <value>Control a Implantar</value>
+  </data>
+  <data name="captionEscala" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="TextoExplicativoInformacion" xml:space="preserve">
+    <value>Toda la información que se muestra en los gráficos se corresponde a la última información actualizada o al último año. No existe información histórica.</value>
+  </data>
+  <data name="TituloTablaRiesgoControl" xml:space="preserve">
+    <value>Tabla: Estado de Eventos por Proceso</value>
+  </data>
+  <data name="captionControl" xml:space="preserve">
+    <value>Control</value>
+  </data>
+</root>

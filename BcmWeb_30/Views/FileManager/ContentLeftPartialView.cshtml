@@ -1,0 +1,70 @@
+@using BcmWeb_30.Models
+
+@model ModulosUserModel
+
+<div class="leftPanel">
+    <table>
+        <tr>
+            <td>
+                @Html.DevExpress().Button(b =>
+                    {
+                        b.Name = "botReturn";
+                        b.Text = Resources.BCMWebPublic.botReturnText;
+                        b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "Menu", Action = "Index" }) + "' }";
+
+                    }).GetHtml()
+            </td>
+        </tr>
+        <tr>
+            <td>
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="ModuloHeader">
+                            <div>
+                                @Html.DisplayFor(m => m.ModuloActual)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DevExpress().RadioButtonList(s =>
+                            {
+                                s.Name = "rblClaseDocumento";
+                                s.Properties.Caption = Resources.DocumentoResource.ClaseDocumentoCaption;
+                                s.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+                                s.Properties.ValueType = typeof(System.Int32);
+                                s.Properties.Items.Add(Resources.DocumentoResource.TipoNegocios, 1);
+                                s.Properties.Items.Add(Resources.DocumentoResource.TipoDRP, 2);
+                                s.Properties.RepeatDirection = RepeatDirection.Vertical;
+                                s.Properties.RepeatColumns = 1;
+                                s.Properties.ClientSideEvents.SelectedIndexChanged = "function (s,e) { lp.Show(); $(\"#IdClaseDocumento\").val(rblClaseDocumento.GetValue()); document.forms[\"docForm\"].submit();  }";
+                            }).Bind(Model.IdClaseDocumento).GetHtml()
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="margin-top: 40px; text-align:center; ">
+                                @Html.DevExpress().Button(b =>
+                            {
+                                b.Name = "botAnexo";
+                                b.Text = Resources.BCMWebPublic.botAnexosText;
+                                b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + DevExpressHelper.GetUrl(new { Controller = "FileManager", Action = "Index" }) + "?IdClaseDocumento=" + Model.IdClaseDocumento.ToString() + "&modId=" + Model.IdModulo.ToString() + "' }";
+                            }).GetHtml()
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

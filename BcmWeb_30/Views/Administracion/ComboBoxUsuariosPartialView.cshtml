@@ -1,0 +1,27 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "cbxUsuario";
+        settings.Width = Unit.Percentage(100);
+        settings.SelectedIndex = 0;
+        settings.CallbackRouteValues = new { Controller = "Administracion", Action = "ComboBoxUsuariosPartialView"};
+        settings.Properties.CallbackPageSize = 15;
+        settings.Properties.Caption = Resources.AdministracionResource.captionUsuario;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.SettingsLoadingPanel.Enabled = false;
+        settings.Properties.TextFormatString = "{0}";
+        settings.Properties.TextField = "Descripcion";
+        settings.Properties.ValueField = "Id";
+        settings.Properties.ValueType = typeof(System.Int64);
+        settings.Properties.ItemStyle.SelectedStyle.CssClass = "selectedItem";
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.Never;
+        //settings.Properties.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show();}";
+        //settings.Properties.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide();}";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "function (s,e) { $(\"#IdUsuario\").val(cbxUsuario.GetValue()); }";
+    }
+).BindList(Metodos.GetUsuariosAuditoria()).Bind(Model.IdUsuario).GetHtml()
+

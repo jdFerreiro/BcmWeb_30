@@ -1,0 +1,130 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model List<DataRiesgoControl>
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvRiesgoControl";
+    settings.CallbackRouteValues = new { Controller = "Reportes", Action = "TablaRiesgoPartialView", IdUnidadOrganizativa = ViewData["IdUnidadOrganizativa"] };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+    settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    settings.Settings.VerticalScrollableHeight = 380;
+    settings.Width = Unit.Percentage(100);
+
+    settings.SettingsBehavior.AllowCellMerge = true;
+
+    settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+    GridViewFormatConditionHighlight Rule1 = new GridViewFormatConditionHighlight();
+    GridViewFormatConditionHighlight Rule2 = new GridViewFormatConditionHighlight();
+    GridViewFormatConditionHighlight Rule3 = new GridViewFormatConditionHighlight();
+
+    Rule1.FieldName = "Estado";
+    Rule1.Expression = "[Control] == 1";
+    Rule1.Format = GridConditionHighlightFormat.Custom;
+    Rule1.ApplyToRow = false;
+    Rule1.CellStyle.BackColor = System.Drawing.Color.Green;
+    Rule1.CellStyle.ForeColor = System.Drawing.Color.White;
+    Rule1.CellStyle.Font.Bold = true;
+    settings.FormatConditions.Add(Rule1);
+
+    Rule2.FieldName = "Estado";
+    Rule2.Expression = "[Control] == 2";
+    Rule2.Format = GridConditionHighlightFormat.Custom;
+    Rule2.ApplyToRow = false;
+    Rule2.CellStyle.BackColor = System.Drawing.Color.Orange;
+    Rule2.CellStyle.ForeColor = System.Drawing.Color.White;
+    Rule2.CellStyle.Font.Bold = true;
+    settings.FormatConditions.Add(Rule2);
+
+    Rule3.FieldName = "Estado";
+    Rule3.Expression = "[Control] == 3";
+    Rule3.Format = GridConditionHighlightFormat.Custom;
+    Rule3.ApplyToRow = false;
+    Rule3.CellStyle.BackColor = System.Drawing.Color.Red;
+    Rule3.CellStyle.ForeColor = System.Drawing.Color.White;
+    Rule3.CellStyle.Font.Bold = true;
+    settings.FormatConditions.Add(Rule3);
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "NroProceso";
+        c.Width = Unit.Percentage(5);
+        c.Caption = Resources.DocumentoResource.captionNroProceso;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Settings.AllowCellMerge = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Proceso";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.DocumentoResource.captionProceso;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.PropertiesEdit.DisplayFormatString = "{0}";
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Settings.AllowCellMerge = DefaultBoolean.True;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Amenaza";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.ReporteResource.captionAmenaza;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Settings.AllowCellMerge = DefaultBoolean.False;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Evento";
+        c.Width = Unit.Percentage(35);
+        c.Caption = Resources.ReporteResource.captionEvento;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Settings.AllowCellMerge = DefaultBoolean.False;
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Estado";
+        c.Width = Unit.Percentage(10);
+        c.UnboundType = DevExpress.Data.UnboundColumnType.String;
+        c.Caption = Resources.ReporteResource.captionControl;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.Settings.AllowCellMerge = DefaultBoolean.False;
+    });
+}).Bind(Model).GetHtml()
+

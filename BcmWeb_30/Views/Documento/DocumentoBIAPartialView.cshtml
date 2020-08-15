@@ -1,0 +1,146 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentosModel
+
+           @Html.DevExpress().GridView(settings =>
+       {
+           settings.Name = "gvDocumentos";
+           settings.KeyFieldName = "IdDocumento";
+           settings.CallbackRouteValues = new { Controller = "Documento", Action = "DocumentoBIAPartialView" };
+
+           settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+           settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+           settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+           settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+           settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+           settings.ClientSideEvents.SelectionChanged = "function (s, e) { lp.Show(); }";
+           settings.ClientSideEvents.BeginCallback = "function (s, e) { lp.Show(); }";
+           settings.ClientSideEvents.EndCallback = "function (s, e) { lp.Hide(); }";
+
+           settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+           settings.Settings.ShowColumnHeaders = false;
+           settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+           settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+           settings.Settings.VerticalScrollableHeight = 400;
+
+           settings.SettingsPager.PageSize = 10;
+           settings.SettingsPager.Position = PagerPosition.Bottom;
+           settings.SettingsPager.FirstPageButton.Visible = true;
+           settings.SettingsPager.LastPageButton.Visible = true;
+           settings.SettingsPager.PageSizeItemSettings.Visible = true;
+           settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+           settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+           settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = true;
+           settings.EditFormLayoutProperties.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+           settings.EditFormLayoutProperties.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 600;
+
+           settings.SetDataRowTemplateContent(r =>
+           {
+               ViewContext.Writer.Write(
+                   "<div class=\"borderContent\" >" +
+                   "<table style=\"width: 100%;\">" +
+                   "<tr><td style=\"width: 30%;\">" +
+                   "<table class=\"tblDocumento\">" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionNroDocumento + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "NroDocumento") + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionResponsable + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Responsable.Nombre") + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.FichaResource.captionUO + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "DatosBIA.UnidadOrganizativa") + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionEstatus + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Estatus") + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionFechaEstatus + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "FechaEstadoDocumento", "{0:dd/MM/yyyy}") + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"caption\" style=\"width: 40%;\">" + Resources.DocumentoResource.captionVersion + "</td>" +
+                   //"<td style=\"width: 60%;\">" + string.Format("{0}.{1}", DataBinder.Eval(r.DataItem, "Version")) + "</td>" +
+                   "<td style=\"width: 60%;\">" + DataBinder.Eval(r.DataItem, "Version") + "</td>" +
+                   "</tr>" +
+                   "</table>" +
+                   "</td>" +
+                   "<td style=\"width: 60%;\">" +
+                   "<table class=\"tblProcesos\">" +
+                   "<tr>" +
+                   "<td colspan=\"3\" class=\"Titulo\">" + Resources.FichaResource.captionGrupo6 + "</td>" +
+                   "</tr>" +
+                   "<tr>" +
+                   "<td class=\"Titulo\" style=\"width:10%;\">" + Resources.ProcesosResource.captionNroProceso + "</td>" +
+                   "<td class=\"Titulo\" style=\"width:80%;\">" + Resources.ProcesosResource.captionNombre + "</td>" +
+                   "<td class=\"Titulo\" style=\"width:10%;\">" + Resources.ProcesosResource.captionCritico + "</td>" +
+                   "</tr>" +
+                   BcmWeb_30.Metodos.getStringProcesos(DataBinder.Eval(r.DataItem, "IdDocumento")) +
+                   "</table>" +
+                   "</td>" +
+                   "<td style=\"width: 10%; text-align: center;\">" +
+                   BcmWeb_30.Metodos.ConvertirRuta(DataBinder.Eval(r.DataItem, "RutaDocumentoPDF")) +
+                   "</td></tr>" +
+                   "<tr><td colspan=3>" +
+                   "<div class=\"right\">");
+               if (int.Parse(DataBinder.Eval(r.DataItem, "IdEstatus").ToString()) == 6)
+               {
+                   if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "HasVersion") == false)
+                   {
+                       ViewContext.Writer.Write(
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                           + "&nbsp;" +
+                           Html.ActionLink(Resources.DocumentoResource.NuevaVersionText, "NuevaVersionDocumento",
+                               new
+                               {
+                                   IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"),
+                                   IdClaseDocumento = Model.IdClaseDocumento,
+                                   IdModulo = Model.IdModulo,
+                                   IdVersionActual = DataBinder.Eval(r.DataItem, "VersionOriginal"),
+                                   NroVersion = DataBinder.Eval(r.DataItem, "NroVersion")
+                               })
+                       );
+                   }
+                   else
+                   {
+                       ViewContext.Writer.Write(
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                       );
+                   }
+               }
+               else
+               {
+                   if ((bool)DataBinder.Eval(r.DataItem, "Editable") && (bool)DataBinder.Eval(r.DataItem, "Eliminable"))
+                   {
+                       ViewContext.Writer.Write(
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonDelete, "EliminarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdModulo = Model.IdModulo },
+                               new { onclick = "return confirm('" + string.Format(Resources.BCMWebPublic.ConfirmDeleteMessage, DataBinder.Eval(r.DataItem, "NroDocumento")) + "'); lp.Show();" })
+                       );
+                   }
+                   else if ((bool)DataBinder.Eval(r.DataItem, "Editable"))
+                   {
+                       ViewContext.Writer.Write(
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" }) + "&nbsp;" +
+                           Html.ActionLink(Resources.BCMWebPublic.captionButtonEdit, "EditarDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                       );
+                   }
+                   else
+                   {
+                       ViewContext.Writer.Write(
+                         Html.ActionLink(Resources.BCMWebPublic.captionButtonVer, "VerDocumento", new { IdDocumento = DataBinder.Eval(r.DataItem, "IdDocumento"), IdClaseDocumento = Model.IdClaseDocumento, IdModulo = Model.IdModulo }, new { onclick = "lp.Show();" })
+                     );
+                   }
+               }
+               ViewContext.Writer.Write(
+                   "</div>" +
+                   "</td></tr>" +
+               "</table>"
+               );
+           });
+       }).Bind(Model.Documentos).GetHtml()

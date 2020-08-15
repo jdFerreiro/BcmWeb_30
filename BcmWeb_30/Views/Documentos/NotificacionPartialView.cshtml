@@ -1,0 +1,398 @@
+﻿@using BcmWeb_30
+@using DevExpress.Data;
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvNotificacion";
+            settings.KeyFieldName = "IdNotificacion";
+            settings.CallbackRouteValues = new { Controller = "Documentos", Action = "NotificacionPartialView" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "Documentos", Action = "EditNotificacionAddNewPartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "Documentos", Action = "EditNotificacionUpdatePartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "Documentos", Action = "EditNotificacionDeletePartial" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowNewButtonInHeader = true;
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Pixel(150);
+            settings.CommandColumn.Caption = " ";
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "NroNotificacion";
+                c.Caption = Resources.DocumentoResource.NroNotificacion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.Width = 80;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Nombre";
+                c.Caption = Resources.DocumentoResource.Nombre;
+                c.FixedStyle = GridViewColumnFixedStyle.Left;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 250;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Descripcion";
+                c.Caption = Resources.DocumentoResource.Descripcion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 450;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdUnidadOrganizativa";
+                c.Caption = Resources.DocumentoResource.UnidadOrganizativa;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 250;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "NombreUnidadOrganizativa";
+                    p.ValueField = "IdUnidad";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetUnidadesOrganizativas();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Responsable";
+                c.Caption = Resources.DocumentoResource.Responsable;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 250;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaInicioEstimada";
+                c.Caption = Resources.DocumentoResource.FechaInicioEstimada;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = 100;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaCierreEstimada";
+                c.Caption = Resources.DocumentoResource.FechaCierreEstimada;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = 100;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaInicioReal";
+                c.Caption = Resources.DocumentoResource.FechaInicioReal;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = 100;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "FechaCierreReal";
+                c.Caption = Resources.DocumentoResource.FechaCierreReal;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = 100;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "PresupuestoEstimado";
+                c.Caption = Resources.DocumentoResource.PresupuestoEstimado;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.PropertiesEdit.DisplayFormatString = "#,##0.00";
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 100;
+                c.Settings.AllowAutoFilter = DefaultBoolean.False;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "PresupuestoReal";
+                c.Caption = Resources.DocumentoResource.PresupuestoReal;
+                c.ColumnType = MVCxGridViewColumnType.DateEdit;
+                c.PropertiesEdit.DisplayFormatString = "#,##0.00";
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 100;
+                c.Settings.AllowAutoFilter = DefaultBoolean.False;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdEstatus";
+                c.Caption = Resources.DocumentoResource.Estatus;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetEstadosNotificacion();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Urgente";
+                c.Caption = Resources.DocumentoResource.Urgente;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "Descripcion";
+                    p.ValueField = "Id";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetPrioridadesNotificacion();
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Observacion";
+                c.Caption = Resources.DocumentoResource.Observacion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = 450;
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowCloseButton = false;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.DocumentoResource.captionHeaderFormNotificacions;
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+                Html.DevExpress().FormLayout(fls =>
+                {
+                    fls.Name = "FormLayoutNotificacions";
+                    fls.Width = Unit.Percentage(25);
+                    fls.ColCount = 2;
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Nombre";
+                        i.Caption = Resources.DocumentoResource.Nombre;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Descripcion";
+                        i.Caption = Resources.DocumentoResource.Descripcion;
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Height = Unit.Pixel(50);
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdUnidadOrganizativa";
+                        i.Caption = Resources.DocumentoResource.UnidadOrganizativa;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "NombreUnidadOrganizativa";
+                            s.Properties.ValueField = "IdUnidad";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetUnidadesOrganizativas();
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Responsable";
+                        i.Caption = Resources.DocumentoResource.Responsable;
+                        i.NestedExtension().TextBox(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaInicioEstimada";
+                        i.Caption = Resources.DocumentoResource.FechaInicioEstimada;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaCierreEstimada";
+                        i.Caption = Resources.DocumentoResource.FechaCierreEstimada;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaInicioReal";
+                        i.Caption = Resources.DocumentoResource.FechaInicioReal;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "FechaCierreReal";
+                        i.Caption = Resources.DocumentoResource.FechaCierreReal;
+                        i.NestedExtension().DateEdit(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "PresupuestoEstimado";
+                        i.Caption = Resources.DocumentoResource.PresupuestoEstimado;
+                        i.NestedExtension().SpinEdit(s =>
+                        {
+                            s.Properties.DisplayFormatString = "#,##0.00";
+                            s.Properties.MinValue = 0;
+                            s.Properties.MaxValue = decimal.MaxValue;
+                            s.Properties.SpinButtons.ShowLargeIncrementButtons = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "PresupuestoReal";
+                        i.Caption = Resources.DocumentoResource.PresupuestoReal;
+                        i.NestedExtension().SpinEdit(s =>
+                        {
+                            s.Properties.DisplayFormatString = "#,##0.00";
+                            s.Properties.MinValue = 0;
+                            s.Properties.MaxValue = decimal.MaxValue;
+                            s.Properties.SpinButtons.ShowLargeIncrementButtons = true;
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdEstatus";
+                        i.Caption = Resources.DocumentoResource.Estatus;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetEstadosNotificacion();
+                            s.Width = Unit.Pixel(300);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Urgente";
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "Descripcion";
+                            s.Properties.ValueField = "Id";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetPrioridadesNotificacion();
+                            s.Width = Unit.Pixel(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.ColSpan = 2;
+                        i.FieldName = "Observacion";
+                        i.NestedExtension().Memo(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Height = Unit.Pixel(200);
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.ColSpan = 2;
+                        i.ShowCaption = DefaultBoolean.False;
+                    }).SetNestedContent(() =>
+                    {
+                        ViewContext.Writer.Write("<div style='float:right'>");
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnUpdate";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvNotificacion.UpdateEdit(); }";
+                    }).Render();
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnCancel";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvNotificacion.CancelEdit(); }";
+                    }).Render();
+                        ViewContext.Writer.Write("</div>");
+                    });
+                    fls.Items.AddEmptyItem();
+                })
+                .Bind(ViewData["EditableNotificacion"] ?? c.DataItem)
+                .Render();
+            });
+        });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Session["gvdNotificacion"]).GetHtml()
+

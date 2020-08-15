@@ -1,0 +1,192 @@
+﻿@using BcmWeb_30.Models
+
+@model CriticoModel
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var ValoresProbabilidad = '@Session["ValoresProbabilidad"]';
+        var ValoresImpacto = '@Session["ValoresImpacto"]';
+        var ValoresSeveridad = '@Session["ValoresSeveridad"]';
+        var ValoresFuente = '@Session["ValoresFuente"]';
+        var ValoresControl = '@Session["ValoresControl"]';
+
+        if (ValoresProbabilidad != null && ValoresProbabilidad != "") {
+            valores = ValoresProbabilidad;
+            if (valores.indexOf(",") == -1) {
+                var item = lblProbabilidad.FindItemByValue(valores);
+                lblProbabilidad.SetSelectedItem(item);
+            }
+            else {
+                aValores = valores.split(",");
+                var aIndices = [];
+                $.each(aValores, function (index, value) {
+                    var item = lblProbabilidad.FindItemByValue(value);
+                    aIndices.push(item.index);
+                });
+                lblProbabilidad.SelectIndices(aIndices);
+            }
+        }
+        if (ValoresImpacto != null && ValoresImpacto != "") {
+            valores = ValoresImpacto;
+            if (valores.indexOf(",") == -1) {
+                var item = lblImpacto.FindItemByValue(valores);
+                lblImpacto.SetSelectedItem(item);
+            }
+            else {
+                aValores = valores.split(",");
+                var aIndices = [];
+                $.each(aValores, function (index, value) {
+                    var item = lblImpacto.FindItemByValue(value);
+                    aIndices.push(item.index);
+                });
+                lblImpacto.SelectIndices(aIndices);
+            }
+        }
+        if (ValoresSeveridad != null && ValoresSeveridad != "") {
+            valores = ValoresSeveridad;
+            if (valores.indexOf(",") == -1) {
+                var item = lblSeveridad.FindItemByValue(valores);
+                lblSeveridad.SetSelectedItem(item);
+            }
+            else {
+                aValores = valores.split(",");
+                var aIndices = [];
+                $.each(aValores, function (index, value) {
+                    var item = lblSeveridad.FindItemByValue(value);
+                    aIndices.push(item.index);
+                });
+                lblSeveridad.SelectIndices(aIndices);
+            }
+        }
+        if (ValoresFuente != null && ValoresFuente != "") {
+            valores = ValoresFuente;
+            if (valores.indexOf(",") == -1) {
+                var item = lblFuente.FindItemByValue(valores);
+                lblFuente.SetSelectedItem(item);
+            }
+            else {
+                aValores = valores.split(",");
+                var aIndices = [];
+                $.each(aValores, function (index, value) {
+                    var item = lblFuente.FindItemByValue(value);
+                    aIndices.push(item.index);
+                });
+                lblFuente.SelectIndices(aIndices);
+            }
+        }
+        if (ValoresControl != null && ValoresControl != "") {
+            valores = ValoresControl;
+            if (valores.indexOf(",") == -1) {
+                var item = lblControl.FindItemByValue(valores);
+                lblControl.SetSelectedItem(item);
+            }
+            else {
+                aValores = valores.split(",");
+                var aIndices = [];
+                $.each(aValores, function (index, value) {
+                    var item = lblControl.FindItemByValue(value);
+                    aIndices.push(item.index);
+                });
+                lblControl.SelectIndices(aIndices);
+            }
+        }
+    });
+    function OnBeginGridCallback(s, e) {
+        lp.Show();
+    }
+    function OnEndGridCallback(s, e) {
+        lp.Hide();
+    }
+    function FeaturesSelectionChanged(s, e) {
+        var selectedFeatures = s.GetSelectedValues();
+        switch (s.name) {
+            case "lblProbabilidad":
+                $("#ImpactoFinancieroSelected").val(selectedFeatures);
+                break;
+            case "lblImpacto":
+                $("#ImpactoOperacionalSelected").val(selectedFeatures);
+                break;
+            case "lblSeveridad":
+                $("#MTDSelected").val(selectedFeatures);
+                break;
+            case "lblFuente":
+                $("#RPOSelected").val(selectedFeatures);
+                break;
+            case "lblControl":
+                $("#RTOSelected").val(selectedFeatures);
+                break;
+        }
+    }
+</script>
+
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+
+@using (Html.BeginForm("Riesgo", "Procesos", FormMethod.Post, htmlAttributes: new { id = "procesosForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.ImpactoFinancieroSelected)
+    @Html.HiddenFor(m => m.ImpactoOperacionalSelected)
+    @Html.HiddenFor(m => m.MTDSelected)
+    @Html.HiddenFor(m => m.RTOSelected)
+    @Html.HiddenFor(m => m.RPOSelected)
+    @Html.HiddenFor(m => m.WRTSelected)
+
+    <div style="float:right; margin-top: -20px; margin-right: 10px;">
+        @Html.DevExpress().Button(b =>
+        {
+            b.Name = "botProcess";
+            b.Text = Resources.ProcesosResource.captionBoton;
+            b.ClientSideEvents.Click = "function (s,e) { lp.Show(); }";
+            b.UseSubmitBehavior = true;
+        }).GetHtml()
+    </div>
+        <table cellspacing="5" cellpadding="5" style="width: 100%;">
+            <tr>
+                <td>
+                    @Html.Partial("ProbabilidadPartialView")
+                </td>
+                <td>
+                    @Html.Partial("ImpactoPartialView")
+                </td>
+                <td>
+                    @Html.Partial("SeveridadPartialView")
+                </td>
+                <td>
+                    @Html.Partial("FuentePartialView")
+                </td>
+                <td>
+                    @Html.Partial("ControlPartialView")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="5" style="padding-right: 10px;">
+                    <div style="float: right;">
+                        @Html.DevExpress().Button(settings =>
+                        {
+                            settings.Name = "btExport";
+                            settings.Text = Resources.BCMWebPublic.stringExportExcel;
+                            settings.RouteValues = new { Controller = "Procesos", Action = "ExportRiesgo" };
+                        }).GetHtml()
+                    </div>
+                    @Html.Partial("RiesgoPartialView")
+                </td>
+            </tr>
+        </table>
+}

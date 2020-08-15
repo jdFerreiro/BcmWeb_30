@@ -1,0 +1,60 @@
+﻿@using BcmWeb_30
+@using System.Drawing
+
+@model List<objGraphIO>
+
+@Html.DevExpress().Chart(settings =>
+{
+    settings.Name = "chartPrint";
+    settings.Width = 920;
+    settings.Height = 500;
+    settings.BorderOptions.Visibility = DefaultBoolean.False;
+    settings.CrosshairEnabled = DefaultBoolean.False;
+
+    settings.Titles.Add(new ChartTitle()
+    {
+        Font = new Font("Tahoma", 14),
+        Text = ViewData["TituloGrafico"].ToString()
+    });
+
+    //settings.Legends.Default(l =>
+    //{
+    //    l.AlignmentHorizontal = LegendAlignmentHorizontal.Right;
+    //});
+    settings.Legends.Default(l =>
+    {
+        l.AlignmentHorizontal = LegendAlignmentHorizontal.Center;
+        l.AlignmentVertical = LegendAlignmentVertical.BottomOutside;
+        l.MaxHorizontalPercentage = 50;
+        l.HorizontalIndent = 12;
+        l.Direction = LegendDirection.LeftToRight;
+        l.Border.Visibility = DefaultBoolean.True;
+    });
+
+    settings.Series.Template(t =>
+    {
+        t.Views().SideBySideBarSeriesView(v =>
+        {
+            v.SeriesLabel(l =>
+            {
+                l.Position = (BarSeriesLabelPosition)Enum.Parse(typeof(BarSeriesLabelPosition), "Center");
+                l.TextOrientation = (TextOrientation)Enum.Parse(typeof(TextOrientation), "Horizontal");
+                l.Indent = 0;
+                l.ResolveOverlappingMode = ResolveOverlappingMode.Default;
+            });
+        });
+        t.SetDataMembers("Unidad", "Cantidad");
+        t.LabelsVisibility = DefaultBoolean.True;
+        t.ToolTipEnabled = DefaultBoolean.True;
+        t.ToolTipHintDataMember = "Escala";
+        t.ToolTipPointPattern = Resources.ReporteResource.captionUnidad + ": {HINT} \n" + Resources.ReporteResource.captionDescEscala + ": {A}\n" + Resources.ReporteResource.captionCantidad + ": {V}";
+    });
+
+    settings.XYDiagram(d =>
+    {
+        d.AxisY.Interlaced = true;
+        d.AxisY.Title.Text = "";
+        d.AxisY.Title.Visibility = DefaultBoolean.True;
+    });
+}).Bind(Model, seriesDataMember: "Escala").GetHtml()
+

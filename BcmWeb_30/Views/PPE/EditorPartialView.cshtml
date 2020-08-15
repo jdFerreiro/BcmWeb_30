@@ -1,0 +1,196 @@
+﻿@using DevExpress.XtraRichEdit
+
+@{ 
+    var rich = Html.DevExpress().RichEdit(settings =>
+    {
+        settings.Name = "RichEdit";
+        settings.CallbackRouteValues = new { Controller = "PPE", Action = "EditorPartialView" };
+
+        settings.Width = Unit.Percentage(100);
+        settings.Height = Unit.Pixel(450);
+        settings.ShowConfirmOnLosingChanges = false;
+        settings.ActiveTabIndex = 0;
+
+        settings.ShowStatusBar = false;
+
+        settings.Settings.DocumentCapabilities.HeadersFooters = DocumentCapability.Enabled;
+        settings.RibbonMode = RichEditRibbonMode.Ribbon;
+        settings.EnableClientSideAPI = true;
+        settings.SettingsDocumentSelector.UploadSettings.Enabled = true;
+        settings.ClientSideEvents.CustomCommandExecuted = "OnCustomCommandExecuted";
+        settings.ClientSideEvents.DocumentChanged = "docChange";
+        if (settings.RibbonTabs.Find(r => r is DevExpress.Web.ASPxRichEdit.RERTableDesignTab) != null)
+            settings.RibbonTabs.Find(r => r is DevExpress.Web.ASPxRichEdit.RERTableDesignTab).Text = Resources.EditorResources.RibbonDesignTab;
+        if (settings.RibbonTabs.Find(r => r is DevExpress.Web.ASPxRichEdit.RERTableLayoutTab) != null)
+            settings.RibbonTabs.Find(r => r is DevExpress.Web.ASPxRichEdit.RERTableLayoutTab).Text = Resources.EditorResources.RibbonLayoutTab;
+
+        settings.CustomActionRouteValues = new { Controller = "PPE", Action = "Open" };
+
+        settings.PreRender = (s, e) =>
+        {
+            MVCxRichEdit richEdit = (MVCxRichEdit)s;
+            richEdit.CreateDefaultRibbonTabs(false);
+
+            richEdit.BackColor = System.Drawing.Color.White;
+
+            //Custom Open button
+            richEdit.RibbonTabs[0].Groups[0].Items.RemoveAll(x => x is RERNewCommand);
+            richEdit.RibbonTabs[0].Groups[0].Items.RemoveAll(x => x is REROpenCommand);
+            richEdit.RibbonTabs[0].Groups[0].Items.RemoveAll(x => x is RERSaveAsCommand);
+            richEdit.RibbonTabs[0].Groups[0].Items.RemoveAll(x => x is RERSaveCommand);
+
+            richEdit.RibbonTabs[0].Groups[0].Items.Insert(1, new RibbonButtonItem
+            {
+                ClientEnabled = false,
+                Name = "botSave",
+                LargeImage = { IconID = IconID.ActionsSave32x32devav },
+                Size = RibbonItemSize.Large,
+                Text = Resources.EditorResources.SaveCustomText,
+            });
+
+            richEdit.Focus();
+        };
+    });
+    if (string.IsNullOrEmpty(Session["Contenido"].ToString()))
+    {
+        rich.GetHtml();
+    }
+    else
+    {
+        rich.Open((string)Session["UniqueId"], DocumentFormat.OpenXml, () =>
+        {
+
+            string _content = Session["Contenido"].ToString();
+
+            RichEditDocumentServer server = new RichEditDocumentServer();
+            var doc = server.Document;
+            MemoryStream _streamData = new MemoryStream(Convert.FromBase64String(_content));
+            doc.LoadDocument(_streamData, DocumentFormat.OpenXml);
+            var cp = doc.BeginUpdateCharacters(doc.Range);
+            cp.FontName = "Times New Roman";
+            cp.FontSize = 12;
+            doc.EndUpdateCharacters(cp);
+
+            string _empresaImageUrl = string.Empty;
+            string _headerText = string.Empty;
+            HttpServerUtility _Server = HttpContext.Current.Server;
+            string _ServerPath = _Server.MapPath(".").Replace("\\PPE", string.Empty);
+            string _ImgServerPath = _Server.MapPath(".").Replace("\\LogosEmpresa", string.Empty);
+            string _apliredImageUrl = string.Format("{0}\\LogosEmpresa\\LogoAplired.png", _ServerPath);
+
+            using (BcmWeb_30.Data.EF.Entities db = new BcmWeb_30.Data.EF.Entities())
+            {
+                long _idEmpresa = long.Parse(Session["IdEmpresa"].ToString());
+                long _idPrueba = long.Parse(Session["IdPrueba"].ToString());
+
+                BcmWeb_30.Data.EF.tblEmpresa _empresa = db.tblEmpresa.FirstOrDefault(x => x.IdEmpresa == _idEmpresa);
+                BcmWeb_30.Data.EF.tblPBEPruebaPlanificacion _DataPlanificacion = db.tblPBEPruebaPlanificacion.FirstOrDefault(x => x.IdEmpresa == _idEmpresa && x.IdPlanificacion == _idPrueba);
+                _empresaImageUrl = string.Format("{0}{1}", _ServerPath, _empresa.LogoURL.Replace("~","").Replace("/", "\\"));
+                _headerText = string.Format("INFORME RESULTADO DE LA PRUEBA \"{0}\"", _DataPlanificacion.Prueba.ToUpper());
+            }
+
+            System.Drawing.Image someImage = System.Drawing.Image.FromFile(_empresaImageUrl);
+            System.Drawing.Image apliredImage = System.Drawing.Image.FromFile(_apliredImageUrl);
+            int apliredWidth = (int)(apliredImage.Width * 0.15);
+            int apliredHeight = (int)(apliredImage.Height * 0.15);
+            var newImage = new System.Drawing.Bitmap(someImage.Width / 2, someImage.Height / 2);
+            var newImageAplired = new System.Drawing.Bitmap(apliredWidth, apliredHeight);
+            using (var graphics = System.Drawing.Graphics.FromImage(newImage))
+                graphics.DrawImage(someImage, 0, 0, someImage.Width / 2, someImage.Height / 2);
+
+            using (var graphics = System.Drawing.Graphics.FromImage(newImageAplired))
+                graphics.DrawImage(apliredImage, 0, 0, apliredWidth, apliredHeight);
+
+            DevExpress.XtraRichEdit.API.Native.Section firstSection = doc.Sections[0];
+
+            DevExpress.XtraRichEdit.API.Native.SubDocument head = firstSection.BeginUpdateHeader(DevExpress.XtraRichEdit.API.Native.HeaderFooterType.Primary);
+
+            head.Delete(head.Range);
+            head.Tables.Create(head.CreatePosition(head.Range.End.ToInt()), 2, 3, DevExpress.XtraRichEdit.API.Native.AutoFitBehaviorType.AutoFitToWindow);
+
+            DevExpress.XtraRichEdit.API.Native.Table tbl = head.Tables[0];
+
+            string _HeaderDoc = "Registro de Hallazgos";
+            if (Session["IdContenido"].ToString() != "1")
+                _HeaderDoc = "Registro de Acciones";
+
+            try
+            {
+                tbl.BeginUpdate();
+                tbl.MergeCells(tbl[0, 0], tbl[1, 0]);
+                tbl.MergeCells(tbl[0, 1], tbl[1, 1]);
+
+                string _fecha = string.Format("Fecha: {0}", System.DateTime.Now.ToString("dd/MM/yyyy"));
+
+                head.Images.Insert(tbl[0, 0].Range.Start, newImage);
+                head.InsertText(tbl[0, 1].Range.Start, _headerText);
+                head.Images.Insert(tbl[0, 2].Range.Start, newImageAplired);
+                head.InsertText(tbl[1, 2].Range.Start, _fecha);
+                tbl[1, 2].WordWrap = false;
+
+
+                tbl.TableLayout = DevExpress.XtraRichEdit.API.Native.TableLayoutType.Autofit;
+                tbl.ForEachCell((cell, rowIndex, cellIndex) =>
+                {
+                    cell.PreferredWidthType = DevExpress.XtraRichEdit.API.Native.WidthType.Auto;
+                    DevExpress.XtraRichEdit.API.Native.CharacterProperties cpRow = head.BeginUpdateCharacters(cell.Range);
+                    cpRow.Bold = true;
+                    head.EndUpdateCharacters(cpRow);
+                    DevExpress.XtraRichEdit.API.Native.ParagraphProperties ppRow = head.BeginUpdateParagraphs(cell.Range);
+                    ppRow.Alignment = DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Center;
+                    head.EndUpdateParagraphs(ppRow);
+                });
+                DevExpress.XtraRichEdit.API.Native.ParagraphProperties celRow = head.BeginUpdateParagraphs(tbl[0, 1].Range);
+                celRow.LineSpacingType = DevExpress.XtraRichEdit.API.Native.ParagraphLineSpacing.Exactly;
+                celRow.LineSpacing = 40f;
+                head.EndUpdateParagraphs(celRow);
+
+                tbl[0, 0].VerticalAlignment = DevExpress.XtraRichEdit.API.Native.TableCellVerticalAlignment.Center;
+                tbl[0, 2].BottomPadding = 22f;
+                tbl[0, 2].TopPadding = 42f;
+                tbl[0, 0].PreferredWidth = tbl.PreferredWidth * 0.3f;
+                tbl[0, 1].PreferredWidth = tbl.PreferredWidth * 0.4f;
+                tbl[0, 2].PreferredWidth = tbl.PreferredWidth * 0.3f;
+                tbl[0, 1].VerticalAlignment = DevExpress.XtraRichEdit.API.Native.TableCellVerticalAlignment.Center;
+
+            }
+            finally
+            {
+                tbl.EndUpdate();
+            }
+
+            head.Paragraphs.Append();
+            int _parrafos = head.Paragraphs.Count;
+
+            DevExpress.XtraRichEdit.API.Native.Paragraph _parrafo = head.Paragraphs[_parrafos - 1];
+            _parrafo.Alignment = DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Center;
+            _parrafo.Style.Bold = true;
+            DevExpress.XtraRichEdit.API.Native.DocumentPosition pos = head.CreatePosition(_parrafo.Range.End.ToInt() - 1);
+            head.InsertText(pos, _HeaderDoc);
+
+            head.Paragraphs.Append();
+            _parrafos = head.Paragraphs.Count;
+
+            _parrafo = head.Paragraphs[_parrafos - 1];
+            _parrafo.Alignment = DevExpress.XtraRichEdit.API.Native.ParagraphAlignment.Center;
+            _parrafo.Style.Bold = false;
+            pos = head.CreatePosition(_parrafo.Range.End.ToInt() - 1);
+            head.InsertText(pos, " ");
+
+            firstSection.EndUpdateHeader(head);
+
+            using (MemoryStream _stream = new MemoryStream())
+            {
+                server.SaveDocument(_stream, DocumentFormat.OpenXml);
+                long IdPrueba = long.Parse(Session["IdPrueba"].ToString());
+                long IdContenido = long.Parse(Session["IdContenido"].ToString());
+                byte[] Content = _stream.ToArray();
+                BcmWeb_30.Metodos.UpdateResultadoEjecucion(IdPrueba, IdContenido, Content);
+                return Content;
+            }
+
+
+        });
+        rich.GetHtml();
+    }
+}

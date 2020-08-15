@@ -1,0 +1,113 @@
+<h2 style="text-align:center;">@Resources.HomeIndex.pageHeader</h2>
+<div class="row">
+    <div class="col-md-8 padding10 slContent">
+        <div id="slideshow">
+            <div>
+                <img src="~/Content/Images/tornado_163m.jpg">
+            </div>
+            <div>
+                <img src="~/Content/Images/500px-ISO22301_Lifecycle.png">
+            </div>
+            <div>
+                <img src="~/Content/Images/Continuidad Negocio.png">
+            </div>
+            <div>
+                <img src="~/Content/Images/Disaster Recovery firemen.jpg">
+            </div>
+            <div>
+                <img src="~/Content/Images/disaster_relief.jpg">
+            </div>
+            <div>
+                <img src="~/Content/Images/iStock_000008190739Large.jpg">
+            </div>
+            <div>
+                <img src="~/Content/Images/seo_analysis_big-403x250.jpg">
+            </div>
+        </div>
+        <script>
+            $("#slideshow > div:gt(0)").hide();
+
+            setInterval(function () {
+                $('#slideshow > div:first')
+                    .fadeOut(1000)
+                    .next()
+                    .fadeIn(1000)
+                    .end()
+                    .appendTo('#slideshow');
+            }, 3000)
+        </script>
+    </div>
+    <div id="modulos" class="col-md-4 padding10" style="margin-top: 20px;">
+        <h2 style="text-indent: 40px;">@Resources.HomeIndex.modulosTitle</h2>
+        <div class="AppList">
+            <ul>
+                <li>@Resources.HomeIndex.moduloName1</li>
+                <li>@Resources.HomeIndex.moduloName2</li>
+                <li>@Resources.HomeIndex.moduloName3</li>
+                <li>@Resources.HomeIndex.moduloName4</li>
+                <li>@Resources.HomeIndex.moduloName5</li>
+                <li>@Resources.HomeIndex.moduloName6</li>
+                <li>@Resources.HomeIndex.moduloName7</li>
+                <li>@Resources.HomeIndex.moduloName8</li>
+                <li>@Resources.HomeIndex.moduloName9</li>
+                <li>@Resources.HomeIndex.moduloName10</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="Panel" class="row distribute" style="margin-top: 20px;">
+    <div class="panel-width30 padding10 border Redondeado">
+        <h3 class="text-center">@Resources.HomeIndex.headerBox1</h3>
+        <div>
+            <img src="~/Content/Images/bia.jpg" class="imgWrap" />
+            <p>
+                @Resources.HomeIndex.contentBox1
+            </p>
+        </div>
+        <div style="text-align:right;">
+            @Html.ActionLink(Resources.HomeIndex.linkBox, "ProcedimientoBIA", "Home", htmlAttributes: new { @class = "btn btn-default right", @style = "text-decoration: none" })
+        </div>
+    </div>
+    <div class="panel-width30 padding10 border Redondeado">
+        <h3 class="text-center">@Resources.HomeIndex.headerBox2</h3>
+        <div style="text-align:center;">
+            <img src="~/Content/Images/bcp.jpg" class="imgWrap" />
+        </div>
+        <p>
+            @Resources.HomeIndex.contentBox2
+        </p>
+        <div style="text-align:right;">
+            @Html.ActionLink(Resources.HomeIndex.linkBox, "ProcedimientoBCP", "Home", htmlAttributes: new { @class = "btn btn-default right", @style = "text-decoration: none" })
+        </div>
+    </div>
+    <div class="panel-width30 padding10 border Redondeado">
+        <h3 class="text-center">@Resources.HomeIndex.headerBox3</h3>
+        <div style="text-align:center;">
+            <img src="~/Content/Images/Movil.png" class="imgWrap" />
+        </div>
+        <p>
+            @Resources.HomeIndex.contentBox3_line1
+        </p>
+        <p>
+            @Resources.HomeIndex.contentBox3_line2
+        </p>
+        <div style="text-align:right;">
+            @Html.ActionLink(Resources.HomeIndex.linkBox, "BSMMovil", "Home", htmlAttributes: new { @class = "btn btn-default right", @style = "text-decoration: none" })
+        </div>
+    </div>
+</div>
+
+@section FooterPanel{
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "FooterPane";
+       settings.FixedPosition = PanelFixedPosition.WindowBottom;
+       settings.SettingsAdaptivity.HideAtWindowInnerWidth = 500;
+       settings.ControlStyle.CssClass = "footerPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("FooterPartialView");
+       });
+   }).GetHtml()
+}

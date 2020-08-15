@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="LoginAccionMessage" xml:space="preserve">
+    <value>Usuario conectado: {0}</value>
+  </data>
+  <data name="LogOutAccionMessage" xml:space="preserve">
+    <value>Usuario desconectado: {0}</value>
+  </data>
+  <data name="AbrirPDFMovilMessage" xml:space="preserve">
+    <value>Abrir el archivo PDF del documento {1} versión {2} desde un dispositivo móvil</value>
+  </data>
+  <data name="AbrirPDFWebMessage" xml:space="preserve">
+    <value>Abrir el archivo PDF del documento {1} versión {2} desde un pc o laptop</value>
+  </data>
+  <data name="ActualizarAccionMessage" xml:space="preserve">
+    <value>Actualizar la sección {0} del documento {1} versión {2}</value>
+  </data>
+  <data name="EliminarAccionMessage" xml:space="preserve">
+    <value>Eliminar el documento {1} versión {2}</value>
+  </data>
+  <data name="GenerarPDFMessage" xml:space="preserve">
+    <value>Generar PDF del documento {1} versión {2} en el módulo {0}</value>
+  </data>
+  <data name="GenerarVersionMessage" xml:space="preserve">
+    <value>Generar versión {2} del documento {1} en el módulo {0}</value>
+  </data>
+  <data name="MostrarAccionMessage" xml:space="preserve">
+    <value>Consultar la sección {0} del documento {1} versión {2}</value>
+  </data>
+  <data name="AccesoModuloMovilMessage" xml:space="preserve">
+    <value>Ingresa al módulo {0} desde un dispositivo móvil</value>
+  </data>
+  <data name="AccesoModuloWebMessage" xml:space="preserve">
+    <value>Ingresa al módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="CaptionAccion" xml:space="preserve">
+    <value>Acción</value>
+  </data>
+  <data name="CaptionDireccionIP" xml:space="preserve">
+    <value>Dirección IP</value>
+  </data>
+  <data name="CaptionDocumento" xml:space="preserve">
+    <value>Número de Documento</value>
+  </data>
+  <data name="CaptionEmpresa" xml:space="preserve">
+    <value>Nombre de la Empresa</value>
+  </data>
+  <data name="CaptionFechaRegistro" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="CaptionId" xml:space="preserve">
+    <value>Código del Registro</value>
+  </data>
+  <data name="CaptionMensaje" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="CaptionNegocio" xml:space="preserve">
+    <value>Negocios/Teconología</value>
+  </data>
+  <data name="CaptionTipoDocumento" xml:space="preserve">
+    <value>Tipo de Documento</value>
+  </data>
+  <data name="CaptionUsuario" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="AbrirDocumentoMessage" xml:space="preserve">
+    <value>Abrir documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoAgregarItemDocumentoMessage" xml:space="preserve">
+    <value>Agregar anexo {3} al documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoAgregarItemModuloMessage" xml:space="preserve">
+    <value>Agregar anexo {3} al módulo {0}</value>
+  </data>
+  <data name="AprobarDocumentoMessage" xml:space="preserve">
+    <value>Aprueba el documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="CertificarDocumentoMessage" xml:space="preserve">
+    <value>Certifica el documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="ConsultarCambiosMessage" xml:space="preserve">
+    <value>Consulta control de cambios en el documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoEliminarItemDocumentoMessage" xml:space="preserve">
+    <value>Elimina anexo {3} del documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoEliminarItemModuloMessage" xml:space="preserve">
+    <value>Elimina anexo {3} del módulo {0}</value>
+  </data>
+  <data name="GenerarCopiaDocumentoMessage" xml:space="preserve">
+    <value>Generar versión {5} del documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoAccederDocumentoMovilMessage" xml:space="preserve">
+    <value>Ingresa a los anexos del documento {1} version {2} en el módulo {0} desde un dispositivo Móvil</value>
+  </data>
+  <data name="AnexoAccederDocumentoWebMessage" xml:space="preserve">
+    <value>Ingresa a los anexos del documento {1} version {2} en el módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="AnexoAccederModuloMovilMessage" xml:space="preserve">
+    <value>Ingresa a los anexos del módulo {0} desde un dispositivo Móvil</value>
+  </data>
+  <data name="AnexoAccederModuloWebMessage" xml:space="preserve">
+    <value>Ingresa a los anexos del módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="AnexoAgregarCarpetaDocumentoMessage" xml:space="preserve">
+    <value>Agregar carpeta {3} a los anexos al documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoAgregarCarpetaModuloMessage" xml:space="preserve">
+    <value>Agregar carpeta {3} a los anexos del módulo {0}</value>
+  </data>
+  <data name="AnexoCargarDocumentoWebMessage" xml:space="preserve">
+    <value>Carga el anexo {3} del documento {1} version {2} en el módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="AnexoCargarModuloWebMessage" xml:space="preserve">
+    <value>Carga el anexo {3} del módulo {0} desde un dispositivo Móvil</value>
+  </data>
+  <data name="AnexoCopiarItemDocumentoMessage" xml:space="preserve">
+    <value>Copiar anexo {3} al documento {1} versión {2} del módulo {0}</value>
+  </data>
+  <data name="AnexoCopiarItemModuloMessage" xml:space="preserve">
+    <value>Copiar anexo {3} al módulo {0}</value>
+  </data>
+  <data name="AnexoDescargarDocumentoMovilMessage" xml:space="preserve">
+    <value>Descarga el anexo {3} del documento {1} version {2} en el módulo {0} desde un dispositivo Móvil</value>
+  </data>
+  <data name="AnexoDescargarDocumentoWebMessage" xml:space="preserve">
+    <value>Descarga el anexo {3} del documento {1} version {2} en el módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="AnexoDescargarModuloMovilMessage" xml:space="preserve">
+    <value>Descarga el anexo {3} del módulo {0} desde un dispositivo Móvil</value>
+  </data>
+  <data name="AnexoDescargarModuloWebMessage" xml:space="preserve">
+    <value>Descarga el anexo {3} del módulo {0} desde un pc o laptop</value>
+  </data>
+  <data name="AnexoMoverItemDocumentoMessage" xml:space="preserve">
+    <value>Mover anexo {3} del documento {1} versión {2} del módulo {0}, de {4}</value>
+  </data>
+  <data name="AnexoMoverItemModuloMessage" xml:space="preserve">
+    <value>Mover anexo {3} del módulo {0}, de {4}</value>
+  </data>
+  <data name="AnexoRenombrarItemDocumentoMessage" xml:space="preserve">
+    <value>Renombrar anexo del documento {1} versión {2} del módulo {0} de {4} a {3}</value>
+  </data>
+  <data name="AnexoRenombrarItemModuloMessage" xml:space="preserve">
+    <value>Renombar anexo del módulo {0} de {4} a {3}</value>
+  </data>
+  <data name="AgregarIniciativaMessage" xml:space="preserve">
+    <value>Agregar la Iniciativa {2} - {1}</value>
+  </data>
+  <data name="EliminarIniciativaMessage" xml:space="preserve">
+    <value>Eliminar la iniciativa {1}</value>
+  </data>
+  <data name="ModificarIniciativaMessage" xml:space="preserve">
+    <value>Actualizar la iniciativa {2} - {1}</value>
+  </data>
+  <data name="MostrarIniciativaMessage" xml:space="preserve">
+    <value>Consultar la sección {0} </value>
+  </data>
+  <data name="AnexoAgregarCarpetaIniciativaMessage" xml:space="preserve">
+    <value>Agregar carpeta {1} a los anexos de la iniciativa {0}</value>
+  </data>
+  <data name="AnexoAgregarItemIniciativaMessage" xml:space="preserve">
+    <value>Agregar anexo {1} a la iniciativa {0}</value>
+  </data>
+  <data name="AnexoCopiarItemIniciativaMessage" xml:space="preserve">
+    <value>Copiar anexo {1} a la iniciativa {0}</value>
+  </data>
+  <data name="AnexoEliminarItemIniciativaMessage" xml:space="preserve">
+    <value>Eliminar anexo {1} a la iniciativa {0}</value>
+  </data>
+  <data name="AnexoMoverItemIniciativaMessage" xml:space="preserve">
+    <value>Mover anexo {1} de la iniciativa {0}, de {2}</value>
+  </data>
+  <data name="AnexoRenombrarItemIniciativaMessage" xml:space="preserve">
+    <value>Renombrar anexo en la iniciativa {0} de {2} a {1}</value>
+  </data>
+  <data name="AnexoCargarDocumentoIniciativaMessage" xml:space="preserve">
+    <value>Carga el anexo {1} a la iniciativa {0}</value>
+  </data>
+  <data name="AnexoDescargarIniciativaWebMessage" xml:space="preserve">
+    <value>Descarga el anexo {1} de la iniciativa {0}</value>
+  </data>
+  <data name="CaptionDatosModificados" xml:space="preserve">
+    <value>Datos Actualizados</value>
+  </data>
+  <data name="EliminarAccionMessage1" xml:space="preserve">
+    <value>Generar PDF del documento {1} versión {2} en el módulo {0}</value>
+  </data>
+  <data name="AgregarProgramacionMessage" xml:space="preserve">
+    <value>Agregar la programación para el módulo {0}</value>
+  </data>
+  <data name="EliminarProgramacionMessage" xml:space="preserve">
+    <value>Eliminar la programación para el módulo {0}</value>
+  </data>
+  <data name="ModificarProgramacionMessage" xml:space="preserve">
+    <value>Actualizar la programación para el módulo {0}</value>
+  </data>
+  <data name="MostrarProgramacionMessage" xml:space="preserve">
+    <value>Consultar la programación de mantenimientos</value>
+  </data>
+  <data name="ActualizarModulosUsuario" xml:space="preserve">
+    <value>Actualizar Modulos para el usuario {0}  en la empresa {1}</value>
+  </data>
+  <data name="ActualizarIncidenteMessage" xml:space="preserve">
+    <value>Actualizar Incidente</value>
+  </data>
+  <data name="AgregarIncidenteMessage" xml:space="preserve">
+    <value>Agregar un nuevo incidente</value>
+  </data>
+  <data name="EliminarIncidenteMessage" xml:space="preserve">
+    <value>Eliminar Incidente</value>
+  </data>
+  <data name="ActivarEvento" xml:space="preserve">
+    <value>Activar el evento {0}</value>
+  </data>
+  <data name="EliminarEvento" xml:space="preserve">
+    <value>Eliminar dispositio {0} para el evento {1}</value>
+  </data>
+</root>

@@ -1,0 +1,80 @@
+﻿@using BcmWeb_30
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvCorreo";
+    settings.KeyFieldName = "IdPersonaEmail";
+    settings.CallbackRouteValues = new { Controller = "Documentos", Action = "CorreosPartialView" };
+
+    settings.Width = System.Web.UI.WebControls.Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+    //settings.Settings.ShowStatusBar = GridViewStatusBarMode.Hidden;
+    settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
+    settings.ClientSideEvents.EndCallback = "OnEndGridCallback";
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.Bottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+    settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "Documentos", Action = "BatchEditingUpdateCorreo" };
+    settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+    settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.Click;
+    settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
+    settings.SettingsBehavior.ConfirmDelete = true;
+    settings.SettingsEditing.BatchEditSettings.ShowConfirmOnLosingChanges = false;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.Width = Unit.Percentage(10);
+    settings.CommandColumn.ShowNewButtonInHeader = true;
+    settings.CommandColumn.ShowDeleteButton = true;
+    settings.CommandColumn.ShowEditButton = true;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "IdTipoEmail";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.FichaResource.captionTipoEmail;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+
+        c.EditorProperties().ComboBox(p =>
+        {
+            p.DropDownStyle = DropDownStyle.DropDownList;
+            p.TextField = "Descripcion";
+            p.ValueField = "Id";
+            p.ValueType = typeof(long);
+            p.DataSource = Metodos.GetTiposCorreo();
+            p.DisplayFormatString = "{0}";
+        });
+
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Email";
+        c.Width = Unit.Percentage(65);
+        c.Caption = Resources.FichaResource.captionEmail;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.ColumnType = MVCxGridViewColumnType.TextBox;
+    });
+}).Bind(Metodos.GetCorreos()).GetHtml()
+
+
+

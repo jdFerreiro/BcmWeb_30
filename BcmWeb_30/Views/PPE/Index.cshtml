@@ -1,0 +1,67 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+<script type="text/javascript">
+    function Modulo_Changed(s, e) {
+        var IdModuloSelected = s.GetValue();
+        gvProgramacionDocumento.PerformCallback();
+        gvProgramacionUsuario.PerformCallback();
+    }
+</script>
+
+<script type="text/javascript">
+    var myTimer;
+    function OnButtonClick(startUrl) {
+        //var $this = $(this);
+        //e.preventDefault();
+        //alert("")
+        StartActionOnServer(startUrl);
+    }
+    function StartActionOnServer(startUrl) {
+        lp.Show();
+        $.ajax({
+            type: 'POST',
+            url: startUrl,
+            data: {},
+            dataType: 'json'
+        }).done(ProgressCallbackComplete)
+          .fail(CallbackError);
+    }
+    function ProgressCallbackComplete(data) {
+        lp.Hide();
+        //window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;"
+        var file = data._pathFile;
+        window.open(file, '_blank', 'fullscreen=true');
+
+    }
+    function CallbackError() {
+        lp.Hide();
+        alert('Error al generar el documento');
+    }
+</script>
+
+@using (Html.BeginForm("ExportProgramacion", "PMT", FormMethod.Post, htmlAttributes: new { id = "ProgramacionesForm" }))
+{
+    
+    <div style="margin-top: -15px; margin-bottom: 3px;">
+        <div>
+            @Html.DevExpress().Button(b =>
+                {
+                    b.Name = "botReturn";
+                    b.Text = Resources.BCMWebPublic.botReturnText;
+                    b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Index", "Documento", new { IdModulo = Session["modId"].ToString() }) + "' }";
+                }).GetHtml()
+        </div>
+        @*<div style="float: right; margin-top: -20px; margin-bottom: 5px;">
+            @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "btExport";
+            settings.Text = Resources.BCMWebPublic.stringExportExcel;
+            settings.UseSubmitBehavior = true;
+        }).GetHtml()
+        </div>*@
+    </div>
+
+    @Html.Partial("PruebasPartialView")
+
+}

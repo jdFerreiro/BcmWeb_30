@@ -1,0 +1,26 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model EmpresaModel
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "cmbCiudad";
+        settings.Width = Unit.Percentage(50);
+        settings.CallbackRouteValues = new { Controller = "Administracion", Action = "CiudadPartialView" };
+        settings.Properties.CallbackPageSize = 20;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.TextFormatString = "{0}";
+        settings.Properties.TextField = "Descripcion";
+        settings.Properties.ValueField = "Id";
+        settings.Properties.ValueType = typeof(System.Int64);
+        settings.Properties.ClientSideEvents.BeginCallback = "function (s,e) { e.customArgs['IdPais'] = cmbPais.GetValue(); e.customArgs['IdEstado'] = cmbEstado.GetValue(); }";
+        settings.Properties.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "function (s,e) { $(\"#IdPais\").val(cmbPais.GetValue());  $(\"#IdEstado\").val(cmbEstado.GetValue()); $(\"#IdCiudad\").val(cmbCiudad.GetValue()); }";
+        settings.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        settings.ShowModelErrors = true;
+    }
+).BindList(Metodos.GetCiudades(Model.IdPais, Model.IdEstado)).Bind(Model.IdCiudad).GetHtml()
+

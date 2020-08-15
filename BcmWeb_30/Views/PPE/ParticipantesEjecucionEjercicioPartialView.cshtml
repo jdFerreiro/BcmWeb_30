@@ -1,0 +1,153 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+@using DevExpress.Data;
+
+@model PruebaEjercicioModel
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvParticipantesEjercicio";
+            settings.KeyFieldName = "IdParticipante;IdEjercicio";
+            settings.CallbackRouteValues = new { Controller = "PPE", Action = "ParticipantesEjercicioEjecucionPartialView" };
+            settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "PPE", Action = "ParticipantesEjercicioEjecucionAddNewPartial" };
+            settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "PPE", Action = "ParticipantesEjercicioEjecucionUpdatePartial" };
+            settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "PPE", Action = "ParticipantesEjercicioEjecucionDeletePartial" };
+            settings.SettingsEditing.Mode = GridViewEditingMode.PopupEditForm;
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Visible;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.PPEResource.TitleGridEjercicioParticipantesEjecucion;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.CommandColumn.Visible = true;
+            settings.CommandColumn.ShowNewButton = false;
+            settings.CommandColumn.ShowNewButtonInHeader = (Model.IdEjercicio > 0);
+            settings.CommandColumn.ShowDeleteButton = true;
+            settings.CommandColumn.ShowEditButton = true;
+            settings.CommandColumn.FixedStyle = GridViewColumnFixedStyle.Left;
+            settings.CommandColumn.Width = Unit.Percentage(10);
+            settings.CommandColumn.Caption = " ";
+
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "IdParticipante";
+                c.Caption = Resources.PPEResource.captionNombreParticipante;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(80);
+                c.EditorProperties().ComboBox(p =>
+                {
+                    p.TextField = "NombreParticipante";
+                    p.ValueField = "IdParticipante";
+                    p.ValueType = typeof(long);
+                    p.DataSource = Metodos.GetPruebaEjecucionParticipantes(long.Parse(Session["IdPrueba"].ToString()));
+                });
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Responsable";
+                c.ColumnType = MVCxGridViewColumnType.CheckBox;
+                c.Caption = Resources.PPEResource.captionResponsable;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(10);
+            });
+
+            settings.SettingsPopup.EditForm.HorizontalAlign = PopupHorizontalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.VerticalAlign = PopupVerticalAlign.WindowCenter;
+            settings.SettingsPopup.EditForm.Modal = true;
+            settings.SettingsPopup.EditForm.ShowCloseButton = false;
+            settings.SettingsPopup.EditForm.ShowHeader = true;
+            settings.SettingsText.PopupEditFormCaption = Resources.PPEResource.TitleParticipante;
+
+            settings.SetEditFormTemplateContent(c =>
+            {
+                Html.DevExpress().FormLayout(fls =>
+                {
+                    fls.Name = "FormLayoutParticipante";
+                    fls.Width = Unit.Percentage(100);
+                    fls.ColCount = 2;
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "IdParticipante";
+                        i.Caption = Resources.PPEResource.captionNombreParticipante;
+                        i.ColSpan = 2;
+                        i.NestedExtension().ComboBox(s =>
+                        {
+                            s.Properties.TextField = "NombreParticipante";
+                            s.Properties.ValueField = "IdParticipante";
+                            s.Properties.ValueType = typeof(long);
+                            s.Properties.DataSource = Metodos.GetPruebaEjecucionParticipantes(long.Parse(Session["IdPrueba"].ToString()));
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                            s.Enabled = c.Grid.IsNewRowEditing;
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.FieldName = "Responsable";
+                        i.Caption = Resources.PPEResource.captionResponsable;
+                        i.ColSpan = 2;
+                        i.NestedExtension().CheckBox(s =>
+                        {
+                            s.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+                            s.ShowModelErrors = true;
+                            s.Width = Unit.Percentage(100);
+                        });
+                    });
+                    fls.Items.Add(i =>
+                    {
+                        i.ColSpan = 2;
+                        i.ShowCaption = DefaultBoolean.False;
+                    }).SetNestedContent(() =>
+                    {
+                        ViewContext.Writer.Write("<div style='float:right'>");
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnUpdate";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonSave;
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvParticipantesEjercicio.UpdateEdit(); }";
+                    }).Render();
+                        Html.DevExpress().Button(
+                    btnSettings =>
+                    {
+                        btnSettings.Name = "btnCancel";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonCancel;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e){ gvParticipantesEjercicio.CancelEdit(); }";
+                    }).Render();
+                        ViewContext.Writer.Write("</div>");
+                    });
+                    fls.Items.AddEmptyItem();
+                })
+                .Bind(ViewData["EditableReg"] ?? c.DataItem)
+                .Render();
+            });
+            settings.InitNewRow = (s, e) =>
+            {
+                e.NewValues["Responsable"] = false;
+            };
+        });
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+}
+@grid.Bind(Metodos.GetPruebaParticipantesEjercicioEjecucion(Model.IdPrueba, Model.IdEjercicio)).GetHtml()
+

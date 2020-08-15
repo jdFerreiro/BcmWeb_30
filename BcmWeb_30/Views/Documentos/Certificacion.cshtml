@@ -1,0 +1,31 @@
+﻿@using BcmWeb_30.Models
+
+@model DocumentoModel
+
+<script type="text/javascript">
+    function OnBeginGridCallback(s, e) {
+        lp.Show();
+    }
+    function OnEndGridCallback(s, e) {
+        lp.Hide();
+    }
+</script>
+
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+@Html.Partial("CertificacionGridPartialView")

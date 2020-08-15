@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Header" xml:space="preserve">
+    <value>Sobre BcmWeb_30.net</value>
+  </data>
+  <data name="Lista01Elemento01" xml:space="preserve">
+    <value>Estudiar el flujo de producción e identificar los puntos críticos para la consecución de objetivos.</value>
+  </data>
+  <data name="Lista01Elemento02" xml:space="preserve">
+    <value>Examinar los controles actuales para minimizar dichos puntos críticos.</value>
+  </data>
+  <data name="Lista02Elemento01" xml:space="preserve">
+    <value>Identificar las amenazas al negocio.</value>
+  </data>
+  <data name="Lista02Elemento02" xml:space="preserve">
+    <value>Establecer escenarios de siniestros y evaluar su impacto en la organización.</value>
+  </data>
+  <data name="Lista03Elemento01" xml:space="preserve">
+    <value>Estudiar el modo de restablecer las operaciones dentro del margen de tiempo requerido.</value>
+  </data>
+  <data name="Lista03Elemento02" xml:space="preserve">
+    <value>Identificar los recursos, materiales e información necesarios para lograr el objetivo anterior.</value>
+  </data>
+  <data name="Lista04Elemento01" xml:space="preserve">
+    <value>Define las medidas a adoptar en el minuto 1 de la emergencia (llamar a los servicios de emergencia, efectuar la recuperación y salvamento de bienes, etc.).</value>
+  </data>
+  <data name="Lista04Elemento02" xml:space="preserve">
+    <value>Llamadas en cascada a miembros estratégicos de la organización, comunicación eficaz con los medios de comunicación, aviso a clientes y proveedores.</value>
+  </data>
+  <data name="Lista05Elemento01" xml:space="preserve">
+    <value>Aseguran la validez y robustez del documento.</value>
+  </data>
+  <data name="Lista05Elemento02" xml:space="preserve">
+    <value>Debe existir una revisión regular del plan para asegurar su puesta al día.</value>
+  </data>
+  <data name="Lista06Elemento01" xml:space="preserve">
+    <value>Aumenta la probabilidad de supervivencia de la empresa tras un siniestro.</value>
+  </data>
+  <data name="Lista06Elemento02" xml:space="preserve">
+    <value>Mantiene o incluso mejora la reputación de la empresa.</value>
+  </data>
+  <data name="Lista06Elemento03" xml:space="preserve">
+    <value>Evita errores costosos, tanto antes como después del siniestro.</value>
+  </data>
+  <data name="Lista06Elemento04" xml:space="preserve">
+    <value>Optimiza los recursos, canalizándolos allí donde resultan más útiles.</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Gestión de la Continuidad del Negocio (BCM).</value>
+  </data>
+  <data name="Parrafo01" xml:space="preserve">
+    <value>Es el Proceso o actividad de Gestionar el Riesgo que puede tener un alto impacto en el Negocio, para evitar o minimizar el riesgo en una interrupción que pueda impedir u obstaculizar que una Organización pueda alcanzar sus objetivos estratégicos, operacionales y de proyectos. BCM protege los intereses, la reputación, la marca y las actividades que aportan valor al Negocio. Los Procesos de BCM incluyen reducir el Riesgo a un nivel aceptable y planificar el restablecimiento de los Procesos de Negocio ante una situación de desastre. En consecuencia, contribuye a hacer a las Organizaciones más resistentes y con mayor poder de recuperación.</value>
+  </data>
+  <data name="Parrafo02" xml:space="preserve">
+    <value>El proceso de Gestión de Continuidad de Negocios (Business Continuity Management-BCM) le permite a su organización estar preparada y responder ante eventos mayores, a través de Planes de Continuidad del Negocio (BCP), se pueden determinar los procesos críticos, y en base al resultado de los mismos, definir los procedimientos que le permita seguir operando con el mínimo de servicios acordados. Esta actividad debe ser llevada a cabo por los dueños y/o responsables de cada proceso crítico dentro de la organización con el apoyo del Área de TI, y debe probarse como mínimo cada año. En esta fase también se determina qué tan grave ha sido el desastre ocurrido, y si requerirá o no la activación del Plan de recuperación ante desastres (DRP), el cual le permitirá restaurar la infraestructura de TI que soporta los procesos críticos del negocio previamente establecidos y acordados en el BCP. Es de responsabilidad e iniciativa del Área de TI de cada organización, pero deberá ejecutarse en relación directa con el Negocio. Al igual que el BCP, debe probarse al menos una vez al año (pueden probarse por separado) y ser frecuentemente actualizado y revisado.</value>
+  </data>
+  <data name="Parrafo03" xml:space="preserve">
+    <value>El BCM define el modo más efectivo de abordar las repercusiones inmediatas de un acontecimiento, para alcanzar la operación normal lo más rápidamente posible. No se trata de seguir lo que se dice en unas plantillas, sino de conocer la respuesta específica que requiere una organización dinámica, lo cual supone a menudo delegar autoridad y controlar las interferencias internas.</value>
+  </data>
+  <data name="Parrafo04" xml:space="preserve">
+    <value>Una crisis bien gestionada puede llegar a mejorar la reputación de la empresa, reforzar la moral de los trabajadores y hacer que la organización salga de la crisis más fuerte.</value>
+  </data>
+  <data name="Parrafo05" xml:space="preserve">
+    <value>Para conseguir implantar un BCM en una organización, deben seguirse los siguientes pasos.</value>
+  </data>
+  <data name="Parrafo06" xml:space="preserve">
+    <value>Los beneficios de realizar una metodología como la expuesta en los párrafos anteriores, pueden resumirse como sigue:</value>
+  </data>
+  <data name="Parrafo07" xml:space="preserve">
+    <value>, es un sistema que le ayuda a manejar la Gestión de Continuidad de su Negocio, de forma interactiva, accesible desde cualquier lugar y a cualquier hora; a través de éste sistema usted podrá ingresar a la información de los procesos fundamentales del negocio con sus respectivos impactos, riesgos y controles, interdependencias, proveedores, documentación esencial, productos asociados, personal clave, entre otros; visualizar claramente cuáles de esos procesos son críticos para su Negocio y para éstos procesos claves también podrá visualizar los procedimientos de respuesta, recuperación, reanudación y restauración.</value>
+  </data>
+  <data name="Pregunta01" xml:space="preserve">
+    <value>¿Qué puede suministrar el BCM?</value>
+  </data>
+  <data name="Pregunta02" xml:space="preserve">
+    <value>¿Cómo funciona un BCM?</value>
+  </data>
+  <data name="Pregunta03" xml:space="preserve">
+    <value>¿Cuáles son los beneficios de la implementación del BCM?</value>
+  </data>
+  <data name="Subtitulo01" xml:space="preserve">
+    <value>Control y Evaluación del Riesgo.</value>
+  </data>
+  <data name="Subtitulo02" xml:space="preserve">
+    <value>Análisis del Impacto en el Negocio.</value>
+  </data>
+  <data name="Subtitulo03" xml:space="preserve">
+    <value>Desarrollo de estrategias de continuidad.</value>
+  </data>
+  <data name="Subtitulo04" xml:space="preserve">
+    <value>Plan de Respuesta Inmediata y Gestión de Crisis.</value>
+  </data>
+  <data name="Subtitulo05" xml:space="preserve">
+    <value>Mantenimiento de los planes:</value>
+  </data>
+  <data name="Subtitulo06" xml:space="preserve">
+    <value>Sistema para la Gestión de la Continuidad del Negocio</value>
+  </data>
+</root>

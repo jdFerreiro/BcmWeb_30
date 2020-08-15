@@ -1,0 +1,55 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model DocumentoDiagrama
+
+<table class="Diagrama">
+    <tr>
+        <td colspan="3" style="text-align:center;">
+            <h2>@string.Format("{0} Proceso: {1}-{2}", Model.PageTitle, Model.NroProceso, Model.Nombre)</h2>
+        </td>
+    </tr>
+    <tr>
+        <td class="leftPane">&nbsp;</td>
+        <td class="MiddlePane">
+            <div class="Contenedor Amarillo">
+                <div class="Titulo">
+                    @Html.Raw(Resources.DiagramaResource.headerProceso)
+                </div>
+                <div class="internal">
+                    <table>
+                        <tr>
+                            <td class="subHeader">@Resources.DiagramaResource.ProcesoHeaderNumero</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(m => m.NroProceso)</td>
+                        </tr>
+                        <tr>
+                            <td class="subHeader">@Resources.DiagramaResource.ProcesoHeaderNombre</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(m => m.Nombre)</td>
+                        </tr>
+                        <tr>
+                            <td class="subHeader">@Resources.DiagramaResource.ProcesoHeaderDescripcion</td>
+                        </tr>
+                        <tr>
+                            <td>@Html.DisplayFor(m => m.Descripcion)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </td>
+        <td class="RightPane">
+            <div class="Contenedor Azul">
+                <div class="Titulo">
+                    @Html.Raw(Resources.DiagramaResource.headerPersonasClaves)
+                </div>
+                @{
+                    string _HtmlPersonalClave = Model.PersonalClave;
+                    @(new HtmlString(_HtmlPersonalClave));
+                }
+            </div>
+        </td>
+    </tr>
+</table>

@@ -1,0 +1,64 @@
+﻿@{ Layout = "~/Views/Shared/_lightLayout.cshtml"; }
+@model BcmWeb_30.Models.RegisterModel
+
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#editForm").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+
+<div class="login">
+    <div class="accountHeader">
+        <h2>@Resources.LoginResource.HeaderPrimeraVez</h2>
+        <p>
+            @Resources.LoginResource.loginPrimeraVezLinea1
+        </p>
+        <p style="color:red">@ViewBag.ErrorMessage</p>
+    </div>
+    @using (Html.BeginForm("PrimeraVez", "Account", FormMethod.Post, htmlAttributes: new { id = "editForm" }))
+            {
+        @Html.AntiForgeryToken()
+
+        @Html.DevExpress().TextBoxFor(m => m.UserName, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.Properties.Caption = Resources.LoginResource.captionUsername;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+
+        @Html.DevExpress().TextBoxFor(m => m.Password, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.Properties.Caption = Resources.LoginResource.captionPassword;
+            tb.Properties.Password = true;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+
+        @Html.DevExpress().TextBoxFor(m => m.ConfirmPassword, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.Properties.Caption = Resources.LoginResource.captionPasswordConfirm;
+            tb.Properties.Password = true;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+        <br />
+        @Html.DevExpress().Button(b =>
+        {
+            b.Name = "Button";
+            b.Text = Resources.BCMWebPublic.captionButtonEnviar;
+            b.ClientSideEvents.Click = "OnClick";
+            b.UseSubmitBehavior = true;
+        }).GetHtml()
+    }
+</div>

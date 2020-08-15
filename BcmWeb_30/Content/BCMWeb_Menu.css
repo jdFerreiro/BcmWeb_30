@@ -1,0 +1,53 @@
+﻿.MenuPrincipal {
+    margin: 0 0;
+    display: table;
+    clear: right;
+    width: 95%;
+}
+
+    .MenuPrincipal .MenuItem {
+        color: #000;
+        padding: 10px;
+        margin: 10px;
+        border: 1px solid #006bff;
+        width: 250px;
+        height: 230px;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+        display: inline-block;
+        float: left;
+        cursor: pointer;
+        text-align:center;
+    }
+
+        .MenuPrincipal .MenuItem:hover {
+            background-color: #288a87;
+            color: #fff;
+        }
+
+        .MenuPrincipal .MenuItem .Titulo {
+            margin: 5px;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+
+        .MenuPrincipal .MenuItem .Imagen {
+            display: inline-block;
+        }
+
+        .MenuPrincipal .MenuItem .Imagen > img {
+            margin: auto 0;
+            width: 110px;
+            height: 110px;
+        }
+
+        .MenuPrincipal .MenuItem .Descripcion {
+            margin: 2px 2px 5px 2px;
+            padding-right: 5px;
+            text-align: justify;
+            height: 90px;
+            overflow-y: auto;
+        }

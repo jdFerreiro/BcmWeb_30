@@ -1,0 +1,47 @@
+﻿@using BcmWeb_30.Models
+
+@model ReporteModel
+
+<script type="text/javascript">
+    function nodeClick(s, e) {
+        lp.Show();
+        $("#IdUnidadOrganizativa").val(e.node.name);
+        $("#UnidadOrganizativa").val(e.node.text);
+        document.forms['graphForm'].submit();
+    }
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings => {
+        settings.Name = "LeftPane";
+        settings.FixedPosition = PanelFixedPosition.WindowLeft;
+        settings.Collapsible = true;
+        settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+        settings.ControlStyle.CssClass = "leftPane";
+        settings.Styles.Panel.CssClass = "panel";
+        settings.SetContent(() => {
+            Html.RenderPartial("ContentLeftPartialView");
+        });
+    }).GetHtml()
+}
+
+@using (Html.BeginForm("CuadroPM", "Reportes", FormMethod.Post, htmlAttributes: new { id = "graphForm" }))
+{
+    @Html.HiddenFor(m => m.IdModulo)
+    @Html.HiddenFor(m => m.IdUnidadOrganizativa)
+    @Html.HiddenFor(m => m.UnidadOrganizativa)
+
+    <div class="Grafico">
+        <div class="leftPane">
+            @Html.Partial("PartialUnidadesOrganizativas", new System.Data.DataTable())
+        </div>
+        <div class="MiddlePane">
+            <div class="Header">
+                @Html.DisplayFor(m => m.UnidadOrganizativa)
+            </div>
+            <div class="content">
+                @Html.Partial("CuadroPMPartialView", Model)
+            </div>
+        </div>
+    </div>
+}

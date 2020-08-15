@@ -1,0 +1,145 @@
+﻿@using BcmWeb_30
+
+@Html.DevExpress().GridView(
+settings =>
+{
+    settings.Name = "gvTelefono";
+    settings.KeyFieldName = "IdPersonaTelefono";
+    settings.CallbackRouteValues = new { Controller = "Documentos", Action = "TelefonosPartialView" };
+    settings.ClientSideEvents.BeginCallback = "OnBeginGridCallback";
+    settings.ClientSideEvents.EndCallback = "OnEndGridCallback";
+
+    settings.Width = Unit.Percentage(100);
+    settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.HideDataCells;
+    settings.ControlStyle.Paddings.Padding = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.Border.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(0);
+    settings.ControlStyle.BorderBottom.BorderWidth = System.Web.UI.WebControls.Unit.Pixel(1);
+    settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Hidden;
+    settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+
+    settings.SettingsPager.PageSize = 20;
+    settings.SettingsPager.Position = PagerPosition.TopAndBottom;
+    settings.SettingsPager.FirstPageButton.Visible = true;
+    settings.SettingsPager.LastPageButton.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Visible = true;
+    settings.SettingsPager.PageSizeItemSettings.Items = new string[] { "10", "20", "50", "100" };
+
+    settings.SettingsEditing.Mode = GridViewEditingMode.Batch;
+    settings.SettingsEditing.BatchUpdateRouteValues = new { Controller = "Documentos", Action = "BatchEditingUpdateTelefono" };
+    settings.SettingsEditing.BatchEditSettings.EditMode = GridViewBatchEditMode.Row;
+    settings.SettingsEditing.BatchEditSettings.StartEditAction = GridViewBatchStartEditAction.DblClick;
+    settings.SettingsEditing.BatchEditSettings.HighlightDeletedRows = true;
+    settings.SettingsBehavior.ConfirmDelete = true;
+    //settings.Settings.ShowStatusBar = GridViewStatusBarMode.Hidden;
+    settings.SettingsEditing.BatchEditSettings.ShowConfirmOnLosingChanges = false;
+
+    settings.CommandColumn.Visible = true;
+    settings.CommandColumn.Caption = " ";
+    settings.CommandColumn.Width = Unit.Percentage(10);
+    settings.CommandColumn.ShowNewButtonInHeader = true;
+    settings.CommandColumn.ShowDeleteButton = true;
+    settings.CommandColumn.ShowEditButton = true;
+
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "IdTipoTelefono";
+        c.Width = Unit.Percentage(25);
+        c.Caption = Resources.FichaResource.captionTipoTelefono;
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+
+        c.EditorProperties().ComboBox(p =>
+        {
+            p.TextField = "Descripcion";
+            p.ValueField = "Id";
+            p.ValueType = typeof(long);
+            p.DataSource = Metodos.GetTiposTelefono();
+            p.DisplayFormatString = "{0}";
+        });
+
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "CodigoArea";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.FichaResource.captionCodigoAreaTelefono;
+        c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.PropertiesEdit.DisplayFormatString = "0000";
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+
+        c.EditorProperties().SpinEdit(p =>
+        {
+            p.NumberType = SpinEditNumberType.Integer;
+            p.MinValue = 0;
+            p.MaxValue = 9999;
+            p.MaxLength = 4;
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "NroTelefono";
+        c.Width = Unit.Percentage(20);
+        c.Caption = Resources.FichaResource.captionNroTelefono;
+        c.PropertiesEdit.DisplayFormatString = "0000000";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.EditorProperties().SpinEdit(p =>
+        {
+            p.NumberType = SpinEditNumberType.Integer;
+            p.MinValue = 100000;
+            p.MaxValue = 9999999;
+            p.MaxLength = 7;
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Extension1";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.FichaResource.captionNroExtension;
+        c.PropertiesEdit.DisplayFormatString = "00000";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.EditorProperties().SpinEdit(p =>
+        {
+            p.NumberType = SpinEditNumberType.Integer;
+            p.MinValue = 0;
+            p.MaxValue = 99999;
+            p.MaxLength = 5;
+        });
+    });
+    settings.Columns.Add(c =>
+    {
+        c.Settings.AllowSort = DefaultBoolean.True;
+        c.FieldName = "Extension2";
+        c.Width = Unit.Percentage(15);
+        c.Caption = Resources.FichaResource.captionNroExtension;
+        c.PropertiesEdit.DisplayFormatString = "00000";
+        c.CellStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.Wrap = DefaultBoolean.True;
+        c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        c.HeaderStyle.VerticalAlign = VerticalAlign.Middle;
+        c.EditorProperties().SpinEdit(p =>
+        {
+            p.NumberType = SpinEditNumberType.Integer;
+            p.MinValue = 0;
+            p.MaxValue = 99999;
+            p.MaxLength = 5;
+        });
+    });
+}).Bind(Metodos.GetTelefonos()).GetHtml()
+
+
+
+

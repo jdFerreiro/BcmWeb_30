@@ -1,0 +1,107 @@
+﻿@using BcmWeb_30.Models
+
+@model ContactoViewModel
+
+<script type="text/javascript">
+    function OnClick(s, e) {
+        if ($("#frmContacto").valid() && $("#IsValid").val() == 'true') {
+            lp.Show();
+        };
+    }
+</script>
+
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, htmlAttributes: new { id = "frmContacto" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.Hidden("IsValid", ViewData.ModelState.IsValid.ToString().ToLower())
+
+    @Html.DevExpress().FormLayout(s =>
+{
+    s.Name = "ContactoLayout";
+    s.SettingsAdaptivity.AdaptivityMode = FormLayoutAdaptivityMode.SingleColumnWindowLimit;
+    s.SettingsAdaptivity.SwitchToSingleColumnAtWindowInnerWidth = 800;
+    s.ControlStyle.CssClass = "fromLayout";
+    s.ColCount = 1;
+
+    s.Items.Add(m => m.Nombre, i =>
+    {
+        i.Caption = Resources.ContactResource.labelNombre;
+        i.CaptionSettings.Location = LayoutItemCaptionLocation.Top;
+        i.NestedExtension().TextBox(tb =>
+        {
+            tb.Name = "Nombre";
+            tb.Width = Unit.Percentage(100);
+            tb.ReadOnly = false;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        });
+    });
+    s.Items.Add(m => m.Email, i =>
+    {
+        i.Caption = Resources.ContactResource.labelEmailContacto;
+        i.CaptionSettings.Location = LayoutItemCaptionLocation.Top;
+        i.NestedExtension().TextBox(tb =>
+        {
+            tb.Name = "Email";
+            tb.Width = Unit.Percentage(100);
+            tb.ReadOnly = false;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        });
+    });
+    s.Items.Add(m => m.Asunto, i =>
+    {
+        i.Caption = Resources.ContactResource.labelAsunto;
+        i.CaptionSettings.Location = LayoutItemCaptionLocation.Top;
+        i.NestedExtension().TextBox(tb =>
+        {
+            tb.Name = "Asunto";
+            tb.Width = Unit.Percentage(100);
+            tb.ReadOnly = false;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        });
+    });
+    s.Items.Add(m => m.Mensaje, i =>
+    {
+        i.Caption = Resources.ContactResource.labelMensaje;
+        i.CaptionSettings.Location = LayoutItemCaptionLocation.Top;
+        i.NestedExtension().Memo(set =>
+        {
+            set.Height = Unit.Pixel(50);
+            set.Name = "Mensaje";
+            set.Width = Unit.Percentage(100);
+            set.ReadOnly = false;
+            set.ShowModelErrors = true;
+            set.Properties.ValidationSettings.Display = Display.Dynamic;
+            set.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        });
+    });
+    s.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+        i.NestedExtension().Captcha(ct =>
+        {
+            ct.Name = "captcha";
+            ct.TextBox.Position = DevExpress.Web.Captcha.ControlPosition.Bottom;
+            ct.CodeLength = 5;
+            ct.CharacterSet = "abcdefghijklmnopqrstuvxyz123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        });
+    });
+    s.Items.Add(i =>
+    {
+        i.ShowCaption = DefaultBoolean.False;
+        i.HorizontalAlign = FormLayoutHorizontalAlign.Right;
+        i.NestedExtension().Button(bt =>
+        {
+            bt.Name = "botSend";
+            bt.Text = Resources.BCMWebPublic.captionButtonEnviar;
+            bt.ClientSideEvents.Click = "OnClick";
+            bt.UseSubmitBehavior = true;
+        });
+    });
+}).GetHtml();
+}

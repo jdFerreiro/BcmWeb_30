@@ -1,0 +1,59 @@
+﻿@using BcmWeb_30.Models
+
+<link href="@Url.Content("~/Content/BCMWeb_Menu.css")" rel="stylesheet" type="text/css" />
+
+@model ModulosUserModel
+
+@using (Html.BeginForm("Index", "Menu", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmMenu" }))
+{
+    <table>
+        <tr>
+            <td style="padding-left: 10px;">
+                @Html.Partial("ComboBoxEmpresaPartial")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MiMenu">
+                    <div class="MenuPrincipal">
+                        @foreach (ModuloModel item in Model.ModulosPrincipales)
+                        {
+                            if (Session["IdNivelUsuario"].ToString() != "4" && Session["IdNivelUsuario"].ToString() != "6" && Session["IdNivelUsuario"].ToString() != "0")
+                            {
+                                <a href="@Url.Action(item.Action, item.Controller, new { item.IdModulo })" onclick="lp.Show();">
+                                    <div class="MenuItem">
+                                        <div class="Titulo">
+                                            @Html.DisplayFor(m => item.Nombre)
+                                        </div>
+                                        <div class="Imagen">
+                                            <img alt="@item.Nombre" src="@item.ImageRoot" />
+                                        </div>
+                                        <div class="Descripcion">
+                                            @Html.DisplayFor(m => item.Descripcion)
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                            else
+                            {
+                                <a href="@Url.Action(item.Action, item.Controller, new { item.IdModulo })" onclick="lp.Show();">
+                                    <div class="MenuItem">
+                                        <div class="Titulo">
+                                            @Html.DisplayFor(m => item.Nombre)
+                                        </div>
+                                        <div class="Imagen">
+                                            <img alt="@item.Nombre" src="@item.ImageRoot" />
+                                        </div>
+                                        <div class="Descripcion">
+                                            @Html.DisplayFor(m => item.Descripcion)
+                                        </div>
+                                    </div>
+                                </a>
+                            }
+                        }
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
+}

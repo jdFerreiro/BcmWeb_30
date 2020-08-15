@@ -1,0 +1,139 @@
+@using BcmWeb_30.Models
+
+@model DocumentoModel
+
+<script type="text/javascript">
+    function itemMenuClick(s, e) {
+        if (e.item.items.length == 0) {
+            var _href = e.htmlElement.href;
+            var spl = _href.split("=");
+            var lng = spl.length;
+            var modId = spl[lng - 1]
+
+            if (modId == 99010100) {
+                lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanelAprobacion)');
+            }
+            else {
+                lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanel)');
+            }
+            lp.Show();
+        }
+    }
+</script>
+
+<div class="leftPanel" style="margin-bottom: 50px;">
+    <table>
+        <tr>
+            <td>
+                @Html.DevExpress().Button(b =>
+                {
+                    b.Name = "botReturn";
+                    b.Text = Resources.BCMWebPublic.botReturnText;
+                    b.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Model.returnPage + "' }";
+                }).GetHtml()
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td class="ModuloHeader">
+                            <div>
+                                @Html.DisplayFor(m => m.ModuloActual)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="docData">
+                                <table cellspacing="5" cellpadding="5">
+                                    <tr>
+                                        <td style="width: 40%; padding: 2px 5px;">
+                                            @Html.Raw(Resources.DocumentoResource.captionDocumento)
+                                        </td>
+                                        <td style="width: 60%; padding: 2px 5px; text-align: right;">
+                                            @Html.DisplayFor(m => m.NroDocumento)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 2px 5px;">
+                                            @Html.Raw(Resources.DocumentoResource.captionEstatus)
+                                        </td>
+                                        <td style="padding: 2px 5px; text-align: right;">
+                                            @Html.DisplayFor(m => m.Estatus)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 2px 5px;">
+                                            @Html.Raw(Resources.DocumentoResource.captionFechaEstatus)
+                                        </td>
+                                        <td style="padding: 2px 5px; text-align: right;">
+                                            @Html.DisplayFor(m => m.FechaEstadoDocumento)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 2px 5px;">
+                                            @Html.Raw(Resources.DocumentoResource.captionFechaUltimaModificacion)
+                                        </td>
+                                        <td style="padding: 2px 5px; text-align: right;">
+                                            @Html.DisplayFor(m => m.FechaUltimaModificacion)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 2px 5px;">
+                                            @Html.Raw(Resources.DocumentoResource.captionVersion)
+                                        </td>
+                                        <td style="padding: 2px 5px; text-align: right;">
+                                            @Html.DisplayFor(m => m.Version)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        @if ((bool)Session["Editable"] == true)
+                                        {
+
+                                            @Html.Raw("<td colspan=2 class=\"editable\">" + Resources.EditorResources.EditableText + "</td>");
+                                        }
+                                        else
+                                        {
+                                            @Html.Raw("<td colspan=2 class=\"noEditable\">" + Resources.EditorResources.NoEditableText + "</td>");
+                                        }
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DevExpress().Menu(s =>
+                            {
+                                s.Name = "menuOpciones";
+                                s.Width = Unit.Percentage(100);
+                                s.ItemAutoWidth = false;
+                                s.Styles.Item.Font.Size = FontUnit.Small;
+                                s.Styles.Item.Wrap = DefaultBoolean.True;
+                                s.Styles.SubMenuItem.Font.Size = FontUnit.Small;
+                                s.Styles.SubMenuItem.Wrap = DefaultBoolean.True;
+                                s.Styles.SubMenuItem.Width = Unit.Pixel(150);
+                                s.Orientation = Orientation.Vertical;
+                                s.ShowPopOutImages = DefaultBoolean.False;
+                                s.ControlStyle.HorizontalAlign = HorizontalAlign.Center;
+                                s.EnableAdaptivity = true;
+                                s.ClientSideEvents.ItemClick = "itemMenuClick";
+                            }).Bind(Model.SubModulos).GetHtml()
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+

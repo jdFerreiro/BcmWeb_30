@@ -1,0 +1,27 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model DocumentosModel
+
+@Html.DevExpress().ComboBox(
+    settings =>
+    {
+        settings.Name = "cbxProceso";
+        settings.Width = Unit.Percentage(50);
+        settings.SelectedIndex = 0;
+        settings.CallbackRouteValues = new { Controller = "Documento", Action = "ComboBoxProcesos" };
+        settings.Properties.CallbackPageSize = 15;
+        settings.Properties.Caption = Resources.EmpresaResource.captionEmpresa;
+        settings.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        settings.Properties.IncrementalFilteringMode = IncrementalFilteringMode.Contains;
+        settings.Properties.TextFormatString = "{0}";
+        settings.Properties.TextField = "Nombre";
+        settings.Properties.ValueField = "IdProceso";
+        settings.Properties.ValueType = typeof(System.Int64);
+        settings.Properties.ItemStyle.SelectedStyle.CssClass = "selectedItem";
+        settings.Properties.ClearButton.DisplayMode = ClearButtonDisplayMode.Auto;
+        settings.Properties.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show();}";
+        settings.Properties.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide();}";
+        settings.Properties.ClientSideEvents.SelectedIndexChanged = "function (s,e) { lp.Show(); $(\"#IdProceso\").val(cbxProceso.GetValue()); document.forms[\"AdminForm\"].submit(); }";
+    }
+).BindList(Metodos.GetProcesosEmpresa()).Bind(Model.Filtros.IdProceso).GetHtml()

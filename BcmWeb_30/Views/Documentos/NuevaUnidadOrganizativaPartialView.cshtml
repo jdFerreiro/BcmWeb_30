@@ -1,0 +1,35 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model UnidadOrganizativaModel
+
+<div id="content">
+    @Html.DevExpress().TextBoxFor(m => m.NombreUnidadOrganizativa, tb =>
+    {
+        tb.ShowModelErrors = true;
+        tb.Width = Unit.Percentage(100);
+        tb.Properties.Caption = Resources.FichaResource.captionUO;
+        tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+    }).GetHtml()
+    @Html.DevExpress().ComboBoxFor(m => m.IdUnidadPadre, cb =>
+    {
+        cb.Width = Unit.Percentage(100);
+        cb.Properties.Caption = Resources.FichaResource.captionUnidadPadre;
+        cb.Properties.DropDownStyle = DropDownStyle.DropDownList;
+        cb.Properties.ValueType = typeof(long);
+        cb.Properties.TextField = "NombreUnidadOrganizativa";
+        cb.Properties.ValueField = "IdUnidad";
+        cb.ShowModelErrors = true;
+        cb.Properties.ValidationSettings.Display = Display.Dynamic;
+        cb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+    }).BindList(Metodos.GetUnidades()).GetHtml()
+    <div style="margin-top: 10px; float:right;">
+        @Html.DevExpress().Button(bt =>
+        {
+            bt.Name = "botSaveUnidad";
+            bt.Text = Resources.BCMWebPublic.captionButtonSave;
+            bt.ClientSideEvents.Click = "CreateUnidad";
+        }).GetHtml()
+    </div>
+</div>
+

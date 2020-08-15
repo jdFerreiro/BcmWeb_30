@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Direccion1Header" xml:space="preserve">
+    <value>Venezuela</value>
+  </data>
+  <data name="Direccion1Linea1" xml:space="preserve">
+    <value>Grupo Aplired C.A.</value>
+  </data>
+  <data name="Direccion1Linea2" xml:space="preserve">
+    <value>Torre Morelos, Piso 4, oficina 4-B, Quebrada Honda, La Candelaria, 1010</value>
+  </data>
+  <data name="Direccion1Linea3" xml:space="preserve">
+    <value>Caracas – Venezuela</value>
+  </data>
+  <data name="Direccion2Header" xml:space="preserve">
+    <value>España</value>
+  </data>
+  <data name="Direccion2Linea1" xml:space="preserve">
+    <value>Grupo APLIRED S.L.</value>
+  </data>
+  <data name="Direccion2Linea2" xml:space="preserve">
+    <value>Guillén de Castro, 26 – 28017.</value>
+  </data>
+  <data name="Direccion2Linea3" xml:space="preserve">
+    <value>Madrid – España</value>
+  </data>
+  <data name="Direccion3Header" xml:space="preserve">
+    <value>Colombia</value>
+  </data>
+  <data name="Direccion3Linea1" xml:space="preserve">
+    <value>Grupo Aplired S.A.S</value>
+  </data>
+  <data name="Direccion3Linea2" xml:space="preserve">
+    <value>Carrera 11B- # 98 - 08, oficina 202</value>
+  </data>
+  <data name="Direccion3Linea3" xml:space="preserve">
+    <value>Bogotá – Colombia</value>
+  </data>
+  <data name="Direccion4Header" xml:space="preserve">
+    <value>Guatemala</value>
+  </data>
+  <data name="Direccion4Linea1" xml:space="preserve">
+    <value>Grupo Aplired S.A.</value>
+  </data>
+  <data name="Direccion4Linea2" xml:space="preserve">
+    <value>6ta Calle, 5 - 47, Zona 9, Edificio Vasil, 6to Nivel</value>
+  </data>
+  <data name="Direccion4Linea3" xml:space="preserve">
+    <value>Guatemala – Guatemala</value>
+  </data>
+  <data name="EmailContacto" xml:space="preserve">
+    <value>contacto.bcmweb@aplired.com</value>
+  </data>
+  <data name="labelEmailContacto" xml:space="preserve">
+    <value>Correo Electrónico:</value>
+  </data>
+  <data name="PageTitle" xml:space="preserve">
+    <value>Contáctenos</value>
+  </data>
+  <data name="SubHeaderCorreo" xml:space="preserve">
+    <value>Envíenos un Correo Electrónico a:</value>
+  </data>
+  <data name="SubHeaderMensaje" xml:space="preserve">
+    <value>Envíenos un Mensaje</value>
+  </data>
+  <data name="SedesLabel" xml:space="preserve">
+    <value>Sedes</value>
+  </data>
+  <data name="labelAsunto" xml:space="preserve">
+    <value>Asunto</value>
+  </data>
+  <data name="labelMensaje" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="labelNombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="HeaderEmailApliredHtml" xml:space="preserve">
+    <value>Se ha recibido un mensaje de contacto</value>
+  </data>
+  <data name="HeaderEmailClienteHtml" xml:space="preserve">
+    <value>Gracias por Contactarnos</value>
+  </data>
+  <data name="MensajeEmailApliredHTML" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;img src="cid:Logo-BiaPlus" width="80" /&gt;
+            &lt;/td&gt;
+            &lt;td&gt;&lt;h1&gt;{0}&lt;/h1&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2" style="align-content:center; text-align:center;"&gt;
+                &lt;h2&gt;{5}&lt;/h2&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;
+                &lt;table style="border-collapse:collapse; width:80%; background-color:#ffffff;" align="center"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;&lt;hr style="height: 3px; width: 100%;" /&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            Se ha recibido un correo electrónico de contacto. La información contenida en el mensaje es la siguiente:
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;p&gt;Nombre: {1}&lt;/p&gt;
+                            &lt;p&gt;Correo Electrónico: {2}&lt;/p&gt;
+                            &lt;p&gt;Asunto: {3}&lt;/p&gt;
+                            &lt;p&gt;Mensaje: {4}&lt;/p&gt;
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;&lt;hr style="height: 3px; width: 100%;" /&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2" style="text-align: center;"&gt;
+                &lt;img src="cid:LogoAplired" height="30" /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="MensajeEmailApliredTexto" xml:space="preserve">
+    <value>Se ha recibido un correo electrónico de contacto. {0} {0} La información recibida es la siguiente: {0} Nombre: {1} {0} Correo Electrónico: {2}{0} Asunto: {3} {0} Mensaje {4} </value>
+  </data>
+  <data name="MensajeEmailClienteHTML" xml:space="preserve">
+    <value>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table&gt;
+        &lt;tr&gt;
+            &lt;td&gt;
+                &lt;img src="cid:Logo-BiaPlus" width="80" /&gt;
+            &lt;/td&gt;
+            &lt;td&gt;&lt;h1&gt;{0}&lt;/h1&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2" style="align-content:center; text-align:center;"&gt;
+                &lt;h2&gt;{2}&lt;/h2&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2"&gt;
+                &lt;table style="border-collapse:collapse; width:80%; background-color:#ffffff;" align="center"&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;&lt;hr style="height: 3px; width: 100%;" /&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            Sr/a {1}.
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;
+                            &lt;p&gt;Su mensaje ha sido enviado satisfactoriamente.&lt;/p&gt;
+                            &lt;p&gt;Gracias por contactarnos.&lt;/p&gt; 
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;&lt;hr style="height: 3px; width: 100%;" /&gt;&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td colspan="2" style="text-align: center;"&gt;
+                &lt;img src="cid:LogoAplired" height="30" /&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="MensajeEmailClienteTexto" xml:space="preserve">
+    <value>Sr/a {1}. {0} {0} Su mensaja ha sido enviado de manera satisfactoria. {0} Queremos agradecerle por contactarnos.</value>
+  </data>
+  <data name="SubjectEmailAplired" xml:space="preserve">
+    <value>Contacto desde BCMWeb</value>
+  </data>
+  <data name="SubjectEmailCliente" xml:space="preserve">
+    <value>Respuesta de contacto en BCMWeb</value>
+  </data>
+</root>

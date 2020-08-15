@@ -1,0 +1,101 @@
+﻿@using BcmWeb_30
+@using DevExpress.Data;
+
+@{
+
+    Html.EnableClientValidation();
+    Html.EnableUnobtrusiveJavaScript();
+
+    var grid = Html.DevExpress().GridView(
+        settings =>
+        {
+            settings.Name = "gvDispositivos";
+            settings.KeyFieldName = "Id";
+            settings.CallbackRouteValues = new { Controller = "Eventos", Action = "DispositivosPartialView" };
+            settings.SettingsBehavior.ConfirmDelete = true;
+            settings.Width = Unit.Percentage(100);
+            settings.Settings.VerticalScrollableHeight = 325;
+            settings.Settings.HorizontalScrollBarMode = ScrollBarMode.Auto;
+            settings.Settings.VerticalScrollBarMode = ScrollBarMode.Auto;
+            settings.Caption = Resources.DispositivoResource.GridTitle;
+            settings.Styles.TitlePanel.Font.Bold = true;
+            settings.SettingsPager.Mode = GridViewPagerMode.ShowAllRecords;
+            settings.SettingsLoadingPanel.Mode = GridViewLoadingPanelMode.Disabled;
+            settings.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+            settings.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+            settings.Settings.ShowFilterRow = true;
+            settings.Settings.ShowFilterRowMenu = true;
+            settings.Settings.ShowFooter = false;
+
+            settings.CommandColumn.Visible = false;
+
+            settings.SettingsDetail.AllowOnlyOneMasterRowExpanded = true;
+            settings.SettingsDetail.ShowDetailRow = true;
+            settings.SettingsDetail.ShowDetailButtons = true;
+
+            settings.SetDetailRowTemplateContent(c =>
+            {
+                using (Html.BeginForm())
+                {
+                    Html.RenderAction("ConexionesPartial", new { IdDispositivo = DataBinder.Eval(c.DataItem, "Id") });
+                };
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "Usuario";
+                c.Caption = Resources.DispositivoResource.labelUsuario;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(30);
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "TipoDispositivo";
+                c.Caption = Resources.DispositivoResource.labelTipo;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(15);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "NombreDispositivo";
+                c.Caption = Resources.DispositivoResource.labelNombre;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(15);
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "ModeloDispositivo";
+                c.Caption = Resources.DispositivoResource.labelModelo;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.Width = Unit.Percentage(20);
+                c.Settings.AutoFilterCondition = AutoFilterCondition.Contains;
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "PlataformaDispositivo";
+                c.Caption = Resources.DispositivoResource.labelPlataforma;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+            settings.Columns.Add(c =>
+            {
+                c.FieldName = "VersionSO";
+                c.Caption = Resources.DispositivoResource.labelVersion;
+                c.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.HeaderStyle.Wrap = DefaultBoolean.True;
+                c.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+                c.Width = Unit.Percentage(10);
+            });
+        });
+
+}
+@grid.Bind(Session["GridViewData"]).GetHtml()

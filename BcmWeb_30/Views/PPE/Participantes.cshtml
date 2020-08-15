@@ -1,0 +1,60 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model PruebaParticipanteModel
+
+<script type="text/javascript">
+    function TokensChanged(s, e) {
+        var tokens = s.GetTokenCollection();
+        if (tokens.length > 1) {
+            s.RemoveToken(0);
+        }
+    }
+</script>
+
+@using (Html.BeginForm())
+{
+
+    @Html.HiddenFor(m => m.IdModuloActual)
+    @Html.HiddenFor(m => m.IdEmpresa)
+    @Html.HiddenFor(m => m.IdPrueba)
+    @Html.HiddenFor(m => m.IdClaseDocumento)
+
+    @Html.Partial("ParticipantesPartialView")
+
+    <div style="float:right;">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+                    {
+                        btnSettings.Name = "btnPervPage";
+                        btnSettings.Text = Resources.BCMWebPublic.captionButtonPrev;
+                        btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                        btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("EditarPrueba", "PPE", new { IdPrueba = Session["IdPrueba"].ToString(), Ejecucion = false }) + "' }";
+                    }).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+               {
+                   btnSettings.Name = "btnBack";
+                   btnSettings.Text = Resources.BCMWebPublic.botReturnText;
+                   btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                   btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                   btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Index", "PPE", new { IdClaseDocumento = long.Parse(Session["IdClaseDocumento"].ToString()), modId = long.Parse(Session["modId"].ToString()) }) + "' }";
+               }).GetHtml()
+                </td>
+                <td>
+                    @Html.DevExpress().Button(btnSettings =>
+               {
+                   btnSettings.Name = "btnNextPage";
+                   btnSettings.Text = Resources.BCMWebPublic.captionButtonNext;
+                   btnSettings.Style[HtmlTextWriterStyle.MarginTop] = "10px";
+                   btnSettings.Style[HtmlTextWriterStyle.MarginLeft] = "5px";
+                   btnSettings.ClientSideEvents.Click = "function(s, e) { lp.Show(); document.location='" + Url.Action("Ejercicios", "PPE", new { IdPrueba = Session["IdPrueba"].ToString() }) + "' }";
+               }).GetHtml()
+                </td>
+            </tr>
+        </table>
+    </div>
+}

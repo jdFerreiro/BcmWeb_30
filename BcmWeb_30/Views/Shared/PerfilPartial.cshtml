@@ -1,0 +1,63 @@
+﻿@using BcmWeb_30.Models
+
+@model ModulosUserModel
+
+<div>
+    @using (Html.BeginForm("PerfilPartial", "Menu", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmPerfil" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.Hidden("PerfilValid", ViewData.ModelState.IsValid.ToString().ToLower())
+        @Html.HiddenFor(m => m.Perfil.IdUsuario)
+        @Html.HiddenFor(m => m.Perfil.Changed)
+
+        @Html.DevExpress().TextBoxFor(m => m.Perfil.Nombre, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.Properties.Caption = Resources.PerfilResource.captionNombre;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.ShowModelErrors = true;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+        @Html.DevExpress().TextBoxFor(m => m.Perfil.Email, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.ShowModelErrors = true;
+            tb.Properties.Caption = Resources.PerfilResource.captionEmail;
+            tb.Properties.Password = false;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+        @Html.DevExpress().TextBoxFor(m => m.Perfil.Password, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.ShowModelErrors = true;
+            tb.Properties.Caption = Resources.PerfilResource.captionPassword;
+            tb.Properties.Password = true;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+        @Html.DevExpress().TextBoxFor(m => m.Perfil.PasswordCompare, tb =>
+        {
+            tb.Width = Unit.Percentage(100);
+            tb.ShowModelErrors = true;
+            tb.Properties.Caption = Resources.PerfilResource.captionPasswordConfirm;
+            tb.Properties.Password = true;
+            tb.Properties.CaptionSettings.Position = EditorCaptionPosition.Top;
+            tb.Properties.ValidationSettings.Display = Display.Dynamic;
+            tb.Properties.ValidationSettings.ErrorDisplayMode = ErrorDisplayMode.ImageWithTooltip;
+        }).GetHtml()
+        <br />
+        <div class="right">
+            @Html.DevExpress().Button(b =>
+       {
+           b.Name = "botGuardar";
+           b.Text = Resources.BCMWebPublic.captionButtonSave;
+           b.ClientSideEvents.Click = "OnSavePerfil";
+           b.UseSubmitBehavior = true;
+       }).GetHtml()
+        </div>
+    }
+</div>

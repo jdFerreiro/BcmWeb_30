@@ -1,0 +1,133 @@
+﻿@using BcmWeb_30;
+@using BcmWeb_30.Models;
+
+@model ModulosUsuario
+
+@*@Html.DevExpress().TreeView(settings =>
+{
+    settings.Name = "tvwModulos";
+
+    Metodos.CreateTreeViewNodesRecursive(Model.ModuloUsuario.AsQueryable(), settings.Nodes, 0);
+}).GetHtml()*@
+@Html.DevExpress().TreeList(s =>
+{
+    s.Name = "tlModulos";
+    s.CallbackRouteValues = new { Controller = "Administracion", Action = "ModulosAccesoPartialView", IdEmpresa = Model.IdEmpresaSelected, IdUsuario = Model.IdUsuario };
+    s.Width = Unit.Percentage(100);
+    s.AutoGenerateColumns = false;
+    s.KeyFieldName = "IdModulo";
+    s.ParentFieldName = "IdPadre";
+    s.ClientSideEvents.BeginCallback = "function (s,e) { lp.Show(); }";
+    s.ClientSideEvents.EndCallback = "function (s,e) { lp.Hide(); }";
+
+    s.Columns.Add(cs =>
+    {
+        cs.FieldName = "Nombre";
+        cs.Caption = Resources.AdministracionResource.captionModulos;
+        cs.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.ColumnType = MVCxTreeListColumnType.TextBox;
+        cs.Width = Unit.Percentage(80);
+    });
+    s.Columns.Add(cs =>
+    {
+        cs.FieldName = "Selected";
+        cs.Caption = Resources.BCMWebPublic.captionButtonVer;
+        cs.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.Width = Unit.Percentage(10);
+        cs.SetDataCellTemplateContent(dct =>
+        {
+            Html.DevExpress().CheckBox(cbs =>
+            {
+                cbs.Name = "cbs_" + dct.NodeKey.ToString();
+                cbs.Checked = bool.Parse(DataBinder.Eval(dct.DataItem, "Selected").ToString());
+                cbs.Properties.ClientSideEvents.CheckedChanged = "function (s,e) { onSelectedChanged(\"" + Model.IdEmpresaSelected.ToString() + "\",\"" + dct.NodeKey.ToString() + "\",\"" + Model.IdUsuario.ToString() + "\", s.GetChecked()) }";
+                if (ViewData["items"] != null)
+                {
+                    Dictionary<string, bool> items = (Dictionary<string, bool>)ViewData["items"];
+                    cbs.Checked = items.ContainsKey(cbs.Name) && (bool)items[cbs.Name];
+                }
+            }).Render();
+        });
+    });
+    s.Columns.Add(cs =>
+    {
+        cs.FieldName = "Update";
+        cs.Caption = Resources.BCMWebPublic.captionButtonEdit;
+        cs.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.Width = Unit.Percentage(10);
+        cs.SetDataCellTemplateContent(dct =>
+        {
+            Html.DevExpress().CheckBox(cbs =>
+            {
+                cbs.Name = "cbu_" + dct.NodeKey.ToString();
+                cbs.Checked = bool.Parse(DataBinder.Eval(dct.DataItem, "Update").ToString());
+                cbs.ClientVisible = short.Parse(DataBinder.Eval(dct.DataItem, "TipoElemento").ToString()) == 4;
+                cbs.Properties.ClientSideEvents.CheckedChanged = "function (s,e) { onUpdateChanged(\"" + Model.IdEmpresaSelected.ToString() + "\",\"" + dct.NodeKey.ToString() + "\",\"" + Model.IdUsuario.ToString() + "\", s.GetChecked()) }";
+                if (ViewData["items"] != null)
+                {
+                    Dictionary<string, bool> items = (Dictionary<string, bool>)ViewData["items"];
+                    cbs.Checked = items.ContainsKey(cbs.Name) && (bool)items[cbs.Name];
+                }
+            }).Render();
+        });
+    });
+    s.Columns.Add(cs =>
+    {
+        cs.FieldName = "Delete";
+        cs.Caption = Resources.BCMWebPublic.captionButtonDelete;
+        cs.HeaderStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.Width = Unit.Percentage(10);
+        cs.CellStyle.HorizontalAlign = HorizontalAlign.Center;
+        cs.SetDataCellTemplateContent(dct =>
+        {
+            Html.DevExpress().CheckBox(cbs =>
+            {
+                cbs.Name = "cbd_" + dct.NodeKey.ToString();
+                cbs.Checked = bool.Parse(DataBinder.Eval(dct.DataItem, "Delete").ToString());
+                cbs.ClientVisible = short.Parse(DataBinder.Eval(dct.DataItem, "TipoElemento").ToString()) == 4;
+                cbs.Properties.ClientSideEvents.CheckedChanged = "function (s,e) { onDeleteChanged(\"" + Model.IdEmpresaSelected.ToString() + "\",\"" + dct.NodeKey.ToString() + "\",\"" + Model.IdUsuario.ToString() + "\", s.GetChecked()) }";
+                if (ViewData["items"] != null)
+                {
+                    Dictionary<string, bool> items = (Dictionary<string, bool>)ViewData["items"];
+                    cbs.Checked = items.ContainsKey(cbs.Name) && (bool)items[cbs.Name];
+                }
+            }).Render();
+        });
+    });
+
+    //s.ClientSideEvents.SelectionChanged = "onNodeSelectChanged";
+
+    s.SettingsBehavior.AutoExpandAllNodes = true;
+    s.SettingsBehavior.ExpandCollapseAction = TreeListExpandCollapseAction.NodeDblClick;
+    s.SettingsLoadingPanel.Enabled = false;
+
+    s.SettingsCookies.Enabled = true;
+    s.SettingsCookies.StoreExpandedNodes = true;
+    s.SettingsCookies.StoreSelection = true;
+
+    s.SettingsSelection.Enabled = false;
+    s.SettingsSelection.Recursive = false;
+    s.SettingsSelection.AllowSelectAll = false;
+
+    s.DataBound = (snd, e) =>
+    {
+        MVCxTreeList treeList = (MVCxTreeList)snd;
+        TreeListNodeIterator iterator = treeList.CreateNodeIterator();
+        TreeListNode node = iterator.Current;
+        while (node != null)
+        {
+            if (node != treeList.RootNode)
+            {
+                node.AllowSelect = true;
+            }
+            node = iterator.GetNext();
+        }
+    };
+
+    s.PreRender = (snd, e) =>
+    {
+        ((MVCxTreeList)snd).SelectAll();
+    };
+}).Bind(Model.ModuloUsuario).GetHtml()

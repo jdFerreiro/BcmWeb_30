@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Lista1Elemento1" xml:space="preserve">
+    <value>Para mantener la continuidad de los servicios de la empresa y de los procesos críticos, así como la disminución de impactos ante eventos inesperados o desastres.</value>
+  </data>
+  <data name="Lista1Elemento2" xml:space="preserve">
+    <value>Para poder identificar los diversos eventos que pueden impactar sobre la continuidad de las operaciones y su impacto en el negocio.</value>
+  </data>
+  <data name="Lista1Elemento3" xml:space="preserve">
+    <value>Para conocer los tiempos críticos de recuperación, para volver al estado anterior de la compañía.</value>
+  </data>
+  <data name="Lista1Elemento4" xml:space="preserve">
+    <value>Para poder identificar aquellos puntos más débiles de la infraestructura, que son susceptibles de sufrir un incidente y afectar la continuidad del negocio.</value>
+  </data>
+  <data name="Lista1Elemento5" xml:space="preserve">
+    <value>Para disponer de un plan logístico de rápida actuación y respuesta, en caso de sufrir un incidente.</value>
+  </data>
+  <data name="Lista1Elemento6" xml:space="preserve">
+    <value>Para determinar con anterioridad  cuales son las tareas y funciones que deberán reponerse en primer lugar.</value>
+  </data>
+  <data name="Lista1Elemento7" xml:space="preserve">
+    <value>Toda organización depende de sus recursos, del personal y de las tareas que día a día son ejecutadas con el fin de mantener los beneficios y la estabilidad. La mayoría posee bienes tangibles, empleados, sistemas y tecnologías de información, etc. Si alguno de estos componentes es dañado o deja de estar accesible por la razón que sea, la organización puede paralizarse. Cuanto mayor sea el tiempo de inactividad, mayor es la probabilidad de que tenga que comenzar de nuevo desde cero. Incluso muchas organizaciones no son capaces de recuperarse después de ser víctima de algún desastre.</value>
+  </data>
+  <data name="PageHeader" xml:space="preserve">
+    <value>Información General</value>
+  </data>
+  <data name="Parrafo1" xml:space="preserve">
+    <value>Como paso previo al proceso formal de desarrollar e implantar un plan de continuidad de negocio, toda organización debe tener en consideración varios aspectos claves, tales como:</value>
+  </data>
+  <data name="Parrafo2" xml:space="preserve">
+    <value>Toda estrategia para abordar la implantación de un Plan de  Continuidad de Negocio requiere de tiempo y recursos (humanos, económicos e incluso tecnológicos). Dicho requerimiento convierte a las direcciones de las organizaciones en un componente clave para apoyar la gestión de continuidad y dotar de  tales recursos a la organización.</value>
+  </data>
+  <data name="Parrafo2Span1" xml:space="preserve">
+    <value>Tiempo y recursos:</value>
+  </data>
+  <data name="Parrafo3" xml:space="preserve">
+    <value>La alta dirección de la Organización, como  ente que toma las decisiones y proporciona los fondos necesarios, debe ser concienciada y debe estar convencida de la necesidad  de este tipo de planes. Esta misión de concienciación a menudo resulta un proceso complejo por varias razones: los canales de  comunicación con la dirección no siempre son fluidos, el lenguaje empleado en términos de “riesgo”, “impacto”,  “vulnerabilidad” y otros conceptos relacionados con la seguridad y las tecnologías de la información puede no ser el idóneo  para que sea entendido y asimilado por la dirección .Para conseguir el citado apoyo de la dirección, es necesario dirigirse a  la misma en términos más tangibles y de negocio como son los costos de implantar los planes de continuidad y los beneficios  que éstos proporcionan.</value>
+  </data>
+  <data name="Parrafo3Span1" xml:space="preserve">
+    <value>Implicación y compromiso de la dirección:</value>
+  </data>
+  <data name="Parrafo4" xml:space="preserve">
+    <value>Un paso clave que una organización debe abordar cuando decide impulsar un plan de continuidad de negocio es decidir acerca del alcance del mismo, es importante determinar qué áreas,  procesos de negocio o productos/servicios de la organización serán incluidos en el plan. Incluso en los casos en los que la  organización tenga varias sedes, será necesario establecer un alcance geográfico.</value>
+  </data>
+  <data name="Parrafo4Span1" xml:space="preserve">
+    <value>Definir el alcance:</value>
+  </data>
+  <data name="Parrafo5" xml:space="preserve">
+    <value>Un plan de continuidad de negocio  impacta y necesita del apoyo y la colaboración de las diferentes áreas de la organización: los proyectos de continuidad de  negocio tienen que contar con enfoques no solo tecnológicos, sino también de negocio (relación con proveedores de servicio,  recursos humanos, atención al cliente, recursos financieros, recurso logísticos, etc.).</value>
+  </data>
+  <data name="Parrafo5Span1" xml:space="preserve">
+    <value>Colaboración de las áreas que componen la empresa:</value>
+  </data>
+  <data name="Parrafo6" xml:space="preserve">
+    <value>Conocer si es necesario disponer o no  de ayuda especializada y saber dónde encontrarla, ya que muchos de los problemas a los que se tiene que enfrentar una  organización para implantar su plan de continuidad de negocio ya han sido analizados y solucionados por otras empresas  previamente.</value>
+  </data>
+  <data name="Parrafo6Span1" xml:space="preserve">
+    <value>Plantearse la necesidad de asesoramiento externo:</value>
+  </data>
+  <data name="Parrafo7" xml:space="preserve">
+    <value>El Plan debe mantenerse actualizado para que sea útil y efectivo en casos de crisis y desastres, por lo que es necesario que tanto los responsables de los procesos críticos como el personal de Continuidad de la Organización se encarguen de llevar a cabo todas las actualizaciones necesarias (de personal, infraestructura, procesos, tecnología, etc.).</value>
+  </data>
+  <data name="Pregunta1" xml:space="preserve">
+    <value>1. ¿Por qué es necesario contar con un Plan de Continuidad del Negocio?</value>
+  </data>
+  <data name="Pregunta2" xml:space="preserve">
+    <value>2.	¿Por dónde empezar para llevar a cabo un Plan de Continuidad del Negocio?</value>
+  </data>
+  <data name="Pregunta3" xml:space="preserve">
+    <value>3.	¿Quién debe realizar los mantenimientos y/o actualizaciones?</value>
+  </data>
+</root>

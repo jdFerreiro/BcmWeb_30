@@ -1,0 +1,92 @@
+﻿@using BcmWeb_30
+@using BcmWeb_30.Models
+
+@model IniciativaModel
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+<script type="text/javascript">
+    var myTimer;
+    function ProcesarEvento(tipoEvento, actual, anterior) {
+        $.ajax({
+            type: 'POST',
+            url: '/FileManager/RegistrarOperacionIniciativa',
+            dataType: 'json',
+            data: {
+                Tipo: tipoEvento,
+                nombre: actual,
+                viejo: anterior
+            },
+            success: function (data) {
+                //$(document).forms["IniciativasForm"].submit();
+            },
+            error: function () {
+                alert("error");
+            }
+
+        })
+    }
+    function CalcularMontoPendiente() {
+        var _PresupuestoReal = PresupuestoReal.GetValue();
+        var _MontoAbonado = MontoAbonado.GetValue();
+        var _MontoPendiente = _PresupuestoReal - _MontoAbonado;
+
+        MontoPendiente.SetText(_MontoPendiente.toFixed(2));
+    }
+    function OnButtonClick(s, e, startUrl, Id) {
+        StartActionOnServer(startUrl, Id);
+    }
+    function StartActionOnServer(startUrl, Id) {
+        lp.Show();
+        $.ajax({
+            type: 'POST',
+            url: startUrl,
+            dataType: 'json',
+            data: {
+                IdIniciativa: Id
+            },
+        }).done(ProgressCallbackComplete)
+          .fail(CallbackError);
+    }
+    function ProgressCallbackComplete(data) {
+        lp.Hide();
+        //window.open('MyPDF.pdf', '_blank', 'fullscreen=yes'); return false;"
+        window.open(data._rutaDocumento, '_blank', 'fullscreen=NO');
+    }
+    function CallbackError() {
+        lp.Hide();
+        alert('Error haciendo callback en Iniciativas');
+    }
+</script>
+
+@using (Html.BeginForm("ExportIniciativas", "PlanTrabajo", FormMethod.Post, htmlAttributes: new { id = "IniciativasForm" }))
+{
+
+    @Html.HiddenFor(m => m.IdModuloActual)
+
+    <div style="float: right; margin-top: -25px;">
+        @Html.DevExpress().Button(settings =>
+        {
+            settings.Name = "btExport";
+            settings.Text = Resources.BCMWebPublic.stringExportExcel;
+            settings.UseSubmitBehavior = true;
+        }).GetHtml()
+    </div>
+
+    @Html.Partial("IniciativaPartialView", Session["GridViewData"])
+
+}

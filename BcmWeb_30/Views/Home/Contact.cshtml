@@ -1,0 +1,133 @@
+﻿
+
+<div id="main" style="margin: auto; overflow: hidden;">
+    <table style="width: 75%; margin: auto;">
+        <tr>
+            <td colspan="3">
+                <h1>@Resources.ContactResource.PageTitle</h1>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 50%; vertical-align:top;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td colspan="2">
+                            <h3>@Resources.ContactResource.SubHeaderCorreo</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 19%;">
+                            <span style="font-weight: bold;">@Resources.ContactResource.labelEmailContacto</span>
+                        </td>
+                        <td style="width: 81%; vertical-align: middle;">
+                            @Html.Raw(string.Format("<a href='mailto:{0}'>{0}</a>", Resources.ContactResource.EmailContacto))
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <h3>@Resources.ContactResource.SedesLabel</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="border Redondeado padding10" style="margin-top: 10px; width: 55%;">
+                                <table>
+                                    <tr>
+                                        <td rowspan="2">
+                                            <img src="~/Content/Images/Banderas/venezuela-300x200.jpg" width="80" />
+                                        </td>
+                                        <td style="width: 100%; padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion1Linea1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion1Linea3
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="margin-top: 5px; padding-bottom: 5px;">
+                        <td colspan="2">
+                            <div class="border Redondeado padding10" style="margin-top: 10px; width: 55%;">
+                                <table>
+                                    <tr>
+                                        <td rowspan="2">
+                                            <img src="~/Content/Images/Banderas/espana.jpg" width="80" />
+                                        </td>
+                                        <td style="width: 100%; padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion2Linea1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion2Linea3
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="border Redondeado padding10" style="margin-top: 10px; width: 55%;">
+                                <table>
+                                    <tr>
+                                        <td rowspan="2">
+                                            <img src="~/Content/Images/Banderas/bandera-colombia-300x189.gif" width="80" />
+                                        </td>
+                                        <td style="width: 100%; padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion3Linea1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion3Linea3
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="margin-top: 5px; padding-bottom: 5px;">
+                        <td colspan="2">
+                            <div class="border Redondeado padding10" style="margin-top: 10px; width: 55%;">
+                                <table>
+                                    <tr>
+                                        <td rowspan="2">
+                                            <img src="~/Content/Images/Banderas/guatemala.png" width="80" />
+                                        </td>
+                                        <td style="width: 100%; padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion4Linea1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding-left: 5px; ">
+                                            @Resources.ContactResource.Direccion4Linea3
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td style="width: 50%; vertical-align: top;">
+                <table style="width: 90%; margin: auto auto;">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <h3>@Resources.ContactResource.SubHeaderMensaje</h3>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="height: 100%;">
+                            @Html.Partial("MensajeContactoPartialView")
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

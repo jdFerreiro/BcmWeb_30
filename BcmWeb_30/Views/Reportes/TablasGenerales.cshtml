@@ -1,0 +1,420 @@
+﻿<script>
+function printContent(el){
+    var restorepage = document.body.innerHTML;
+    var printcontent = document.getElementById(el).innerHTML;
+    document.body.innerHTML = printcontent;
+    window.print();
+    document.body.innerHTML = restorepage;
+}
+</script>
+
+@section LeftPanel {
+    @Html.DevExpress().Panel(settings =>
+   {
+       settings.Name = "LeftPane";
+       settings.FixedPosition = PanelFixedPosition.WindowLeft;
+       settings.Collapsible = true;
+       settings.SettingsAdaptivity.CollapseAtWindowInnerWidth = 1023;
+       settings.ControlStyle.CssClass = "leftPane";
+       settings.Styles.Panel.CssClass = "panel";
+       settings.ScrollBars = ScrollBars.Vertical;
+       settings.SetContent(() =>
+       {
+           Html.RenderPartial("ContentLeftPartialView");
+       });
+   }).GetHtml()
+}
+
+<table>
+    <tr>
+        <td>
+            <div style="float: right; margin-right: 10px;">
+                <input id="printdiv" type="button" value="@Resources.BCMWebPublic.captionButtonImprimir" onclick="printContent('dvPrint')" />
+            </div>
+        </td>
+    </tr>
+   <tr>
+        <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; padding: 5px;">
+            @Html.Raw(Resources.ReporteResource.TituloTablasValoracionRiesgo)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table>
+                <tr>
+                    <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                        @Html.Partial("ProbabilidadPartialView")
+                    </td>
+                    <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                        @Html.Partial("ImpactoPartialView")
+                    </td>
+                    <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                        @Html.Partial("ControlPartialView")
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="margin-top: 20px;">
+                <tr>
+                    <td style="text-decoration: underline; font-weight: bold; width: 50%; padding: 5px;">
+                        @Html.Raw(Resources.ReporteResource.TituloFuentes)
+                    </td>
+                    <td style="text-decoration: underline; font-weight: bold; width: 50%; padding: 5px;">
+                        @Html.Raw(Resources.ReporteResource.TituloSeveridad)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; padding: 10px;">
+                        @Html.Partial("FuentePartialView")
+                    </td>
+                    <td style="vertical-align: top; padding: 10px;">
+                        <table style="border: 4px solid navy">
+                            <tr>
+                                <td rowspan="2" style="font-weight: bold; text-align:center; background-color: #f5e964">
+                                    @Html.Raw(Resources.ReporteResource.captionSeveridad)
+                                </td>
+                                <td colspan="4" style="background-color: navy; color: #fff; text-align: center; font-weight: bold; text-wrap: normal; padding: 10px;">
+                                    @Html.Raw(Resources.ReporteResource.TituloProbabilidad)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #bfbbbb; text-align: center;">
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionProbabilidad3)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionProbabilidad2)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionProbabilidad1)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; background-color: navy; color: #fff; text-wrap: normal; padding: 5px;" >
+                                    @Html.Raw(Resources.ReporteResource.TituloImpacto)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionNivelImpacto3)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    3
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    3
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    2
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionNivelImpacto2)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    3
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    2
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionNivelImpacto1)
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    2
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    1
+                                </td>
+                                <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                    1
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <table style="margin-top: 20px;">
+                <tr>
+                    <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; width: 50%; padding: 5px;">
+                        @Html.Raw(Resources.ReporteResource.TituloValoracionRiesgo)
+                    </td>
+                    <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; width: 50%; padding: 5px;">
+                        @Html.Raw(Resources.ReporteResource.TituloAcciones)
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: top; padding: 10px;">
+                        <table style="border: 4px solid navy">
+                            <tr>
+                                <td colspan="2" style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionEstadoRiesgo)
+                                </td>
+                                <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionEstado)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td rowspan="3" style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; width: 40%;">
+                                    @Html.Raw(Resources.ReporteResource.captionDeterminacionEstado)
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; width: 40%;">
+                                    @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea1)
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ff0000; width: 20%;"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                    @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea2)
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ffd800;"></td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                    @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea3)
+                                </td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #29b434;"></td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td style="vertical-align: top; padding: 10px;">
+                        <table style="border: 4px solid navy">
+                            <tr>
+                                <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionEstado)
+                                </td>
+                                <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                    @Html.Raw(Resources.ReporteResource.captionAccionTomar)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ff0000;"></td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                    @Html.Raw(Resources.ReporteResource.captionAccion1)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ffd800;"></td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                    @Html.Raw(Resources.ReporteResource.captionAccion2)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #29b434;"></td>
+                                <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                    @Html.Raw(Resources.ReporteResource.captionAccion3)
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+
+<div id="dvPrint" style="display:none;">
+    <table>
+        <tr>
+            <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; padding: 5px;">
+                @Html.Raw(Resources.ReporteResource.TituloTablasValoracionRiesgo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                            @Html.Partial("ProbabilidadPartialViewPrint")
+                        </td>
+                        <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                            @Html.Partial("ImpactoPartialViewPrint")
+                        </td>
+                        <td style="width: 33.33%; vertical-align: top; padding: 10px;">
+                            @Html.Partial("ControlPartialViewPrint")
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <td style="text-decoration: underline; font-weight: bold; width: 50%; padding: 5px;">
+                            @Html.Raw(Resources.ReporteResource.TituloFuentes)
+                        </td>
+                        <td style="text-decoration: underline; font-weight: bold; width: 50%; padding: 5px;">
+                            @Html.Raw(Resources.ReporteResource.TituloSeveridad)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; padding: 10px;">
+                            @Html.Partial("FuentePartialViewPrint")
+                        </td>
+                        <td style="vertical-align: top; padding: 10px;">
+                            <table style="border: 4px solid navy">
+                                <tr>
+                                    <td rowspan="2" style="font-weight: bold; text-align:center; background-color: #f5e964">
+                                        @Html.Raw(Resources.ReporteResource.captionSeveridad)
+                                    </td>
+                                    <td colspan="4" style="background-color: navy; color: #fff; text-align: center; font-weight: bold; text-wrap: normal; padding: 10px;">
+                                        @Html.Raw(Resources.ReporteResource.TituloProbabilidad)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center;"></td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionProbabilidad3)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionProbabilidad2)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionProbabilidad1)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" style="border: 1px solid #bfbbbb; text-align: center; font-weight: bold; background-color: navy; color: #fff; text-wrap: normal; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.TituloImpacto)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionNivelImpacto3)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        3
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        3
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        2
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionNivelImpacto2)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        3
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        2
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        1
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionNivelImpacto1)
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        2
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        1
+                                    </td>
+                                    <td style="border: 1px solid #bfbbbb; text-align: center; padding: 5px;">
+                                        1
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <table style="margin-top: 20px;">
+                    <tr>
+                        <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; width: 50%; padding: 5px;">
+                            @Html.Raw(Resources.ReporteResource.TituloValoracionRiesgo)
+                        </td>
+                        <td style="text-decoration: underline; font-weight: bold; margin-top: 20px; width: 50%; padding: 5px;">
+                            @Html.Raw(Resources.ReporteResource.TituloAcciones)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top; padding: 10px;">
+                            <table style="border: 4px solid navy">
+                                <tr>
+                                    <td colspan="2" style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionEstadoRiesgo)
+                                    </td>
+                                    <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionEstado)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="3" style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; width: 40%;">
+                                        @Html.Raw(Resources.ReporteResource.captionDeterminacionEstado)
+                                    </td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; width: 40%;">
+                                        @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea1)
+                                    </td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ff0000; width: 20%;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                        @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea2)
+                                    </td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ffd800;"></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                        @Html.Raw(Resources.ReporteResource.CaptionDeterminacionLinea3)
+                                    </td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #29b434;"></td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="vertical-align: top; padding: 10px;">
+                            <table style="border: 4px solid navy">
+                                <tr>
+                                    <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionEstado)
+                                    </td>
+                                    <td style="font-weight: bold; text-align:center; background-color: navy; color: #fff; padding: 5px;">
+                                        @Html.Raw(Resources.ReporteResource.captionAccionTomar)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ff0000;"></td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                        @Html.Raw(Resources.ReporteResource.captionAccion1)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #ffd800;"></td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                        @Html.Raw(Resources.ReporteResource.captionAccion2)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center; background-color: #29b434;"></td>
+                                    <td style="padding: 5px; border: 1px solid #bfbbbb; text-align: center;">
+                                        @Html.Raw(Resources.ReporteResource.captionAccion3)
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
