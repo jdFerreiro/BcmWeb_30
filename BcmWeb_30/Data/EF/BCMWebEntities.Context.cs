@@ -192,5 +192,6 @@ namespace BcmWeb_30.Data.EF
         public virtual DbSet<tblUsuarioUnidadOrganizativa> tblUsuarioUnidadOrganizativa { get; set; }
         public virtual DbSet<tblVicepresidencia> tblVicepresidencia { get; set; }
         public virtual DbSet<tblIniciativaResponsable> tblIniciativaResponsable { get; set; }
+        public virtual DbSet<tblCultura_Modulos> tblCultura_Modulos { get; set; }
     }
 }

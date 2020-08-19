@@ -406,6 +406,7 @@
         <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblUnidadOrganizativa" ManuallyRouted="false" />
         <AssociationConnector Association="BCMWebEntities.FK_tblUsuarioUnidadOrganizativa_tblUsuario" ManuallyRouted="false" />
         <EntityTypeShape EntityType="BCMWebEntities.tblIniciativaResponsable" Width="1.5" PointX="10.375" PointY="7.75" />
+        <EntityTypeShape EntityType="BCMWebEntities.tblCultura_Modulos" Width="1.5" PointX="10.375" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

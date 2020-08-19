@@ -297,23 +297,25 @@ namespace BcmWeb_30
                     if (IdNivelUsuario != null)
                     {
                         Data = (from m in db.tblModulo_Usuario
+                                join c in db.tblCultura_Modulos on m.IdModulo equals c.IdModulo
                                 where m.IdEmpresa == IdEmpresa && m.tblModulo.IdModuloPadre == 0
-                                        && m.IdUsuario == UserId && m.IdModulo < 99000000 && m.tblModulo.Activo
+                                        && m.IdUsuario == UserId && m.IdModulo < 90000000 && m.tblModulo.Activo
+                                        && c.Culture == Culture
                                 select new ModuloModel
                                 {
                                     Action = m.tblModulo.Accion,
                                     Activo = m.tblModulo.Activo,
                                     CodigoModulo = (int)m.tblModulo.IdCodigoModulo,
                                     Controller = m.tblModulo.Controller,
-                                    Descripcion = m.tblModulo.Descripcion,
+                                    Descripcion = c.Descripcion,
                                     IdModulo = m.tblModulo.IdModulo,
                                     IdModuloPadre = 0,
                                     IdTipoElemento = m.tblModulo.IdTipoElemento,
                                     ImageRoot = m.tblModulo.imageRoot,
                                     Negocios = m.tblModulo.Negocios,
-                                    Nombre = m.tblModulo.Nombre,
+                                    Nombre = c.Nombre,
                                     Tecnologia = m.tblModulo.Tecnologia,
-                                    Titulo = m.tblModulo.Titulo
+                                    Titulo = c.Titulo
                                 }).ToList();
                     }
                 }
@@ -340,7 +342,7 @@ namespace BcmWeb_30
                     {
                         Data = (from m in db.tblModulo_Usuario
                                 where m.IdEmpresa == IdEmpresa && m.tblModulo.IdModuloPadre == 0
-                                        && m.IdUsuario == UserId && m.IdModulo < 99000000 && m.tblModulo.Activo
+                                        && m.IdUsuario == UserId && m.IdModulo < 90000000 && m.tblModulo.Activo
                                 select new ModuloModel
                                 {
                                     Action = m.tblModulo.Accion,
@@ -952,7 +954,7 @@ namespace BcmWeb_30
                     .Where(x => x.IdEmpresa == IdEmpresa && x.IdUsuario == IdUsuario && x.tblModulo.IdModuloPadre == IdModuloPadre && x.tblModulo.Activo)
                     .Select(x => x.tblModulo).ToList();
 
-                if (IdModuloPadre == 99010000)
+                if (IdModuloPadre == 90010000)
                 {
                     if (IdDocumento > 0)
                     {
@@ -960,42 +962,42 @@ namespace BcmWeb_30
                         switch (IdEstadoDocumento)
                         {
                             case eEstadoDocumento.Aprobando:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010100).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010500).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010001).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010005).FirstOrDefault());
                                 break;
                             case eEstadoDocumento.Cargando:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010400).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010500).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010004).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010005).FirstOrDefault());
                                 break;
                             case eEstadoDocumento.Certificado:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010100).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010400).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010500).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010001).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010004).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010005).FirstOrDefault());
                                 break;
                             case eEstadoDocumento.Certificando:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010100).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010400).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010001).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010004).FirstOrDefault());
                                 break;
                             case eEstadoDocumento.PorAprobar:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010100).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010500).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010001).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010005).FirstOrDefault());
                                 break;
                             case eEstadoDocumento.PorCertificar:
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010100).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010400).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010001).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                                SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010004).FirstOrDefault());
                                 break;
                         }
                     }
                     else
                     {
-                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010400).FirstOrDefault());
-                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010300).FirstOrDefault());
-                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 99010500).FirstOrDefault());
+                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010004).FirstOrDefault());
+                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010003).FirstOrDefault());
+                        SubModulos.Remove(SubModulos.Where(x => x.IdModulo == 90010005).FirstOrDefault());
                     }
                 }
             }
@@ -8585,7 +8587,7 @@ namespace BcmWeb_30
             using (Entities db = new Entities())
             {
                 data = db.tblModulo
-                    .Where(x => x.IdEmpresa == idEmpresa && x.IdModulo < 99000000)
+                    .Where(x => x.IdEmpresa == idEmpresa && x.IdModulo < 90000000)
                     .AsEnumerable()
                     .Select(x => new dataModulosUsuario
                     {

@@ -1547,6 +1547,9 @@
     <Compile Include="Data\EF\tblCultura_Mes.cs">
       <DependentUpon>BCMWebEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data\EF\tblCultura_Modulos.cs">
+      <DependentUpon>BCMWebEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data\EF\tblCultura_NivelImpacto.cs">
       <DependentUpon>BCMWebEntities.tt</DependentUpon>
     </Compile>

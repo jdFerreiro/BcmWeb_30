@@ -22,6 +22,7 @@ namespace BcmWeb_30.Controllers
             ViewBag.Title = string.Format("{0} - {1}", Resources.LoginResource.accountHeader, Resources.BCMWebPublic.labelAppTitle);
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -72,7 +73,6 @@ namespace BcmWeb_30.Controllers
             return View(model);
         }
 
-        [HttpPost]
         [SessionExpire]
         [HandleError]
         public ActionResult LogOff()
@@ -110,6 +110,7 @@ namespace BcmWeb_30.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -133,6 +134,7 @@ namespace BcmWeb_30.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
         [SessionExpire]
         [HandleError]
         public ActionResult ChangePassword()

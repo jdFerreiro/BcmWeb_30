@@ -64,14 +64,14 @@
         });
 
         function logoffUser() {
-            if (closing) {
-                if (!navigator.sendBeacon) return;
+            //if (closing) {
+            //    if (!navigator.sendBeacon) return;
 
-                var location = window.location;
-                var urlStr = location.protocol + "//" + location.host + "/" + "account/LogOff";
-                var data = "state=" + event.type + "&location=" + location.href;
-                var status = navigator.sendBeacon(urlStr, data);
-            }
+            //    var location = window.location;
+            //    var urlStr = location.protocol + "//" + location.host + "/" + "account/LogOff";
+            //    var data = "state=" + event.type + "&location=" + location.href;
+            //    var status = navigator.sendBeacon(urlStr, data);
+            //}
         };
 
         //Disable Back Button In All Browsers.

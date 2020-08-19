@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.SessionState;
 using System.Web.UI;
 
 namespace BcmWeb_30 .Models
@@ -82,6 +83,7 @@ namespace BcmWeb_30 .Models
 
     public class SubModulosData : ItemsData
     {
+        private HttpSessionState Session { get { return HttpContext.Current.Session; } }
         public SubModulosData(long idModulo) : base()
         {
             IdModulo = idModulo;
@@ -89,13 +91,23 @@ namespace BcmWeb_30 .Models
 
         public override IEnumerable Data
         {
+
             get
             {
+                long IdDocumento = 0;
                 List<tblModulo> Modulos = new List<tblModulo>();
+
+                if (Session["IdDocumento"] != null)
+                    IdDocumento = long.Parse(Session["IdDocumento"].ToString());
+
                 if (IdModulo < 11000000)
                 {
                     Modulos = Metodos.GetSubModulos(IdModulo).ToList();
-                    Modulos.AddRange(Metodos.GetSubModulos(99000000).ToList());
+                    if (IdDocumento > 0)
+                    {
+                        Modulos.AddRange(Metodos.GetSubModulos(90000000).ToList());
+                        Modulos.AddRange(Metodos.GetSubModulos(91000000).ToList());
+                    }
                 }
                 else
                 {

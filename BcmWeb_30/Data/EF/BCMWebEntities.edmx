@@ -742,6 +742,17 @@
           <Property Name="IdMes" Type="int" Nullable="false" />
           <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="tblCultura_Modulos">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+            <PropertyRef Name="Culture" />
+          </Key>
+          <Property Name="IdModulo" Type="bigint" Nullable="false" />
+          <Property Name="Culture" Type="nchar" MaxLength="5" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Titulo" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblCultura_NivelImpacto">
           <Key>
             <PropertyRef Name="Culture" />
@@ -5269,6 +5280,7 @@
           <EntitySet Name="tblCultura_EstadoProceso" EntityType="Self.tblCultura_EstadoProceso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCultura_EstadoUsuario" EntityType="Self.tblCultura_EstadoUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCultura_Mes" EntityType="Self.tblCultura_Mes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCultura_Modulos" EntityType="Self.tblCultura_Modulos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCultura_NivelImpacto" EntityType="Self.tblCultura_NivelImpacto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCultura_NivelUsuario" EntityType="Self.tblCultura_NivelUsuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblCultura_Pais" EntityType="Self.tblCultura_Pais" Schema="dbo" store:Type="Tables" />
@@ -13093,6 +13105,7 @@
             <End Role="tblUsuarioUnidadOrganizativa" EntitySet="tblUsuarioUnidadOrganizativa" />
           </AssociationSet>
           <EntitySet Name="tblIniciativaResponsable" EntityType="BCMWebEntities.tblIniciativaResponsable" />
+          <EntitySet Name="tblCultura_Modulos" EntityType="BCMWebEntities.tblCultura_Modulos" />
         </EntityContainer>
         <EntityType Name="tblIniciativaResponsable">
           <Key>
@@ -13102,6 +13115,17 @@
           <Property Name="IdEmpresa" Type="Int64" Nullable="false" />
           <Property Name="IdResponsable" Type="Int64" Nullable="false" />
           <Property Name="Nombre" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblCultura_Modulos">
+          <Key>
+            <PropertyRef Name="IdModulo" />
+            <PropertyRef Name="Culture" />
+          </Key>
+          <Property Name="IdModulo" Type="Int64" Nullable="false" />
+          <Property Name="Culture" Type="String" Nullable="false" MaxLength="5" FixedLength="true" Unicode="true" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Titulo" Type="String" Nullable="false" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -14992,6 +15016,17 @@
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="IdResponsable" ColumnName="IdResponsable" />
                 <ScalarProperty Name="IdEmpresa" ColumnName="IdEmpresa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCultura_Modulos">
+            <EntityTypeMapping TypeName="BCMWebEntities.tblCultura_Modulos">
+              <MappingFragment StoreEntitySet="tblCultura_Modulos">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Culture" ColumnName="Culture" />
+                <ScalarProperty Name="IdModulo" ColumnName="IdModulo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
