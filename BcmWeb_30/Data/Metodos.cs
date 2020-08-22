@@ -2070,16 +2070,15 @@ namespace BcmWeb_30
             using (Entities db = new Entities())
             {
                 tblDocumento dataDocumento = db.tblDocumento
-                    .Where(x => x.IdEmpresa == IdEmpresa
-                            && x.IdDocumento == IdDocumento
-                            && x.IdTipoDocumento == IdTipoDocumento).FirstOrDefault();
+                    .FirstOrDefault(x => x.IdEmpresa == IdEmpresa && x.IdDocumento == IdDocumento
+                                      && x.IdTipoDocumento == IdTipoDocumento);
 
                 if (dataDocumento == null)
                 {
                     long IdUser = long.Parse(Session["UserId"].ToString());
 
                     tblPersona dataPersona = db.tblPersona
-                        .Where(x => x.IdEmpresa == IdEmpresa && x.IdUsuario == IdUser).FirstOrDefault();
+                        .FirstOrDefault(x => x.IdEmpresa == IdEmpresa && x.IdUsuario == IdUser);
 
                     dataDocumento = new tblDocumento
                     {
@@ -2105,10 +2104,8 @@ namespace BcmWeb_30
 
 
                 tblDocumentoContenido docContenido = db.tblDocumentoContenido
-                    .Where(x => x.IdEmpresa == IdEmpresa
-                            && x.IdDocumento == IdDocumento
-                            && x.IdTipoDocumento == IdTipoDocumento
-                            && x.IdSubModulo == IdModulo).FirstOrDefault();
+                    .FirstOrDefault(x => x.IdEmpresa == IdEmpresa && x.IdDocumento == IdDocumento
+                                      && x.IdTipoDocumento == IdTipoDocumento && x.IdSubModulo == IdModulo);
 
                 if (docContenido == null)
                 {
@@ -2126,9 +2123,9 @@ namespace BcmWeb_30
 
                     if (IdTipoDocumento == 4)
                     {
-                        tblBIADocumento docBia = db.tblBIADocumento.Where(x => x.IdEmpresa == IdEmpresa
-                                                                            && x.IdDocumento == IdDocumento
-                                                                            && x.IdTipoDocumento == IdTipoDocumento).FirstOrDefault();
+                        tblBIADocumento docBia = db.tblBIADocumento.FirstOrDefault(x => x.IdEmpresa == IdEmpresa
+                                                                                     && x.IdDocumento == IdDocumento
+                                                                                     && x.IdTipoDocumento == IdTipoDocumento);
                         if (docBia == null)
                         {
                             docBia = new tblBIADocumento
@@ -2137,7 +2134,7 @@ namespace BcmWeb_30
                                 IdDocumento = IdDocumento,
                                 IdEmpresa = IdEmpresa,
                                 IdTipoDocumento = IdTipoDocumento,
-                                IdUnidadOrganizativa = 0,
+                                IdUnidadOrganizativa = null,
                             };
 
                             db.tblBIADocumento.Add(docBia);
@@ -2146,14 +2143,14 @@ namespace BcmWeb_30
                     if (IdTipoDocumento == 7)
                     {
 
-                        tblBCPDocumento docBCP = db.tblBCPDocumento.Where(x => x.IdEmpresa == IdEmpresa
-                                                                            && x.IdDocumento == IdDocumento
-                                                                            && x.IdTipoDocumento == IdTipoDocumento).FirstOrDefault();
+                        tblBCPDocumento docBCP = db.tblBCPDocumento.FirstOrDefault(x => x.IdEmpresa == IdEmpresa
+                                                                                     && x.IdDocumento == IdDocumento
+                                                                                     && x.IdTipoDocumento == IdTipoDocumento);
                         if (docBCP == null)
                         {
-                            tblBIADocumento docuBIA = db.tblBIADocumento.Where(x => x.IdEmpresa == IdEmpresa
-                                                                                 && x.IdDocumento == IdDocumento
-                                                                                 && x.IdTipoDocumento == IdTipoDocumento).FirstOrDefault();
+                            tblBIADocumento docuBIA = db.tblBIADocumento.FirstOrDefault(x => x.IdEmpresa == IdEmpresa
+                                                                                          && x.IdDocumento == IdDocumento
+                                                                                          && x.IdTipoDocumento == IdTipoDocumento);
                             docBCP = new tblBCPDocumento
                             {
                                 IdDocumento = IdDocumento,
@@ -2161,7 +2158,7 @@ namespace BcmWeb_30
                                 IdEmpresa = IdEmpresa,
                                 IdProceso = null,
                                 IdTipoDocumento = IdTipoDocumento,
-                                IdUnidadOrganizativa = 0,
+                                IdUnidadOrganizativa = null,
                                 Proceso = string.Empty,
                                 Responsable = string.Empty,
                                 SubProceso = string.Empty

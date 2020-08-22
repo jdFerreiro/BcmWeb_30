@@ -39,6 +39,7 @@ namespace BcmWeb_30.Controllers
                     switch (EstatusActual)
                     {
                         case eEstadoUsuario.Activo:
+                        case eEstadoUsuario.Conectado:
                             FormsAuthentication.SetAuthCookie(_User.Email, true);
                             string UserId = _User.Id.ToString();
                             var authTicket = new FormsAuthenticationTicket(1, _User.Name, DateTime.Now, DateTime.Now.AddMinutes(20), false, UserId);
@@ -56,9 +57,9 @@ namespace BcmWeb_30.Controllers
                         case eEstadoUsuario.Bloqueado:
                             ViewBag.ErrorMessage = Resources.ErrorResource.BloqueadoErrorMessage;
                             return View(model);
-                        case eEstadoUsuario.Conectado:
-                            ViewBag.ErrorMessage = Resources.ErrorResource.ConectadoErrorMessage;
-                            return View(model);
+                        //case eEstadoUsuario.Conectado:
+                        //    ViewBag.ErrorMessage = Resources.ErrorResource.ConectadoErrorMessage;
+                        //    return View(model);
                         case eEstadoUsuario.Eliminado:
                             ViewBag.ErrorMessage = Resources.ErrorResource.EliminadoErrorMessage;
                             return View(model);

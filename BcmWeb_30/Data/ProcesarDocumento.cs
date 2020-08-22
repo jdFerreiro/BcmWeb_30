@@ -1,5 +1,6 @@
 ﻿using BcmWeb_30.Data.EF;
 using BcmWeb_30.Security;
+using DevExpress.Data.ODataLinq.Helpers;
 using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
@@ -35,90 +36,90 @@ namespace BcmWeb_30
                 {
                     switch (ModuloId)
                     {
-                        case 4010100: // ficha del BIA
+                        case 4010001: // ficha del BIA
                             ProcesarFichaBIA(msContent);
                             break;
-                        case 4020200: // Entradas del Proceso
+                        case 4020001: // Entradas del Proceso
                             ProcesarEntradasdelProceso(msContent);
                             break;
-                        case 4020300: // Proveedores
+                        case 4020002: // Proveedores
                             ProcesarProveedores(msContent);
                             break;
-                        case 4020400: // Interdependencias
+                        case 4020003: // Interdependencias
                             ProcesarInterdependencias(msContent);
                             break;
-                        case 4020500: // Clientes y Productos
+                        case 4020004: // Clientes y Productos
                             ProcesarClientesyProductos(msContent);
                             break;
-                        case 4020600: // Tecnología
+                        case 4020005: // Tecnología
                             ProcesarTecnología(msContent);
                             break;
-                        case 4020700: // Información Esencial
+                        case 4020006: // Información Esencial
                             ProcesarInformaciónEsencial(msContent);
                             break;
-                        case 4020800: // Personal Clave
+                        case 4020007: // Personal Clave
                             ProcesarPersonalClave(msContent);
                             break;
-                        case 4040100: // Impacto Financiero
+                        case 4030001: // Impacto Financiero
                             ProcesarImpactoFinanciero(msContent);
                             break;
-                        case 4040200: // Impacto Operacional
+                        case 4030002: // Impacto Operacional
                             ProcesarImpactoOperacional(msContent);
                             break;
                         //case 4030300: // Escalas
                         //    ProcesarAnalisisRiesgo(msContent);
                         //    break;
-                        case 4050100: // TMC
+                        case 4040001: // TMC
                             ProcesarTMC(msContent);
                             break;
-                        case 4050200: // TOR
+                        case 4040002: // TOR
                             ProcesarTOR(msContent);
                             break;
-                        case 4050300: // POR
+                        case 4040003: // POR
                             ProcesarPOR(msContent);
                             break;
-                        case 4050400: // TRT
+                        case 4040004: // TRT
                             ProcesarTRT(msContent);
                             break;
-                        case 4060100: // Procedimientos Alternos
+                        case 4050001: // Procedimientos Alternos
                             ProcesarProcedimientosAlternos(msContent);
                             break;
-                        case 4070100: // Ubicación Principal
+                        case 4060001: // Ubicación Principal
                             ProcesarUbicaciónPrincipal(msContent);
                             break;
-                        case 4070200: // Ubicación Alterna
+                        case 4060002: // Ubicación Alterna
                             ProcesarUbicaciónAlterna(msContent);
                             break;
-                        case 4080100: // Grandes Impactos
+                        case 4070001: // Grandes Impactos
                             ProcesarGrandesImpactos(msContent);
                             break;
-                        case 3040100: // Amenazas
-                            if (IdEmpresa == 9)
+                        case 3040001: // Amenazas
+                            if (IdEmpresa == 9 || IdEmpresa == 1)
                                 ProcesarTablasSegunSeveridad(msContent);
                             break;
-                        case 3050100: // Amenazas
-                            if (IdEmpresa == 14)
-                                ProcesarTablasSegunSeveridad(msContent);
-                            break;
-                        //case 3040200:
-                        //    if (IdEmpresa == 9)
+                        //case 3050100: // Amenazas
+                        //    if (IdEmpresa == 14)
+                        //        ProcesarTablasSegunSeveridad(msContent);
+                        //    break;
+                        //case 3050001:
+                        //    if (IdEmpresa == 9 || IdEmpresa == 1)
                         //        ProcesarTablasSegunControles(msContent);
                         //    break;
                         //case 3050200:
                         //    if (IdEmpresa == 14)
                         //        ProcesarTablasSegunControles(msContent);
                         //    break;
-                        case 7000101: // Ficha del BCP
+                        case 7010001: // Ficha del BCP
                             ProcesarFichaBCP(msContent);
                             break;
-                        case 1010100:
-                        case 2000101:
-                        case 3000101:
-                        case 5000101:
-                        case 6000101:
-                        case 8000101:
-                        case 9000101:
-                        case 10000101:
+                        case 1010001:
+                        case 2010001:
+                        case 3010001:
+                        case 5010001:
+                        case 6010001:
+                        case 8010001:
+                        case 9010001:
+                        case 10010001:
                             ProcessFichaEstandar(msContent);
                             break;
                     }
@@ -4887,6 +4888,8 @@ namespace BcmWeb_30
                                 _telefonoOficina = string.Empty;
                                 _telefonoCelular = string.Empty;
                                 _correoResponsable = string.Empty;
+
+
                             }
                             else if (_celda.InnerText.ToUpper().Contains("APLIRED"))
                             {
@@ -5435,9 +5438,36 @@ namespace BcmWeb_30
 
                         db.tblUnidadOrganizativa.Add(unidad);
                         db.SaveChanges();
+                    }
 
+                    long[] _userlevel = new long[] { 0, 4, 6 };
+
+                    List<tblUsuario> userChecks = db.tblEmpresaUsuario.Where(x => x.IdEmpresa == _IdEmpresa 
+                            && _userlevel.Contains(x.IdNivelUsuario)).Select(x => x.tblUsuario).ToList();
+
+                    foreach (tblUsuario userChk in userChecks)
+                    {
+                        tblUsuarioUnidadOrganizativa userUO = db.tblUsuarioUnidadOrganizativa
+                                .FirstOrDefault(x => x.IdEmpresa == _IdEmpresa && x.IdUsuario == userChk.IdUsuario
+                                                  && x.IdUnidadOrganizativa == unidad.IdUnidadOrganizativa);
+
+                        if (userUO == null)
+                        {
+                            userUO = new tblUsuarioUnidadOrganizativa
+                            {
+                                IdEmpresa = _IdEmpresa,
+                                IdNivelUsuario = userChk.tblEmpresaUsuario.FirstOrDefault(x => x.IdEmpresa == _IdEmpresa).IdNivelUsuario,
+                                IdUnidadOrganizativa = unidad.IdUnidadOrganizativa,
+                                IdUsuario = userChk.IdUsuario
+                            };
+
+                            db.tblUsuarioUnidadOrganizativa.Add(userUO);
+                            db.SaveChanges();
+                        }
                     }
                     _IdUnidadPadre = unidad.IdUnidadOrganizativa;
+
+
                 }
             }
 
