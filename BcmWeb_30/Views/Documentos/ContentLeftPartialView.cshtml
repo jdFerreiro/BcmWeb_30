@@ -6,17 +6,19 @@
     function itemMenuClick(s, e) {
         if (e.item.items.length == 0) {
             var _href = e.htmlElement.href;
-            var spl = _href.split("=");
-            var lng = spl.length;
-            var modId = spl[lng - 1]
+            if (_href != null) {
+                var spl = _href.split("=");
+                var lng = spl.length;
+                var modId = spl[lng - 1]
 
-            if (modId == 99010100) {
-                lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanelAprobacion)');
+                if (modId == 99010100) {
+                    lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanelAprobacion)');
+                }
+                else {
+                    lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanel)');
+                }
+                lp.Show();
             }
-            else {
-                lp.SetText('@Html.Raw(Resources.BCMWebPublic.labelLoadPanel)');
-            }
-            lp.Show();
         }
     }
 </script>

@@ -3542,12 +3542,12 @@ namespace BcmWeb_30
                                 List<OpenXmlElement> _tableRows = _Table.ChildElements.Where(x => x.GetType().Name == "TableRow").ToList();
 
                                 _startRow = GetNextRow(_tableRows, _startRow, out _NroProceso);
-                                string _UnidadSolicitante = string.Empty;
-                                string _ProcesoActiva = string.Empty;
-                                string _NombreResponsableActiva = string.Empty;
 
                                 for (_Row = _startRow; _Row < _tableRows.Count(); _Row++)
                                 {
+                                    string _UnidadSolicitante = string.Empty;
+                                    string _ProcesoActiva = string.Empty;
+                                    string _NombreResponsableActiva = string.Empty;
                                     TableRow _tableRow = (TableRow)_tableRows[_Row];
 
                                     if (_tableRow.HasChildren)

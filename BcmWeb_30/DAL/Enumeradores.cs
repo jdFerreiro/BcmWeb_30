@@ -637,7 +637,7 @@ namespace BcmWeb_30
         [Description("Inactivo")]
         Inactivo = 2,
         [EnumMember()]
-        [Description("Inactivo")]
+        [Description("Eliminado")]
         Eliminado = 3,
     }
 
